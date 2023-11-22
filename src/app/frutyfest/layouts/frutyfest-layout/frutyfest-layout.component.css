@@ -1,0 +1,47 @@
+img.bottom-navbar {
+  width: 40px;
+  height: 40px;
+}
+
+img.top-navbar {
+  width: 70px;
+  height: 70px;
+}
+
+.bottom-navbar {
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
+  margin-top: 8px;
+}
+
+.top-navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: white;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 10px;
+  padding-bottom: 2px;
+}
+
+.content {
+  padding-top: 74px;
+}
+
+li {
+  transition: text-decoration .3s;
+  transition: font-weight .3s;
+}
+
+li:hover {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+}

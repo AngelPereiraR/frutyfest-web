@@ -5,6 +5,7 @@ import { FrutyfestRoutingModule } from './frutyfest-routing.module';
 import { IndexComponent } from './pages/index/index.component';
 import { RankingComponent } from './components/ranking/ranking.component';
 import { FrutyfestLayoutComponent } from './layouts/frutyfest-layout/frutyfest-layout.component';
+import { MaterialModule } from '../material/material.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { FrutyfestLayoutComponent } from './layouts/frutyfest-layout/frutyfest-l
   ],
   imports: [
     CommonModule,
-    FrutyfestRoutingModule
+    FrutyfestRoutingModule,
+    MaterialModule
   ]
 })
 export class FrutyfestModule { }

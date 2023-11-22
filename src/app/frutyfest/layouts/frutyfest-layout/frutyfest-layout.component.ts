@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MenuItem } from '../../interfaces/menu-item.interface';
 
 @Component({
   selector: 'frutyfest-layout',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class FrutyfestLayoutComponent {
 
+  public menuItems: MenuItem[] = [
+    {path: 'auth/login', name: 'Iniciar Sesión'},
+    {path: 'auth/register', name: 'Registrar'},
+  ];
 }

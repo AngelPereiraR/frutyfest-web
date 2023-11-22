@@ -1,0 +1,39 @@
+img.horario {
+
+  @media (min-width: 62em) {
+    width: 30%;
+  }
+
+  @media (max-width: 62em) {
+    width: 50%;
+  }
+}
+
+img.links {
+  height: 40px;
+  padding-top: 10px;
+}
+
+.black {
+  background-color: black;
+  padding: 25px;
+  color: white;
+}
+
+.center {
+  text-align: center;
+}
+
+.social {
+  transition: text-decoration .3s;
+  transition: font-weight .3s;
+}
+
+.social:hover {
+  font-weight: bold;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
