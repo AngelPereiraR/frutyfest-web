@@ -1,39 +1,55 @@
 <div class="top-navbar">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-4 d-flex justify-content-start align-items-center">
-        <div class="my-3 mx-3 title">FrutyFest</div>
+      <div class="col d-flex justify-content-start align-items-center">
+        <div class="mx-3 title">FrutyFest</div>
       </div>
-      <div class="col-2 d-flex justify-content-end align-items-center">
-        <img class="top-navbar" src="./assets/logo.jpg" alt="Logo">
+      <div class="col d-flex justify-content-center align-items-center">
+        <img class="top" src="./assets/logo.jpg" alt="Logo">
       </div>
-      <div class="col-6 d-flex justify-content-end align-items-center">
-        <li class="list-group-item my-3 mx-3 text-center" *ngFor="let item of menuItems" [routerLink]="item.path">
+      <div class="col d-flex justify-content-end align-items-center">
+        <li class="list-group-item text-center auth" *ngFor="let item of menuItems" [routerLink]="item.path">
           {{item.name}}
+        </li>
+      </div>
+    </div>
+
+    <div class="row spacer top d-flex align-items-center">
+      <div class="col-1">
+        <li class="list-group-item text-center" (click)="scrollToSection('reglasGenerales')">
+          Reglas Generales
+        </li>
+      </div>
+      <div class="col-1">
+        <li class="list-group-item text-center" (click)="scrollToSection('modosDeJuego')">
+          Modos de juego
         </li>
       </div>
     </div>
   </div>
 </div>
 
-<div class="content">
+<div class="content background">
+  <app-common-background></app-common-background>
   <router-outlet></router-outlet>
 </div>
 
 <div class="bottom-navbar">
+  <div class="spacer bottom"></div>
   <div class="container">
-    <div class="row">
+    <div class="row m-3">
       <div class="col text-start">
         <a href="https://www.linkedin.com/in/%C3%A1ngel-manuel-pereira-rodr%C3%ADguez-009730253/">
-          <img class="bottom-navbar" src="../assets/linkedin-icon-2.svg" alt="Linkedin">
+          <img class="bottom" src="../assets/linkedin-icon-2.svg" alt="Linkedin">
         </a>
       </div>
       <div class="col text-center">
-        <p>© Copyright 2023 Ángel Pereira</p>
+        <p>© Copyright 2023</p>
+        <p>Ángel Pereira</p>
       </div>
       <div class="col text-end">
         <a href="https://github.com/AngelPereiraR">
-          <img class="bottom-navbar" src="../assets/github-icon-1.svg" alt="GitHub">
+          <img class="bottom" src="../assets/github-icon-1.svg" alt="GitHub">
         </a>
       </div>
     </div>
