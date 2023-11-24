@@ -1,6 +1,6 @@
 <div class="top-navbar">
   <div class="container-fluid">
-    <div class="row">
+    <div class="row" (mouseover)="hideHiddenContent()">
       <div class="col d-flex justify-content-start align-items-center">
         <div class="mx-3 title">FrutyFest</div>
       </div>
@@ -13,16 +13,37 @@
         </li>
       </div>
     </div>
-
     <div class="row spacer top d-flex align-items-center">
-      <div class="col-1">
-        <li class="list-group-item text-center" (click)="scrollToSection('reglasGenerales')">
+      <div class="col-4 col-sm-4 col-md-3 col-lg-2">
+        <li class="list-group-item text-center" (click)="scrollToSection('reglasGenerales')" (mouseover)="hideHiddenContent()">
           Reglas Generales
         </li>
       </div>
-      <div class="col-1">
-        <li class="list-group-item text-center" (click)="scrollToSection('modosDeJuego')">
-          Modos de juego
+      <div class="col-4 col-sm-4 col-md-3 col-lg-2">
+        <li class="list-group-item text-center" (click)="scrollToSection('modosDeJuego')" (mouseover)="showHiddenContent()">
+          Modos de Juego ▼
+        </li>
+      </div>
+    </div>
+    <div class="row spacer top" *ngIf="isHidden" (mouseleave)="hideHiddenContent()">
+      <div class="col-2 col-sm-2 col-lg-1">
+        <li class="list-group-item text-center" (click)="scrollToSection('fase1')">
+          Fase 1
+        </li>
+      </div>
+      <div class="col-2 col-sm-2 col-lg-1">
+        <li class="list-group-item text-center" (click)="scrollToSection('fase2')">
+          Fase 2
+        </li>
+      </div>
+      <div class="col-2 col-sm-2 col-lg-1">
+        <li class="list-group-item text-center" (click)="scrollToSection('fase3')">
+          Fase 3
+        </li>
+      </div>
+      <div class="col-3 col-sm-3 col-md-2 col-xl-1">
+        <li class="list-group-item text-center" (click)="scrollToSection('faseFinal')">
+          Fase Final
         </li>
       </div>
     </div>

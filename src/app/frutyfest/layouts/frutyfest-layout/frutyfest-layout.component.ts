@@ -8,6 +8,8 @@ import { MenuItem } from '../../interfaces/menu-item.interface';
 })
 export class FrutyfestLayoutComponent {
 
+  isHidden: boolean = false;
+
   public menuItems: MenuItem[] = [
     {path: 'auth/login', name: 'Iniciar Sesión'},
     {path: 'auth/register', name: 'Registro'},
@@ -18,5 +20,13 @@ export class FrutyfestLayoutComponent {
     if (section) {
       section.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
+  }
+
+  public showHiddenContent() {
+    this.isHidden = true;
+  }
+
+  public hideHiddenContent() {
+    this.isHidden = false;
   }
 }
