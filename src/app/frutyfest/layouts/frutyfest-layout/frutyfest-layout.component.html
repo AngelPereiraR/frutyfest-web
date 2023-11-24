@@ -14,12 +14,12 @@
       </div>
     </div>
     <div class="row spacer top d-flex align-items-center">
-      <div class="col-4 col-sm-4 col-md-3 col-lg-2">
+      <div class="col-5 col-sm-5 col-md-3 col-lg-2">
         <li class="list-group-item text-center" (click)="scrollToSection('reglasGenerales')" (mouseover)="hideHiddenContent()">
           Reglas Generales
         </li>
       </div>
-      <div class="col-4 col-sm-4 col-md-3 col-lg-2">
+      <div class="col-5 col-sm-5 col-md-3 col-lg-2">
         <li class="list-group-item text-center" (click)="scrollToSection('modosDeJuego')" (mouseover)="showHiddenContent()">
           Modos de Juego ▼
         </li>
@@ -50,12 +50,12 @@
   </div>
 </div>
 
-<div class="content background">
+<div class="content background" (mouseover)="hideHiddenContent()">
   <app-common-background></app-common-background>
   <router-outlet></router-outlet>
 </div>
 
-<div class="bottom-navbar">
+<div class="bottom-navbar" (mouseover)="hideHiddenContent()">
   <div class="spacer bottom"></div>
   <div class="container">
     <div class="row m-3">
