@@ -2,15 +2,26 @@
   <div class="container-fluid">
     <div class="row" (mouseover)="hideHiddenContent()">
       <div class="col d-flex justify-content-start align-items-center">
-        <div class="mx-3 title">FrutyFest</div>
+        <div class="mx-3 title" routerLink="/index">FrutyFest</div>
       </div>
       <div class="col d-flex justify-content-center align-items-center">
         <img class="top" src="./assets/logo.jpg" alt="Logo">
       </div>
-      <div class="col d-flex justify-content-end align-items-center">
+      <div *ngIf="!currentUser()" class="col d-flex justify-content-end align-items-center">
         <li class="list-group-item text-center auth" *ngFor="let item of menuItems" [routerLink]="item.path">
           {{item.name}}
         </li>
+      </div>
+      <div *ngIf="currentUser()" class="col d-flex justify-content-end align-items-center">
+        <div class="list-group-item text-center auth">
+          Bienvenid@ {{currentUser()?.name}}
+        </div>
+        <a *ngIf="currentUser()?.roles?.includes('admin')" class="list-group-item text-center auth" routerLink="/index/admin">
+          Admin
+        </a>
+        <a class="list-group-item text-center auth" (click)="logout()" routerLink="/index">
+          Cerrar Sesión
+        </a>
       </div>
     </div>
     <div class="row spacer top d-flex align-items-center">

@@ -7,14 +7,16 @@ import { RankingComponent } from './components/ranking/ranking.component';
 import { FrutyfestLayoutComponent } from './layouts/frutyfest-layout/frutyfest-layout.component';
 import { MaterialModule } from '../material/material.module';
 import { CommonBackgroundComponent } from './components/common-background/common-background.component';
+import { PruebaComponent } from './pages/admin/prueba/prueba.component';
 
 
 @NgModule({
   declarations: [
-    IndexComponent,
-    RankingComponent,
+    CommonBackgroundComponent,
     FrutyfestLayoutComponent,
-    CommonBackgroundComponent
+    IndexComponent,
+    PruebaComponent,
+    RankingComponent,
   ],
   imports: [
     CommonModule,

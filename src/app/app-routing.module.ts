@@ -3,9 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
-    loadChildren: () => import('./frutyfest/frutyfest.module').then(m => m.FrutyfestModule),
-    pathMatch: 'full'
+    path: 'index',
+    loadChildren: () => import('./frutyfest/frutyfest.module').then(m => m.FrutyfestModule)
   },
   {
     path: 'auth',
@@ -13,7 +12,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/'
+    redirectTo: 'index'
   }
 ];
 

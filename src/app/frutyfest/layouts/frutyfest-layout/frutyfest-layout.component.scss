@@ -58,7 +58,7 @@ li:hover {
   color: white;
 }
 
-li.auth {
+li.auth, div.auth, a.auth {
 
   @media (min-width: 80em) {
     font-size: 20px;

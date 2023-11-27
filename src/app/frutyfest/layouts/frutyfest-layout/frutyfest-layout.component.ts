@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MenuItem } from '../../interfaces/menu-item.interface';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'frutyfest-layout',
@@ -7,12 +8,15 @@ import { MenuItem } from '../../interfaces/menu-item.interface';
   styleUrls: ['./frutyfest-layout.component.scss']
 })
 export class FrutyfestLayoutComponent {
+  private authService = inject(AuthService);
 
   isHidden: boolean = false;
+  currentUser = this.authService.currentUser;
+  authStatus = this.authService.authStatus;
 
   public menuItems: MenuItem[] = [
-    {path: 'auth/login', name: 'Iniciar Sesión'},
-    {path: 'auth/register', name: 'Registro'},
+    {path: '/auth/login', name: 'Iniciar Sesión'},
+    {path: '/auth/register', name: 'Registro'},
   ];
 
   public scrollToSection(sectionId: string) {
@@ -28,5 +32,9 @@ export class FrutyfestLayoutComponent {
 
   public hideHiddenContent() {
     this.isHidden = false;
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }

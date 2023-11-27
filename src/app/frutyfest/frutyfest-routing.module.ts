@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FrutyfestLayoutComponent } from './layouts/frutyfest-layout/frutyfest-layout.component';
 import { IndexComponent } from './pages/index/index.component';
+import { PruebaComponent } from './pages/admin/prueba/prueba.component';
 
 const routes: Routes = [
   {
@@ -11,7 +12,10 @@ const routes: Routes = [
       {
         path: '',
         component: IndexComponent,
-        pathMatch: 'full',
+      },
+      {
+        path: 'admin',
+        component: PruebaComponent
       },
       {
         path: '**',
