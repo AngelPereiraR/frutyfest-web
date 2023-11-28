@@ -8,8 +8,14 @@
         <img class="top" src="./assets/logo.jpg" alt="Logo">
       </div>
       <div *ngIf="!currentUser()" class="col d-flex justify-content-end align-items-center">
-        <li class="list-group-item text-center auth" *ngFor="let item of menuItems" [routerLink]="item.path">
-          {{item.name}}
+        <li class="list-group-item under text-center auth" [routerLink]="'/auth/login'">
+          Iniciar Sesión
+        </li>
+        <li class="list-group-item ps-2 ps-md-3">
+          /
+        </li>
+        <li class="list-group-item under text-center auth" [routerLink]="'/auth/register'">
+          Registro
         </li>
       </div>
       <div *ngIf="currentUser()" class="col d-flex justify-content-end align-items-center">
@@ -36,7 +42,7 @@
         </li>
       </div>
     </div>
-    <div class="row spacer top" *ngIf="isHidden" (mouseleave)="hideHiddenContent()">
+    <div class="row spacer top new d-flex align-items-center" *ngIf="isHidden" (mouseleave)="hideHiddenContent()">
       <div class="col-2 col-sm-2 col-lg-1">
         <li class="list-group-item text-center" (click)="scrollToSection('fase1')">
           Fase 1
@@ -61,7 +67,7 @@
   </div>
 </div>
 
-<div class="content background" (mouseover)="hideHiddenContent()">
+<div class="content" (mouseover)="hideHiddenContent()">
   <app-common-background></app-common-background>
   <router-outlet></router-outlet>
 </div>
@@ -76,7 +82,7 @@
         </a>
       </div>
       <div class="col text-center">
-        <p>© Copyright 2023</p>
+        <p>© 2023</p>
         <p>Ángel Pereira</p>
       </div>
       <div class="col text-end">

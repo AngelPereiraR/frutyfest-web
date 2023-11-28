@@ -14,11 +14,6 @@ export class FrutyfestLayoutComponent {
   currentUser = this.authService.currentUser;
   authStatus = this.authService.authStatus;
 
-  public menuItems: MenuItem[] = [
-    {path: '/auth/login', name: 'Iniciar Sesión'},
-    {path: '/auth/register', name: 'Registro'},
-  ];
-
   public scrollToSection(sectionId: string) {
     const section = document.getElementById(sectionId);
     if (section) {

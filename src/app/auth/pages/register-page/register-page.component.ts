@@ -22,9 +22,12 @@ export class RegisterPageComponent {
   register() {
     const {email, name, password} = this.myForm.value;
 
-    this.authService.login(email, password)
+    this.authService.register(email, password, name)
       .subscribe({
-        next: () => this.router.navigateByUrl('/#'),
+        next: () => {
+          Swal.fire('Registro', 'Registro correcto', 'success')
+          this.router.navigateByUrl('/index');
+        },
         error: (message) => {
           Swal.fire('Error', message, 'error');
         }

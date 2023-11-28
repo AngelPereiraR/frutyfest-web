@@ -86,6 +86,7 @@ a {
 
 h1, h2, h3 {
   font-weight: bold;
+  font-family: Minecraft;
 }
 
 p {
@@ -107,5 +108,11 @@ p {
 }
 
 .img-content {
-  width: 40%;
+  width: 50%;
+  border: 10px solid black;
+}
+
+.img-content-modos {
+  width: 90%;
+  border: 10px solid black;
 }

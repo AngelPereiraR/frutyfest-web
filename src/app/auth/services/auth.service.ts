@@ -47,6 +47,17 @@ export class AuthService {
       );
   }
 
+  register(email: string, password: string, name: string): Observable<boolean> {
+
+    const url = `${this.baseUrl}/auth/register`;
+    const body = { email, password, name };
+
+    return this.http.post<boolean>(url, body)
+      .pipe(
+        catchError(err => throwError(() => err.error.message))
+      );
+  }
+
   checkAuthStatus(): Observable<boolean> {
 
     const url = `${this.baseUrl}/auth/check-token`;
