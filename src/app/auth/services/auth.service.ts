@@ -4,6 +4,7 @@ import { Observable, catchError, map, of, throwError } from 'rxjs';
 import { environments } from 'src/environments/environments';
 
 import { User, AuthStatus, LoginResponse, CheckTokenResponse } from '../interfaces';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ export class AuthService {
 
   private readonly baseUrl: string = environments.baseUrl;
   private http = inject(HttpClient);
+  private router = inject(Router);
 
   private _currentUser = signal<User | null>(null);
   private _authStatus = signal<AuthStatus>(AuthStatus.checking);
@@ -47,10 +49,10 @@ export class AuthService {
       );
   }
 
-  register(email: string, password: string, name: string): Observable<boolean> {
+  register(email: string, password: string, name: string, hasCompanion: boolean, presentation: string, companionName: string): Observable<boolean> {
 
     const url = `${this.baseUrl}/auth/register`;
-    const body = { email, password, name };
+    const body = { email, password, name, hasCompanion, companionName, presentation };
 
     return this.http.post<boolean>(url, body)
       .pipe(
@@ -58,7 +60,7 @@ export class AuthService {
       );
   }
 
-  checkAuthStatus(): Observable<boolean> {
+  checkAuthStatus(): Observable<boolean | void> {
 
     const url = `${this.baseUrl}/auth/check-token`;
     const token = localStorage.getItem('token');
@@ -73,7 +75,14 @@ export class AuthService {
 
     return this.http.get<CheckTokenResponse>(url, { headers })
       .pipe(
-        map(({ token, user }) => this.setAuthentication(user, token)),
+        map(({ token, user }) => {
+          this.setAuthentication(user, token);
+          if (user.roles.includes('admin')) {
+            this.router.navigateByUrl('/index/admin');
+          } else {
+            this.router.navigateByUrl('/index');
+          }
+        }),
         catchError(() => {
           this._authStatus.set(AuthStatus.notAuthenticated);
           return of(false);

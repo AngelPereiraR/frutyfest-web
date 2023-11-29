@@ -30,37 +30,44 @@
         </a>
       </div>
     </div>
-    <div class="row spacer top d-flex align-items-center">
+    <div *ngIf="page === 'index'" class="row spacer top d-flex align-items-center">
       <div class="col-5 col-sm-5 col-md-3 col-lg-2">
-        <li class="list-group-item text-center" (click)="scrollToSection('reglasGenerales')" (mouseover)="hideHiddenContent()">
+        <li class="list-group-item text-center under" (click)="scrollToSection('reglasGenerales')" (mouseover)="hideHiddenContent()">
           Reglas Generales
         </li>
       </div>
       <div class="col-5 col-sm-5 col-md-3 col-lg-2">
-        <li class="list-group-item text-center" (click)="scrollToSection('modosDeJuego')" (mouseover)="showHiddenContent()">
+        <li class="list-group-item text-center under" (click)="scrollToSection('modosDeJuego')" (mouseover)="showHiddenContent()">
           Modos de Juego ▼
         </li>
       </div>
     </div>
     <div class="row spacer top new d-flex align-items-center" *ngIf="isHidden" (mouseleave)="hideHiddenContent()">
       <div class="col-2 col-sm-2 col-lg-1">
-        <li class="list-group-item text-center" (click)="scrollToSection('fase1')">
+        <li class="list-group-item text-center under" (click)="scrollToSection('fase1')">
           Fase 1
         </li>
       </div>
       <div class="col-2 col-sm-2 col-lg-1">
-        <li class="list-group-item text-center" (click)="scrollToSection('fase2')">
+        <li class="list-group-item text-center under" (click)="scrollToSection('fase2')">
           Fase 2
         </li>
       </div>
       <div class="col-2 col-sm-2 col-lg-1">
-        <li class="list-group-item text-center" (click)="scrollToSection('fase3')">
+        <li class="list-group-item text-center under" (click)="scrollToSection('fase3')">
           Fase 3
         </li>
       </div>
       <div class="col-3 col-sm-3 col-md-2 col-xl-1">
-        <li class="list-group-item text-center" (click)="scrollToSection('faseFinal')">
+        <li class="list-group-item text-center under" (click)="scrollToSection('faseFinal')">
           Fase Final
+        </li>
+      </div>
+    </div>
+    <div *ngIf="page === 'admin'" class="row spacer top d-flex align-items-center">
+      <div class="col-5 col-sm-5 col-md-3 col-lg-2">
+        <li class="list-group-item text-center under">
+          Prueba
         </li>
       </div>
     </div>

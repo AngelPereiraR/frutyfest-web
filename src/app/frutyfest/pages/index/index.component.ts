@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { FrutyfestService } from '../../services/frutyfest.service';
 
 @Component({
   templateUrl: './index.component.html',
@@ -6,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class IndexComponent {
 
+  private frutyfestService = inject(FrutyfestService);
+
+  ngOnInit(): void {
+    this.frutyfestService.setPage('index');
+  }
+
+  ngOnDestroy(): void {
+    this.frutyfestService.setPage('');
+  }
 }

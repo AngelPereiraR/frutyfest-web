@@ -1,24 +1,31 @@
-import { Component, inject } from '@angular/core';
-import { MenuItem } from '../../interfaces/menu-item.interface';
+import { Component, DoCheck, inject } from '@angular/core';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { FrutyfestService } from '../../services/frutyfest.service';
 
 @Component({
   selector: 'frutyfest-layout',
   templateUrl: './frutyfest-layout.component.html',
   styleUrls: ['./frutyfest-layout.component.scss']
 })
-export class FrutyfestLayoutComponent {
+export class FrutyfestLayoutComponent implements DoCheck {
   private authService = inject(AuthService);
+  private frutyfestService = inject(FrutyfestService);
 
   isHidden: boolean = false;
   currentUser = this.authService.currentUser;
   authStatus = this.authService.authStatus;
+  page: null | string = null;
 
   public scrollToSection(sectionId: string) {
     const section = document.getElementById(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
+  }
+
+  ngDoCheck() {
+    let currentPage = this.frutyfestService.currentPage;
+    this.page = currentPage()
   }
 
   public showHiddenContent() {

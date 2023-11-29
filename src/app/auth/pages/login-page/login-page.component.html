@@ -1,54 +1,55 @@
-<form [formGroup]="myForm" (ngSubmit)="login()" class="login100-form"
-      autocomplete="off">
+<form [formGroup]="myForm" (ngSubmit)="login()" class="login100-form" autocomplete="off">
 
-    <span class="login100-form-title p-b-49">
-        Iniciar Sesión
+  <span class="login100-form-title p-b-49">
+    Iniciar Sesión
+  </span>
+
+  <div class="wrap-input100 m-b-23">
+    <span class="label-input100">Correo</span>
+    <input class="input100" type="email" formControlName="email" placeholder="Correo electrónico">
+    <span class="focus-input100"></span>
+  </div>
+
+  <div class="wrap-input100">
+    <span class="label-input100">Contraseña</span>
+    <div class="input-group">
+      <input class="input100" type="{{ showPassword ? 'text' : 'password' }}" formControlName="password" placeholder="Ingrese su contraseña">
+      <span class="focus-input100"></span>
+      <i class="fa" [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}" (click)="togglePasswordVisibility()"></i>
+  </div>
+</div>
+
+  <div class="p-t-15"></div>
+
+  <div class="container-login100-form-btn">
+    <div class="wrap-login100-form-btn">
+      <div class="login100-form-bgbtn"></div>
+      <button class="login100-form-btn" [disabled]="myForm.invalid" type="submit">
+        Iniciar sesión
+      </button>
+    </div>
+  </div>
+
+  <div class="flex-col-c p-t-20">
+    <span class="txt1 p-b-10">
+      ¿No tienes cuenta?
     </span>
 
-    <div class="wrap-input100 m-b-23">
-        <span class="label-input100">Correo</span>
-        <input class="input100"
-               type="email"
-               formControlName="email"
-               placeholder="Correo electrónico">
-        <span class="focus-input100"></span>
-    </div>
-
-    <div class="wrap-input100">
-        <span class="label-input100">Contraseña</span>
-        <input class="input100"
-               type="password"
-               formControlName="password"
-               placeholder="Ingrese su contraseña">
-        <span class="focus-input100"></span>
-    </div>
-
-    <div class="text-right p-t-8 p-b-31"></div>
-
-    <div class="container-login100-form-btn">
-        <div class="wrap-login100-form-btn">
-            <div class="login100-form-bgbtn"></div>
-            <button class="login100-form-btn"
-                    [disabled]="myForm.invalid"
-                    type="submit">
-                Iniciar sesión
-            </button>
-        </div>
-    </div>
-
-    <div class="flex-col-c p-t-60">
-        <span class="txt1 p-b-17">
-            ¿No tienes cuenta?
-        </span>
-
+    <div class="row d-flex justify-content-between">
+      <div class="col-8">
         <a routerLink="/auth/register" class="txt2">
-            Crear una aquí
+          Crear cuenta
         </a>
-    </div>
+      </div>
 
-    <div class="flex-col-c p-t-60">
-      <a routerLink="/index" class="txt2">
+      <div class="col-4">
+        <a routerLink="/index" class="txt2">
           VOLVER
-      </a>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex-col-c p-t-20">
   </div>
 </form>

@@ -21,6 +21,8 @@ export class LoginPageComponent {
     password: ['', [Validators.required, Validators.minLength(6)]],
   });
 
+  showPassword = false;
+
   login() {
     const {email, password} = this.myForm.value;
 
@@ -41,6 +43,10 @@ export class LoginPageComponent {
 
   logout() {
     this.authService.logout();
+  }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
 
 }

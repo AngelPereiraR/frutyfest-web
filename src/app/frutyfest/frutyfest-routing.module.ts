@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FrutyfestLayoutComponent } from './layouts/frutyfest-layout/frutyfest-layout.component';
 import { IndexComponent } from './pages/index/index.component';
 import { PruebaComponent } from './pages/admin/prueba/prueba.component';
+import { isNotAdminGuard } from './guards/is-not-admin.guard';
 
 const routes: Routes = [
   {
@@ -15,6 +16,7 @@ const routes: Routes = [
       },
       {
         path: 'admin',
+        canActivate: [isNotAdminGuard],
         component: PruebaComponent
       },
       {

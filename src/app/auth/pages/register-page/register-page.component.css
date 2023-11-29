@@ -1,3 +1,19 @@
 span, a {
   font-weight: bold;
 }
+
+.input-group {
+  position: relative;
+  align-items: center;
+  display: flex;
+}
+
+.input100 {
+  flex: 1;
+}
+
+.fa {
+  cursor: pointer;
+  position: absolute;
+  right: 10px; /* Ajusta según sea necesario */
+}
