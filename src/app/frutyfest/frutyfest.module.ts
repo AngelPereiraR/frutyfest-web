@@ -7,7 +7,7 @@ import { RankingComponent } from './components/ranking/ranking.component';
 import { FrutyfestLayoutComponent } from './layouts/frutyfest-layout/frutyfest-layout.component';
 import { MaterialModule } from '../material/material.module';
 import { CommonBackgroundComponent } from './components/common-background/common-background.component';
-import { PruebaComponent } from './pages/admin/prueba/prueba.component';
+import { ParticipantsComponent } from './pages/admin/participants/participants.component';
 
 
 @NgModule({
@@ -15,8 +15,8 @@ import { PruebaComponent } from './pages/admin/prueba/prueba.component';
     CommonBackgroundComponent,
     FrutyfestLayoutComponent,
     IndexComponent,
-    PruebaComponent,
     RankingComponent,
+    ParticipantsComponent,
   ],
   imports: [
     CommonModule,

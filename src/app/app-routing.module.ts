@@ -4,16 +4,18 @@ import { isNotAuthenticatedGuard } from './auth/guards/is-not-authenticated.guar
 
 const routes: Routes = [
   {
-    path: 'index',
-    loadChildren: () => import('./frutyfest/frutyfest.module').then(m => m.FrutyfestModule)
+    path: '',
+    loadChildren: () => import('./frutyfest/frutyfest.module').then(m => m.FrutyfestModule),
+    pathMatch: 'prefix'
   },
   {
     path: 'auth',
+    canActivate: [isNotAuthenticatedGuard],
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
     path: '**',
-    redirectTo: 'index'
+    redirectTo: '/'
   }
 ];
 

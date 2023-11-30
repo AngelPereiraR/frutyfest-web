@@ -46,7 +46,7 @@ export class RegisterPageComponent {
       .subscribe({
         next: () => {
           Swal.fire('Registro', 'Registro correcto', 'success')
-          this.router.navigateByUrl('/index');
+          this.router.navigateByUrl('/');
         },
         error: (message) => {
           Swal.fire('Error', message, 'error');

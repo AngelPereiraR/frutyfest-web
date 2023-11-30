@@ -22,7 +22,7 @@
         <div class="list-group-item text-center auth">
           Bienvenid@ {{currentUser()?.name}}
         </div>
-        <a *ngIf="currentUser()?.roles?.includes('admin')" class="list-group-item text-center auth" routerLink="/index/admin">
+        <a *ngIf="currentUser()?.roles?.includes('admin')" class="list-group-item text-center auth" routerLink="/admin">
           Admin
         </a>
         <a class="list-group-item text-center auth" (click)="logout()" routerLink="/index">

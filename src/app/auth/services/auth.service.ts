@@ -78,9 +78,9 @@ export class AuthService {
         map(({ token, user }) => {
           this.setAuthentication(user, token);
           if (user.roles.includes('admin')) {
-            this.router.navigateByUrl('/index/admin');
+            this.router.navigateByUrl('/admin');
           } else {
-            this.router.navigateByUrl('/index');
+            this.router.navigateByUrl('/');
           }
         }),
         catchError(() => {

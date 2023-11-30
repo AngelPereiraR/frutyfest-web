@@ -13,7 +13,7 @@ export const isNotAdminGuard: CanActivateFn = (route, state) => {
   // const url = state.url;
   // localStorage.setItem('url', url);
 
-  router.navigateByUrl('/index')
+  router.navigateByUrl('/')
 
   return false;
 };
