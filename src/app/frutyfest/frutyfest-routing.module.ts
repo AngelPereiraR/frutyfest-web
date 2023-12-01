@@ -4,7 +4,7 @@ import { FrutyfestLayoutComponent } from './layouts/frutyfest-layout/frutyfest-l
 import { IndexComponent } from './pages/index/index.component';
 import { isNotAdminGuard } from './guards/is-not-admin.guard';
 import { ParticipantsComponent } from './pages/admin/participants/participants.component';
-import { isNotAuthenticatedGuard } from '../auth/guards/is-not-authenticated.guard';
+import { RecordComponent } from './pages/admin/record/record.component';
 
 const routes: Routes = [
   {
@@ -13,7 +13,6 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        canActivate: [isNotAuthenticatedGuard],
         component: IndexComponent,
         pathMatch: 'full'
       },
@@ -21,6 +20,11 @@ const routes: Routes = [
         path: 'admin',
         canActivate: [isNotAdminGuard],
         component: ParticipantsComponent
+      },
+      {
+        path: 'admin/record/:id',
+        canActivate: [isNotAdminGuard],
+        component: RecordComponent
       }
     ]
   },

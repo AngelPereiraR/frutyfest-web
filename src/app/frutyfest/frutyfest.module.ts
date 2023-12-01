@@ -8,6 +8,7 @@ import { FrutyfestLayoutComponent } from './layouts/frutyfest-layout/frutyfest-l
 import { MaterialModule } from '../material/material.module';
 import { CommonBackgroundComponent } from './components/common-background/common-background.component';
 import { ParticipantsComponent } from './pages/admin/participants/participants.component';
+import { RecordComponent } from './pages/admin/record/record.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { ParticipantsComponent } from './pages/admin/participants/participants.c
     IndexComponent,
     RankingComponent,
     ParticipantsComponent,
+    RecordComponent
   ],
   imports: [
     CommonModule,

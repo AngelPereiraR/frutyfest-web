@@ -34,6 +34,38 @@ export class AuthService {
     return true;
   }
 
+  getUsers(): Observable<User[]> {
+    const url = `${this.baseUrl}/auth`;
+    const token = localStorage.getItem('token');
+
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${token}`);
+
+    return this.http.get<User[]>(url, { headers })
+      .pipe(
+        map((users) => {
+          return users;
+        }),
+        catchError(err => throwError(() => err.error.message))
+      );
+  }
+
+  getUser(id: string): Observable<User> {
+    const url = `${this.baseUrl}/auth/${id}`;
+    const token = localStorage.getItem('token');
+
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${token}`);
+
+    return this.http.get<User>(url, { headers })
+      .pipe(
+        map((user) => {
+          return user;
+        }),
+        catchError(err => throwError(() => err.error.message))
+      );
+  }
+
   login(email: string, password: string): Observable<User> {
 
     const url = `${this.baseUrl}/auth/login`;
@@ -96,4 +128,39 @@ export class AuthService {
     this._authStatus.set(AuthStatus.notAuthenticated);
     this._currentUser.set(null);
   }
+
+  setParticipant(id: string): Observable<User> {
+    return this.participant('setParticipant', id);
+  }
+
+  removeParticipant(id: string): Observable<User> {
+    return this.participant('removeParticipant', id);
+  }
+
+  removeUser(id: string) {
+    const url = `${this.baseUrl}/auth/${id}`;
+    const token = localStorage.getItem('token');
+
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${token}`);
+
+    return this.http.delete<User>(url, { headers })
+      .pipe(
+        catchError(err => throwError(() => err.error.message))
+      );
+  }
+
+  private participant(route: string, id: string) {
+    const url = `${this.baseUrl}/auth/${route}/${id}`;
+    const token = localStorage.getItem('token');
+
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${token}`);
+
+    return this.http.patch<User>(url, {}, { headers })
+      .pipe(
+        catchError(err => throwError(() => err.error.message))
+      );
+  }
+
 }

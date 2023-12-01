@@ -34,7 +34,7 @@ export class RegisterPageComponent {
   register() {
     let { email, name, password, hasCompanion, companionName, presentation } = this.myForm.value;
 
-    if(!companionName) companionName = 'Ninguno';
+    if(!companionName) companionName = 'No tiene';
 
     if(hasCompanion === 'true') {
       hasCompanion = true;
