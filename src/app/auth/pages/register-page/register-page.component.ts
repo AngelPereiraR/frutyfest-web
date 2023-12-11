@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -34,11 +34,11 @@ export class RegisterPageComponent {
   register() {
     let { email, name, password, hasCompanion, companionName, presentation } = this.myForm.value;
 
-    if(!companionName) companionName = 'No tiene';
+    if (!companionName) companionName = 'No tiene';
 
-    if(hasCompanion === 'true') {
+    if (hasCompanion === 'true') {
       hasCompanion = true;
-    } else if(hasCompanion === 'false') {
+    } else if (hasCompanion === 'false') {
       hasCompanion = false;
     }
 

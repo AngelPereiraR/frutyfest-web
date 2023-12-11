@@ -1,5 +1,5 @@
 <div class="p-t-30 p-l-50 p-r-50">
-  <h1>Hay {{users()?.length}} registros</h1>
+  <h1>Hay {{users()?.length}} registro/s</h1>
   <table>
     <thead>
       <tr>
@@ -25,9 +25,14 @@
         </td>
         <td><a [routerLink]="'/admin/record/'+user._id">Ver más</a></td>
         <td>
-          <button (click)="setParticipant(user._id)" *ngIf="!user.roles.includes('participant')" class="fa-solid fa-check fa-lg m-2 p-3" title="Añadir rol participante" style="background-color: green;"></button>
-          <button (click)="removeParticipant(user._id)" *ngIf="user.roles.includes('participant')" class="fa-solid fa-xmark fa-lg m-2 p-3" title="Quitar rol participante" style="background-color: orange;"></button>
-          <button (click)="removeUser(user._id)" class="fa-solid fa-trash fa-lg m-2 p-3" title="Eliminar registro" style="background-color: red;"></button>
+          <button (click)="setParticipant(user._id)" *ngIf="!user.roles.includes('participant')"
+            class="fa-solid fa-check fa-lg m-2 p-3" title="Añadir rol participante"
+            style="background-color: green;"></button>
+          <button (click)="removeParticipant(user._id)" *ngIf="user.roles.includes('participant')"
+            class="fa-solid fa-xmark fa-lg m-2 p-3" title="Quitar rol participante"
+            style="background-color: orange;"></button>
+          <button (click)="removeUser(user._id)" class="fa-solid fa-trash fa-lg m-2 p-3" title="Eliminar registro"
+            style="background-color: red;"></button>
         </td>
       </tr>
     </tbody>

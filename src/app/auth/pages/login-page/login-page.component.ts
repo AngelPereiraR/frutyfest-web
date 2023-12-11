@@ -24,7 +24,7 @@ export class LoginPageComponent {
   showPassword = false;
 
   login() {
-    const {email, password} = this.myForm.value;
+    const { email, password } = this.myForm.value;
 
     this.authService.login(email, password)
       .subscribe({
@@ -39,10 +39,6 @@ export class LoginPageComponent {
           Swal.fire('Error', message, 'error');
         }
       })
-  }
-
-  logout() {
-    this.authService.logout();
   }
 
   togglePasswordVisibility() {

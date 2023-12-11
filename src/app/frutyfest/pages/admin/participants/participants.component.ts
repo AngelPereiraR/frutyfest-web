@@ -60,8 +60,22 @@ export class ParticipantsComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   removeUser(id: string | null): void {
-    this.authService.removeUser(id!).subscribe();
-    this.getUsers();
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: 'Esta acción no se puede deshacer.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Confirmar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.authService.removeUser(id!).subscribe();
+        this.getUsers();
+      }
+    });
+
   }
 
 }

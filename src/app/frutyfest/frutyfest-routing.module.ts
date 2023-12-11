@@ -5,6 +5,8 @@ import { IndexComponent } from './pages/index/index.component';
 import { isNotAdminGuard } from './guards/is-not-admin.guard';
 import { ParticipantsComponent } from './pages/admin/participants/participants.component';
 import { RecordComponent } from './pages/admin/record/record.component';
+import { TeamTableComponent } from './pages/admin/team/team-table/team-table.component';
+import { TeamAddComponent } from './pages/admin/team/team-add/team-add.component';
 
 const routes: Routes = [
   {
@@ -25,6 +27,16 @@ const routes: Routes = [
         path: 'admin/record/:id',
         canActivate: [isNotAdminGuard],
         component: RecordComponent
+      },
+      {
+        path: 'admin/team',
+        canActivate: [isNotAdminGuard],
+        component: TeamTableComponent
+      },
+      {
+        path: 'admin/team/add',
+        canActivate: [isNotAdminGuard],
+        component: TeamAddComponent
       }
     ]
   },

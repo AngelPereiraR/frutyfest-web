@@ -13,11 +13,13 @@
   <div class="wrap-input100">
     <span class="label-input100">Contraseña</span>
     <div class="input-group">
-      <input class="input100" type="{{ showPassword ? 'text' : 'password' }}" formControlName="password" placeholder="Ingrese su contraseña">
+      <input class="input100" type="{{ showPassword ? 'text' : 'password' }}" formControlName="password"
+        placeholder="Ingrese su contraseña">
       <span class="focus-input100"></span>
-      <i class="fa" [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}" (click)="togglePasswordVisibility()"></i>
+      <i class="fa" [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"
+        (click)="togglePasswordVisibility()"></i>
+    </div>
   </div>
-</div>
 
   <div class="p-t-15"></div>
 
@@ -43,7 +45,7 @@
       </div>
 
       <div class="col-4">
-        <a routerLink="/index" class="txt2">
+        <a routerLink="/" class="txt2">
           VOLVER
         </a>
       </div>

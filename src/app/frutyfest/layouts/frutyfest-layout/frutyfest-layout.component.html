@@ -2,12 +2,12 @@
   <div class="container-fluid">
     <div class="row" (mouseover)="hideHiddenContent()">
       <div class="col d-flex justify-content-start align-items-center">
-        <div class="mx-3 title" routerLink="/index">FrutyFest</div>
+        <div class="mx-3 title" routerLink="/">FrutyFest</div>
       </div>
       <div class="col d-flex justify-content-center align-items-center">
-        <img class="top" src="./assets/logo.jpg" alt="Logo">
+        <img class="top" src="../assets/logo.webp" alt="Logo">
       </div>
-      <div *ngIf="!currentUser()" class="col d-flex justify-content-end align-items-center">
+      <div *ngIf="!currentUser" class="col d-flex justify-content-end align-items-center">
         <li class="list-group-item under text-center auth" [routerLink]="'/auth/login'">
           Iniciar Sesión
         </li>
@@ -18,14 +18,14 @@
           Registro
         </li>
       </div>
-      <div *ngIf="currentUser()" class="col d-flex justify-content-end align-items-center">
+      <div *ngIf="currentUser" class="col d-flex justify-content-end align-items-center">
         <div class="list-group-item text-center auth">
-          Bienvenid@ {{currentUser()?.name}}
+          Bienvenid@ {{currentUser.name}}
         </div>
-        <a *ngIf="currentUser()?.roles?.includes('admin')" class="list-group-item text-center auth" routerLink="/admin">
+        <a *ngIf="currentUser?.roles?.includes('admin')" class="list-group-item text-center auth" routerLink="/admin">
           Admin
         </a>
-        <a class="list-group-item text-center auth" (click)="logout()" routerLink="/index">
+        <a class="list-group-item text-center auth" (click)="logout()" routerLink="/">
           Cerrar Sesión
         </a>
       </div>
@@ -71,7 +71,7 @@
         </li>
       </div>
       <div class="col-2 col-sm-2 col-md-2">
-        <li class="list-group-item text-center under" routerLink="/admin">
+        <li class="list-group-item text-center under" routerLink="/admin/team">
           Equipos
         </li>
       </div>

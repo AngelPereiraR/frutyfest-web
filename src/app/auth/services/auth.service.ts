@@ -14,22 +14,22 @@ export class AuthService {
   private readonly baseUrl: string = environments.baseUrl;
   private http = inject(HttpClient);
   private router = inject(Router);
-
-  private _currentUser = signal<User | null>(null);
   private _authStatus = signal<AuthStatus>(AuthStatus.checking);
 
   //! Al mundo exterior
-  public currentUser = computed(() => this._currentUser());
+  public currentUser: User | null;
   public authStatus = computed(() => this._authStatus());
 
   constructor() {
+    this.currentUser = JSON.parse(localStorage.getItem('user')!);
     this.checkAuthStatus().subscribe();
   }
 
   private setAuthentication(user: User, token: string): boolean {
-    this._currentUser.set(user);
     this._authStatus.set(AuthStatus.authenticated);
     localStorage.setItem('token', token);
+    localStorage.setItem('user', JSON.stringify(user));
+    this.currentUser = JSON.parse(localStorage.getItem('user')!);
 
     return true;
   }
@@ -75,6 +75,11 @@ export class AuthService {
       .pipe(
         map(({ user, token }) => {
           this.setAuthentication(user, token);
+          if (user.roles.includes('admin')) {
+            this.router.navigateByUrl('/admin');
+          } else {
+            this.router.navigateByUrl('/');
+          }
           return user;
         }),
         catchError(err => throwError(() => err.error.message))
@@ -109,13 +114,10 @@ export class AuthService {
       .pipe(
         map(({ token, user }) => {
           this.setAuthentication(user, token);
-          if (user.roles.includes('admin')) {
-            this.router.navigateByUrl('/admin');
-          } else {
-            this.router.navigateByUrl('/');
-          }
         }),
         catchError(() => {
+          this.logout();
+          this.router.navigateByUrl("/")
           this._authStatus.set(AuthStatus.notAuthenticated);
           return of(false);
         })
@@ -126,7 +128,8 @@ export class AuthService {
   logout() {
     localStorage.removeItem('token');
     this._authStatus.set(AuthStatus.notAuthenticated);
-    this._currentUser.set(null);
+    localStorage.removeItem('user');
+    this.currentUser = null;
   }
 
   setParticipant(id: string): Observable<User> {
@@ -152,6 +155,32 @@ export class AuthService {
 
   private participant(route: string, id: string) {
     const url = `${this.baseUrl}/auth/${route}/${id}`;
+    const token = localStorage.getItem('token');
+
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${token}`);
+
+    return this.http.patch<User>(url, {}, { headers })
+      .pipe(
+        catchError(err => throwError(() => err.error.message))
+      );
+  }
+
+  setSelectedOnTeam(id: string) {
+    const url = `${this.baseUrl}/auth/setSelectedOnTeam/${id}`;
+    const token = localStorage.getItem('token');
+
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${token}`);
+
+    return this.http.patch<User>(url, {}, { headers })
+      .pipe(
+        catchError(err => throwError(() => err.error.message))
+      );
+  }
+
+  removeSelectedOnTeam(id: string) {
+    const url = `${this.baseUrl}/auth/removeSelectedOnTeam/${id}`;
     const token = localStorage.getItem('token');
 
     const headers = new HttpHeaders()

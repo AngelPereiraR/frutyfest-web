@@ -25,7 +25,8 @@ export class FrutyfestLayoutComponent implements DoCheck {
 
   ngDoCheck() {
     let currentPage = this.frutyfestService.currentPage;
-    this.page = currentPage()
+    this.page = currentPage();
+    this.currentUser = this.authService.currentUser;
   }
 
   public showHiddenContent() {
