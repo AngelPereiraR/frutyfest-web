@@ -17,6 +17,7 @@ export class FrutyfestLayoutComponent implements DoCheck {
   page: null | string = null;
 
   public scrollToSection(sectionId: string) {
+    console.log(sectionId)
     const section = document.getElementById(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth', block: 'center' });
