@@ -5,4 +5,5 @@ export interface Team {
   color:       string;
   totalPoints: number;
   users:       User[];
+  roles:       string[];
 }

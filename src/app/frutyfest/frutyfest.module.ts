@@ -12,6 +12,8 @@ import { RecordComponent } from './pages/admin/record/record.component';
 import { TeamTableComponent } from './pages/admin/team/team-table/team-table.component';
 import { TeamAddComponent } from './pages/admin/team/team-add/team-add.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TemporalteamTableComponent } from './pages/admin/temporalteam/temporalteam-table/temporalteam-table.component';
+import { TemporalteamAddComponent } from './pages/admin/temporalteam/temporalteam-add/temporalteam-add.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     ParticipantsComponent,
     RecordComponent,
     TeamTableComponent,
-    TeamAddComponent
+    TeamAddComponent,
+    TemporalteamTableComponent,
+    TemporalteamAddComponent
   ],
   imports: [
     CommonModule,

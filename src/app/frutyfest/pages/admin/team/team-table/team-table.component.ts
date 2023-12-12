@@ -14,9 +14,6 @@ export class TeamTableComponent {
   private authService = inject(AuthService);
   private _teams = signal<Team[] | undefined>(undefined);
   public teams = computed(() => this._teams());
-  private _teamSelected = signal<Team | undefined>(undefined);
-  public teamSelected = computed(() => this._teamSelected());
-
 
   constructor(private cdr: ChangeDetectorRef) {
     this.getTeams();
@@ -61,7 +58,6 @@ export class TeamTableComponent {
       if (result.isConfirmed) {
         this.frutyfestService.getTeam(id!).pipe(
           switchMap((team) => {
-            this._teamSelected.set(team);
             // Trigger ngOnChanges to repaint the HTML
             this.ngOnChanges({});
             return forkJoin(
@@ -76,7 +72,6 @@ export class TeamTableComponent {
 
 
   }
-
 
   getTeammate(id: string) {
     this.authService.getUser(id).subscribe({

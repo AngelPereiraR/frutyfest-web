@@ -7,6 +7,8 @@ import { ParticipantsComponent } from './pages/admin/participants/participants.c
 import { RecordComponent } from './pages/admin/record/record.component';
 import { TeamTableComponent } from './pages/admin/team/team-table/team-table.component';
 import { TeamAddComponent } from './pages/admin/team/team-add/team-add.component';
+import { TemporalteamTableComponent } from './pages/admin/temporalteam/temporalteam-table/temporalteam-table.component';
+import { TemporalteamAddComponent } from './pages/admin/temporalteam/temporalteam-add/temporalteam-add.component';
 
 const routes: Routes = [
   {
@@ -37,6 +39,16 @@ const routes: Routes = [
         path: 'admin/team/add',
         canActivate: [isNotAdminGuard],
         component: TeamAddComponent
+      },
+      {
+        path: 'admin/temporal',
+        canActivate: [isNotAdminGuard],
+        component: TemporalteamTableComponent
+      },
+      {
+        path: 'admin/temporal/add',
+        canActivate: [isNotAdminGuard],
+        component: TemporalteamAddComponent
       }
     ]
   },

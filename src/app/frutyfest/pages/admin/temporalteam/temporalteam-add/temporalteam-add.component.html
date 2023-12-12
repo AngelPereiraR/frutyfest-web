@@ -1,0 +1,49 @@
+<div class="container m-t-30">
+  <form [formGroup]="myForm" (ngSubmit)="addTemporal()" class="login100-form" autocomplete="off">
+
+    <span class="login100-form-title p-t-49 p-b-49">
+      Añadir equipo temporal
+    </span>
+
+    <div class="wrap-input100 m-b-23">
+      <span class="label-input100">Color</span>
+      <input type="color" formControlName="color" class="form-control" />
+      <span class="focus-input100"></span>
+    </div>
+
+    <div class="wrap-input100">
+      <span class="label-input100">Equipos</span>
+      <select formControlName="teams" multiple class="form-control">
+        <option *ngFor="let team of teams()" [value]="team._id">{{team.color}}</option>
+      </select>
+      <div class="input-group">
+        <span class="focus-input100"></span>
+      </div>
+    </div>
+
+    <div class="p-t-15"></div>
+
+    <div class="container-login100-form-btn">
+      <div class="wrap-login100-form-btn">
+        <div class="login100-form-bgbtn"></div>
+        <button class="login100-form-btn" type="submit">
+          Añadir
+        </button>
+      </div>
+    </div>
+
+    <div class="flex-col-c p-t-20">
+      <div class="row d-flex justify-content-between">
+        <div class="col-4">
+          <a routerLink="/admin/temporal" class="txt2">
+            VOLVER
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex-col-c p-t-20">
+    </div>
+  </form>
+
+</div>
