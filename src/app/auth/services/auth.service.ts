@@ -5,6 +5,7 @@ import { environments } from 'src/environments/environments.prod';
 
 import { User, AuthStatus, LoginResponse, CheckTokenResponse } from '../interfaces';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -76,8 +77,13 @@ export class AuthService {
         map(({ user, token }) => {
           this.setAuthentication(user, token);
           if (user.roles.includes('admin')) {
+            Swal.fire('Inicio de sesión', `Sea bienvenid@ administrador/a ${user.name}.`, 'success')
             this.router.navigateByUrl('/admin');
+          } else if (user.roles.includes('participant')) {
+            Swal.fire('Inicio de sesión', `Sea bienvenid@ ${user.name}. Has sido seleccionado como uno de los participantes del evento.`, 'success')
+            this.router.navigateByUrl('/');
           } else {
+            Swal.fire('Inicio de sesión', `Sea bienvenid@ ${user.name}. Todavía está pendiente de ser seleccionado como participante del evento.`, 'success')
             this.router.navigateByUrl('/');
           }
           return user;
