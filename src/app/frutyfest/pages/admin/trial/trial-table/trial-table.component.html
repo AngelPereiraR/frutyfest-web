@@ -1,0 +1,53 @@
+<div class="p-t-30 p-l-50 p-r-50">
+  <h1>Hay {{trials()?.length}} modo/s de juego</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Nº</th>
+        <th>Nombre</th>
+        <th>Puntos máximos</th>
+        <th>Disminución de puntos</th>
+        <th>Máx. Equipos</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let trial of trials(); let i = index">
+      <tr [ngStyle]="{'white-space': 'nowrap', 'overflow': 'hidden', 'text-overflow': 'ellipsis'}">
+        <td>{{i + 1}}</td>
+        <td>
+          <div class="px-3">
+            {{trial.name}}
+          </div>
+        </td>
+        <td>
+          <div class="px-3">
+            {{trial.maxPoints}}
+          </div>
+        </td>
+        <td>
+          <div class="px-3">
+            {{trial.pointsDecrease}}
+          </div>
+        </td>
+        <td>
+          <div class="px-3">
+            {{trial.maxTeams}}
+          </div>
+        </td>
+        <td>
+          <div class="row d-flex justify-content-center">
+            <div class="col-12 col-md-4 col-lg-3">
+              <button (click)="removeTrial(trial._id)" class="fa-solid fa-trash fa-lg m-2 p-2"
+                title="Eliminar modo de juego" style="background-color: red;"></button>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+  <div class="m-2">
+    <button routerLink="/admin/trial/add" class="fa-solid fa-plus m-2 p-2" title="Añadir modo de juego"
+      style="background-color: blue; color: white;"></button>
+  </div>
+</div>

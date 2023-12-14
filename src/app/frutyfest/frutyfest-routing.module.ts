@@ -9,6 +9,8 @@ import { TeamTableComponent } from './pages/admin/team/team-table/team-table.com
 import { TeamAddComponent } from './pages/admin/team/team-add/team-add.component';
 import { TemporalteamTableComponent } from './pages/admin/temporalteam/temporalteam-table/temporalteam-table.component';
 import { TemporalteamAddComponent } from './pages/admin/temporalteam/temporalteam-add/temporalteam-add.component';
+import { TrialAddComponent } from './pages/admin/trial/trial-add/trial-add.component';
+import { TrialTableComponent } from './pages/admin/trial/trial-table/trial-table.component';
 
 const routes: Routes = [
   {
@@ -49,6 +51,16 @@ const routes: Routes = [
         path: 'admin/temporal/add',
         canActivate: [isNotAdminGuard],
         component: TemporalteamAddComponent
+      },
+      {
+        path: 'admin/trial',
+        canActivate: [isNotAdminGuard],
+        component: TrialTableComponent
+      },
+      {
+        path: 'admin/trial/add',
+        canActivate: [isNotAdminGuard],
+        component: TrialAddComponent
       }
     ]
   },

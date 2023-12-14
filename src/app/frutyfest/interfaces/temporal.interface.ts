@@ -3,13 +3,13 @@
 import { Team } from "./team.interface";
 
 export interface Temporal {
+  _id:   string;
   teams: string[];
   color: string;
-  _id:   string;
 }
 
 export interface TemporalTeam {
+  _id:   string;
   teams: Team[];
   color: string;
-  _id:   string;
 }

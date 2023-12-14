@@ -1,0 +1,19 @@
+<div class="p-l-50 p-r-50">
+  <h1>Hay {{users()?.length}} participante/s</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre de Twitch</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let user of users(); let i = index">
+      <tr>
+        <td>
+          <div [ngStyle]="{'white-space': 'nowrap', 'overflow': 'hidden', 'text-overflow': 'ellipsis'}">
+            {{user.name}}
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
