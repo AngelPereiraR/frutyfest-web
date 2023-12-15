@@ -41,12 +41,12 @@
   <div class="wrap-input100 m-b-10">
     <span class="label-input100">¿Tiene compañero?</span>
     <div>
-      <label><input class="m-l-30" type="radio" formControlName="hasCompanion" value=true> SÍ</label>
-      <label><input class="m-l-30" type="radio" formControlName="hasCompanion" value=false> NO</label>
+      <label><input class="m-l-30" type="radio" formControlName="hasCompanion" [value]='true'> SÍ</label>
+      <label><input class="m-l-30" type="radio" formControlName="hasCompanion" [value]='false'> NO</label>
     </div>
   </div>
 
-  <div class="wrap-input100 m-b-10" *ngIf="myForm.get('hasCompanion')?.value === 'true'">
+  <div class="wrap-input100 m-b-10" *ngIf="myForm.get('hasCompanion')?.value === true">
     <span class="label-input100">Nombre del compañero</span>
     <input class="input100" type="text" formControlName="companionName"
       placeholder="Nombre de usuario de Twitch del compañero">

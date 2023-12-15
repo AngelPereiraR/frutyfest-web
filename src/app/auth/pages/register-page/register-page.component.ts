@@ -36,16 +36,20 @@ export class RegisterPageComponent {
 
     if (!companionName) companionName = 'No tiene';
 
+    console.log(hasCompanion)
+
     if (hasCompanion === 'true') {
       hasCompanion = true;
     } else if (hasCompanion === 'false') {
       hasCompanion = false;
     }
 
+    console.log(hasCompanion)
+
     this.authService.register(email, password, name, hasCompanion, presentation, companionName)
       .subscribe({
         next: () => {
-          Swal.fire('Registro', 'Registro correcto', 'success')
+          Swal.fire('Registro', 'Registro correcto. Se le ha enviado un correo con las credenciales para el inicio de sesión. Si no aparece en Recibidos, por favor mire en su carpeta de Spam, gracias.', 'success')
           this.router.navigateByUrl('/');
         },
         error: (message) => {

@@ -56,15 +56,15 @@ thead th {
 tbody td, a {
   letter-spacing: 1px;
   @media (min-width: 80em) {
-    font-size: 14px;
+    font-size: 15px;
   }
 
   @media (min-width: 46em) and (max-width: 80em) {
-    font-size: 11px;
+    font-size: 12px;
   }
 
   @media (max-width: 46em) {
-    font-size: 8px;
+    font-size: 10px;
   }
 }
 

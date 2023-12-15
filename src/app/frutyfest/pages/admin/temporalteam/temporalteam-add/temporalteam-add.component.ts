@@ -44,9 +44,7 @@ export class TemporalteamAddComponent {
       next: (teams) => {
         let teamsSelected: Team[] = [];
         for (let i = 0; i < teams.length; i++) {
-          if (!teams[i].roles.includes('onTeam')) {
-            teamsSelected.push(teams[i]);
-          }
+          teamsSelected.push(teams[i]);
         }
         this._teams.set(teamsSelected);
         // Trigger ngOnChanges to repaint the HTML
