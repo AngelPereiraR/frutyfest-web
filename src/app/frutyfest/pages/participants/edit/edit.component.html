@@ -1,0 +1,74 @@
+<div class="container p-t-50 p-b-50 p-l-100 p-r-100 custom">
+  <form [formGroup]="myForm" (ngSubmit)="changeUser()" class="login100-form" autocomplete="off">
+
+    <span class="login100-form-title p-b-30">
+      Cambiar perfil
+    </span>
+
+    <div class="wrap-input100 m-b-10">
+      <span class="label-input100">Correo</span>
+      <input class="input100" type="email" formControlName="email" [value]="myForm!.get('email')?.value"
+        placeholder="Correo electrónico">
+      <span class="focus-input100"></span>
+    </div>
+
+    <div class="wrap-input100 m-b-10">
+      <span class="label-input100">Nombre</span>
+      <input class="input100" type="text" formControlName="name" [value]="myForm!.get('name')?.value"
+        placeholder="Nombre de usuario de Twitch">
+      <span class="focus-input100"></span>
+    </div>
+
+    <div class="wrap-input100 m-b-10">
+      <span class="label-input100">¿Tiene compañero?</span>
+      <div>
+        <label><input class="m-l-30" type="radio" formControlName="hasCompanion" [value]='true'> SÍ</label>
+        <label><input class="m-l-30" type="radio" formControlName="hasCompanion" [value]='false'> NO</label>
+      </div>
+    </div>
+
+    <div class="wrap-input100 m-b-10" *ngIf="myForm!.get('hasCompanion')?.value === true">
+      <span class="label-input100">Nombre del compañero</span>
+      <input class="input100" type="text" formControlName="companionName"
+        placeholder="Nombre de usuario de Twitch del compañero" [value]="myForm!.get('companionName')?.value">
+      <span class="focus-input100"></span>
+    </div>
+
+    <div class="wrap-input100 m-b-10">
+      <span class="label-input100">Presentación</span>
+      <textarea class="input100 m-t-15" formControlName="presentation" placeholder="Escriba su presentación aquí"
+        [value]="myForm!.get('presentation')?.value"></textarea>
+      <span class="focus-input100"></span>
+    </div>
+
+    <div class="wrap-input100 m-b-10">
+      <span class="label-input100">Evento</span>
+      <div class="m-t-15">
+        <label *ngFor="let event of events">
+          <input class="m-l-30" type="radio" formControlName="event" [value]='event.event'> {{event.event}}
+        </label>
+      </div>
+      <div class="input-group">
+        <span class="focus-input100"></span>
+      </div>
+    </div>
+
+    <div class="container-login100-form-btn">
+      <div class="wrap-login100-form-btn">
+        <div class="login100-form-bgbtn"></div>
+        <button class="login100-form-btn" [disabled]="myForm!.invalid" type="submit">
+          Cambiar
+        </button>
+      </div>
+    </div>
+
+    <div class="flex-col-c p-t-20">
+      <div>
+        <a [routerLink]="'/participant/'+myForm!.get('_id')?.value" class="txt2">
+          VOLVER
+        </a>
+      </div>
+    </div>
+  </form>
+
+</div>

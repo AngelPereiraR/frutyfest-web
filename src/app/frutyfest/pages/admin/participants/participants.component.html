@@ -14,24 +14,35 @@
       <tr>
         <td>{{i + 1}}</td>
         <td>
-          <div [ngStyle]="{'white-space': 'nowrap', 'overflow': 'hidden', 'text-overflow': 'ellipsis'}">
+          <div [ngStyle]="{'white-space': 'nowrap', 'overflow': 'hidden', 'text-overflow': 'ellipsis'}"
+            [title]="user.name">
             {{user.name}}
           </div>
         </td>
         <td>
-          <div [ngStyle]="{'white-space': 'nowrap', 'overflow': 'hidden', 'text-overflow': 'ellipsis'}">
+          <div [ngStyle]="{'white-space': 'nowrap', 'overflow': 'hidden', 'text-overflow': 'ellipsis'}"
+            [title]="user.email">
             {{user.email}}
           </div>
         </td>
         <td><a [routerLink]="'/admin/record/'+user._id">Ver más</a></td>
         <td>
-          <button (click)="setParticipant(user._id)" *ngIf="!user.roles.includes('participant')"
+          <button (click)="setParticipant(user._id)"
+            *ngIf="!user.roles.includes('participant') && !user.roles.includes('alternate')"
             class="fa-solid fa-check fa-lg m-2 p-3" title="Añadir rol participante"
             style="background-color: green;"></button>
           <button (click)="removeParticipant(user._id)" *ngIf="user.roles.includes('participant')"
             class="fa-solid fa-xmark fa-lg m-2 p-3" title="Quitar rol participante"
-            style="background-color: orange;"></button>
-          <button (click)="removeUser(user._id)" class="fa-solid fa-trash fa-lg m-2 p-3" title="Eliminar registro"
+            [disabled]="user.roles.includes('onTeam')" style="background-color: orange;"></button>
+          <button (click)="setAlternate(user._id)"
+            *ngIf="!user.roles.includes('alternate') && !user.roles.includes('participant')"
+            class="fa-solid fa-hourglass-start fa-lg m-2 p-3" title="Añadir rol suplente"
+            style="background-color: green;"></button>
+          <button (click)="removeAlternate(user._id)" *ngIf="user.roles.includes('alternate')"
+            class="fa-solid fa-xmark fa-lg m-2 p-3" title="Quitar rol suplente"
+            style="background-color: orangered;"></button>
+          <button *ngIf="!user.roles.includes('participant') && !user.roles.includes('alternate')"
+            (click)="removeUser(user._id)" class="fa-solid fa-trash fa-lg m-2 p-3" title="Eliminar registro"
             style="background-color: red;"></button>
         </td>
       </tr>

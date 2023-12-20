@@ -15,22 +15,22 @@
       <tr [ngStyle]="{'white-space': 'nowrap', 'overflow': 'hidden', 'text-overflow': 'ellipsis'}">
         <td>{{i + 1}}</td>
         <td>
-          <div class="px-3">
+          <div class="px-3" [title]="trial.name">
             {{trial.name}}
           </div>
         </td>
         <td>
-          <div class="px-3">
+          <div class="px-3" [title]="trial.maxPoints">
             {{trial.maxPoints}}
           </div>
         </td>
         <td>
-          <div class="px-3">
+          <div class="px-3" [title]="trial.pointsDecrease">
             {{trial.pointsDecrease}}
           </div>
         </td>
         <td>
-          <div class="px-3">
+          <div class="px-3" [title]="trial.maxTeams">
             {{trial.maxTeams}}
           </div>
         </td>

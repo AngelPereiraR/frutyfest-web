@@ -3,11 +3,11 @@
   <table>
     <thead>
       <tr>
-        <th>Nombre de Twitch</th>
+        <th>Streamers</th>
       </tr>
     </thead>
     <tbody *ngFor="let user of users(); let i = index">
-      <tr>
+      <tr *ngIf="i < 24">
         <td>
           <div [ngStyle]="{'white-space': 'nowrap', 'overflow': 'hidden', 'text-overflow': 'ellipsis'}">
             {{user.name}}

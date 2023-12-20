@@ -11,11 +11,27 @@
       <span class="focus-input100"></span>
     </div>
 
-    <div class="wrap-input100">
+    <div class="wrap-input100 m-b-23">
       <span class="label-input100">Participantes</span>
       <select formControlName="participants" multiple class="form-control">
-        <option *ngFor="let user of users()" [value]="user">{{user.name}}</option>
+        <option *ngFor="let user of users(); let i = index" [value]="user">
+          <div *ngIf="i < 24">
+            {{user.name}}
+          </div>
+        </option>
       </select>
+      <div class="input-group">
+        <span class="focus-input100"></span>
+      </div>
+    </div>
+
+    <div class="wrap-input100">
+      <span class="label-input100">Evento</span>
+      <div class="m-t-15">
+        <label *ngFor="let event of events">
+          <input class="m-l-30" type="radio" formControlName="event" [value]='event.event'> {{event.event}}
+        </label>
+      </div>
       <div class="input-group">
         <span class="focus-input100"></span>
       </div>

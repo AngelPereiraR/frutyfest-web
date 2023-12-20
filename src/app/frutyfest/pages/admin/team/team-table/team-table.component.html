@@ -6,6 +6,8 @@
         <th>Nº</th>
         <th>Color</th>
         <th>Puntos</th>
+        <th>Evento</th>
+        <th>Nombre</th>
         <th>Miembros del equipo</th>
         <th>Acciones</th>
       </tr>
@@ -18,20 +20,32 @@
             <div
               [ngStyle]="{'white-space': 'nowrap', 'overflow': 'hidden', 'text-overflow': 'ellipsis', 'background-color': team.color, 'height': '30px', 'width': '30px'}">
             </div>
-            <div class="px-3">
+            <div class="px-3" [title]="team.color">
               {{team.color}}
             </div>
           </div>
         </td>
         <td>
-          <div [ngStyle]="{'white-space': 'nowrap', 'overflow': 'hidden', 'text-overflow': 'ellipsis'}">
+          <div [ngStyle]="{'white-space': 'nowrap', 'overflow': 'hidden', 'text-overflow': 'ellipsis'}" [title]="team.totalPoints">
             {{team.totalPoints}}
+          </div>
+        </td>
+        <td>
+          <div [ngStyle]="{'white-space': 'nowrap', 'overflow': 'hidden', 'text-overflow': 'ellipsis'}" [title]="team.event">
+            {{team.event}}
+          </div>
+        </td>
+        <td>
+          <div [ngStyle]="{'white-space': 'nowrap', 'overflow': 'hidden', 'text-overflow': 'ellipsis'}" [title]="team.name">
+            {{team.name}}
           </div>
         </td>
         <td>
           <div [ngStyle]="{'white-space': 'nowrap', 'overflow': 'hidden', 'text-overflow': 'ellipsis'}"
             *ngFor="let teammate of team.users">
-            {{teammate.name}}
+            <div [title]="teammate.name">
+              {{teammate.name}}
+            </div>
           </div>
         </td>
         <td>

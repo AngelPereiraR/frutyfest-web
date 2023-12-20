@@ -29,6 +29,10 @@ thead th:nth-child(6) {
   width: 25%;
 }
 
+thead th:nth-child(7) {
+  width: 25%;
+}
+
 thead {
   background-color: black;
   color: white;
@@ -97,9 +101,24 @@ h1 {
   color: whitesmoke;
 }
 
+
+
 button {
-  height: 40px;
-  width: 55px;
   border-radius: 50%;
   align-items: center;
+
+  @media (min-width: 80em) {
+    height: 30px;
+    width: 45px;
+  }
+
+  @media (min-width: 46em) and (max-width: 80em) {
+    height: 30px;
+    width: 45px;
+  }
+
+  @media (max-width: 46em) {
+    height: 20px;
+    width: 25px;
+  }
 }

@@ -60,6 +60,18 @@
     <span class="focus-input100"></span>
   </div>
 
+  <div class="wrap-input100 m-b-10">
+    <span class="label-input100">Evento</span>
+    <div class="m-t-15">
+      <label *ngFor="let event of events">
+        <input class="m-l-30" type="radio" formControlName="event" [value]='event.event'> {{event.event}}
+      </label>
+    </div>
+    <div class="input-group">
+      <span class="focus-input100"></span>
+    </div>
+  </div>
+
   <div class="container-login100-form-btn">
     <div class="wrap-login100-form-btn">
       <div class="login100-form-bgbtn"></div>

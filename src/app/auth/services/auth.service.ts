@@ -67,6 +67,18 @@ export class AuthService {
       );
   }
 
+  getUserByEmail(email: string): Observable<User> {
+    const url = `${this.baseUrl}/auth/email/${email}`;
+
+    return this.http.get<User>(url)
+      .pipe(
+        map((user) => {
+          return user;
+        }),
+        catchError(err => throwError(() => err.error.message))
+      );
+  }
+
   login(email: string, password: string): Observable<User> {
 
     const url = `${this.baseUrl}/auth/login`;
@@ -92,12 +104,38 @@ export class AuthService {
       );
   }
 
-  register(email: string, password: string, name: string, hasCompanion: boolean, presentation: string, companionName: string): Observable<boolean> {
+  register(email: string, password: string, name: string, hasCompanion: boolean, presentation: string, companionName: string, event: string): Observable<boolean> {
 
     const url = `${this.baseUrl}/auth/register`;
-    const body = { email, password, name, hasCompanion, companionName, presentation };
+    const body = { email, password, name, hasCompanion, companionName, presentation, event };
 
     return this.http.post<boolean>(url, body)
+      .pipe(
+        catchError(err => throwError(() => err.error.message))
+      );
+  }
+
+  changePassword(id: string, email: string, password: string, name: string, hasCompanion: boolean, presentation: string, companionName: string, event: string) {
+    const url = `${this.baseUrl}/auth/changePassword/${id}`;
+
+    const body = {email, password, name, hasCompanion, presentation, companionName, event}
+
+    return this.http.patch<User>(url, body)
+      .pipe(
+        catchError(err => throwError(() => err.error.message))
+      );
+  }
+
+  changeUser(id: string, email: string, name: string, hasCompanion: boolean, presentation: string, companionName: string, event: string) {
+    const url = `${this.baseUrl}/auth/${id}`;
+    const token = localStorage.getItem('token');
+
+    const body = {email, name, hasCompanion, presentation, companionName, event};
+
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${token}`);
+
+    return this.http.patch<User>(url, body, { headers })
       .pipe(
         catchError(err => throwError(() => err.error.message))
       );
@@ -139,11 +177,19 @@ export class AuthService {
   }
 
   setParticipant(id: string): Observable<User> {
-    return this.participant('setParticipant', id);
+    return this.role('setParticipant', id);
   }
 
   removeParticipant(id: string): Observable<User> {
-    return this.participant('removeParticipant', id);
+    return this.role('removeParticipant', id);
+  }
+
+  setAlternate(id: string): Observable<User> {
+    return this.role('setAlternate', id);
+  }
+
+  removeAlternate(id: string): Observable<User> {
+    return this.role('removeAlternate', id);
   }
 
   removeUser(id: string) {
@@ -159,7 +205,7 @@ export class AuthService {
       );
   }
 
-  private participant(route: string, id: string) {
+  private role(route: string, id: string) {
     const url = `${this.baseUrl}/auth/${route}/${id}`;
     const token = localStorage.getItem('token');
 

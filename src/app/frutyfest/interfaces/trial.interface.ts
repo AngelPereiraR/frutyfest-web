@@ -6,4 +6,5 @@ export interface Trial {
   maxPoints:      number;
   pointsDecrease: number;
   maxTeams:       number;
+  teamsAssignated:number;
 }

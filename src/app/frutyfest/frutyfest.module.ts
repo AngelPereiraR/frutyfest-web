@@ -12,11 +12,12 @@ import { RecordComponent } from './pages/admin/record/record.component';
 import { TeamTableComponent } from './pages/admin/team/team-table/team-table.component';
 import { TeamAddComponent } from './pages/admin/team/team-add/team-add.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TemporalteamTableComponent } from './pages/admin/temporalteam/temporalteam-table/temporalteam-table.component';
-import { TemporalteamAddComponent } from './pages/admin/temporalteam/temporalteam-add/temporalteam-add.component';
 import { ParticipantsListComponent } from './components/participants-list/participants-list.component';
 import { TrialTableComponent } from './pages/admin/trial/trial-table/trial-table.component';
 import { TrialAddComponent } from './pages/admin/trial/trial-add/trial-add.component';
+import { InfoComponent } from './pages/participants/info/info.component';
+import { EditComponent } from './pages/participants/edit/edit.component';
+import { ParticipantChangePasswordComponent } from './pages/participants/participant-change-password/participant-change-password.component';
 
 
 @NgModule({
@@ -29,11 +30,12 @@ import { TrialAddComponent } from './pages/admin/trial/trial-add/trial-add.compo
     RecordComponent,
     TeamTableComponent,
     TeamAddComponent,
-    TemporalteamTableComponent,
-    TemporalteamAddComponent,
     ParticipantsListComponent,
     TrialTableComponent,
-    TrialAddComponent
+    TrialAddComponent,
+    InfoComponent,
+    EditComponent,
+    ParticipantChangePasswordComponent
   ],
   imports: [
     CommonModule,

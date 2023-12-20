@@ -22,8 +22,8 @@
         <a *ngIf="currentUser?.roles?.includes('admin')" class="list-group-item text-center auth" routerLink="/admin">
           Admin
         </a>
-        <a *ngIf="!currentUser?.roles?.includes('admin')" class="list-group-item text-center auth" routerLink="/">
-          Ver perfil (En desarrollo)
+        <a *ngIf="!currentUser?.roles?.includes('admin')" class="list-group-item text-center auth" [routerLink]="'/participant/'+currentUser._id">
+          Ver perfil
         </a>
         <a class="list-group-item text-center auth" (click)="logout()" routerLink="/">
           Cerrar Sesión
@@ -73,11 +73,6 @@
       <div class="col-2 col-sm-2 col-md-2">
         <li class="list-group-item text-center under" routerLink="/admin/team">
           Equipos
-        </li>
-      </div>
-      <div class="col-3 col-sm-3 col-md-2">
-        <li class="list-group-item text-center under" routerLink="/admin/temporal">
-          Equipos Temporales
         </li>
       </div>
       <div class="col-4 col-sm-3 col-md-2">

@@ -7,10 +7,12 @@ import { ParticipantsComponent } from './pages/admin/participants/participants.c
 import { RecordComponent } from './pages/admin/record/record.component';
 import { TeamTableComponent } from './pages/admin/team/team-table/team-table.component';
 import { TeamAddComponent } from './pages/admin/team/team-add/team-add.component';
-import { TemporalteamTableComponent } from './pages/admin/temporalteam/temporalteam-table/temporalteam-table.component';
-import { TemporalteamAddComponent } from './pages/admin/temporalteam/temporalteam-add/temporalteam-add.component';
 import { TrialAddComponent } from './pages/admin/trial/trial-add/trial-add.component';
 import { TrialTableComponent } from './pages/admin/trial/trial-table/trial-table.component';
+import { InfoComponent } from './pages/participants/info/info.component';
+import { isNotParticipantGuard } from './guards/is-not-participant.guard';
+import { EditComponent } from './pages/participants/edit/edit.component';
+import { ParticipantChangePasswordComponent } from './pages/participants/participant-change-password/participant-change-password.component';
 
 const routes: Routes = [
   {
@@ -28,6 +30,21 @@ const routes: Routes = [
         component: ParticipantsComponent
       },
       {
+        path: 'participant/:id',
+        canActivate: [isNotParticipantGuard],
+        component: InfoComponent
+      },
+      {
+        path: 'participant/edit/:id',
+        canActivate: [isNotParticipantGuard],
+        component: EditComponent
+      },
+      {
+        path: 'participant/changePassword/:id',
+        canActivate: [isNotParticipantGuard],
+        component: ParticipantChangePasswordComponent
+      },
+      {
         path: 'admin/record/:id',
         canActivate: [isNotAdminGuard],
         component: RecordComponent
@@ -41,16 +58,6 @@ const routes: Routes = [
         path: 'admin/team/add',
         canActivate: [isNotAdminGuard],
         component: TeamAddComponent
-      },
-      {
-        path: 'admin/temporal',
-        canActivate: [isNotAdminGuard],
-        component: TemporalteamTableComponent
-      },
-      {
-        path: 'admin/temporal/add',
-        canActivate: [isNotAdminGuard],
-        component: TemporalteamAddComponent
       },
       {
         path: 'admin/trial',

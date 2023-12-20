@@ -5,5 +5,6 @@ export interface User {
   roles:    string[];
   hasCompanion: boolean;
   companionName: string;
+  event: string;
   presentation: string;
 }

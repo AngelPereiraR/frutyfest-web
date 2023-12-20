@@ -59,6 +59,16 @@ export class ParticipantsComponent implements OnInit, OnDestroy, OnChanges {
     this.getUsers();
   }
 
+  setAlternate(id: string | null): void {
+    this.authService.setAlternate(id!).subscribe();
+    this.getUsers();
+  }
+
+  removeAlternate(id: string | null): void {
+    this.authService.removeAlternate(id!).subscribe();
+    this.getUsers();
+  }
+
   removeUser(id: string | null): void {
     Swal.fire({
       title: '¿Estás seguro?',

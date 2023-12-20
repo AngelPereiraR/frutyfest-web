@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, SimpleChanges, computed, inject, signal }
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/auth/interfaces';
+import { Event } from 'src/app/frutyfest/interfaces/team.interface';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { FrutyfestService } from 'src/app/frutyfest/services/frutyfest.service';
 import Swal from 'sweetalert2';
@@ -18,13 +19,21 @@ export class TeamAddComponent {
   private fb = inject(FormBuilder);
   private router = inject(Router);
 
+  public events: Event[] = [];
+
   public myForm: FormGroup = this.fb.group({
     color: ['#000000', [Validators.required, Validators.minLength(7), Validators.maxLength(7)]],
     participants: [[], [Validators.required]],
+    event: ['', [Validators.required]]
   });
 
   constructor(private cdr: ChangeDetectorRef) {
     this.getUsers();
+    this.events = [
+      {
+        event: 'FrutyFest 2'
+      }
+    ]
   }
 
   ngOnInit(): void {
@@ -59,13 +68,23 @@ export class TeamAddComponent {
   }
 
   addTeam(): void {
-    const { color, participants } = this.myForm.value;
+    const { color, participants, event } = this.myForm.value;
+
+    let name = "";
 
     for (let i = 0; i < participants.length; i++) {
       this.authService.setSelectedOnTeam(participants[i]._id).subscribe();
+      if(i < participants.length - 1) {
+        let participantNameReduced: string = participants[i].name;
+        name += participantNameReduced.slice(0,3);
+        name += "-";
+      } else {
+        let participantNameReduced: string = participants[i].name;
+        name += participantNameReduced.slice(0,3);
+      }
     }
 
-    this.frutyfestService.addTeam(color, participants, 0)
+    this.frutyfestService.addTeam(color, participants, event, 0, name)
       .subscribe({
         next: (team) => {
           Swal.fire('Creación', 'Creación del equipo correcta', 'success')

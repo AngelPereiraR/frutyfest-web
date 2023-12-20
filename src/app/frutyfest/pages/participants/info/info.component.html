@@ -8,12 +8,16 @@
     <p class="p-l-40">{{user?.companionName}}</p>
     <h1 class="p-t-10">Presentación</h1>
     <p class="p-l-40">{{user?.presentation}}</p>
-    <h1 class="p-t-10">Evento</h1>
-    <p class="p-l-40">{{user?.event}}</p>
   </div>
   <div class="row">
-    <div>
-      <li class="btn custom-bottom mt-4" routerLink="/admin">V O L V E R</li>
+    <div class="col">
+      <li class="btn return-button mt-4" routerLink="/">V O L V E R</li>
+    </div>
+    <div class="col flex-r">
+      <li class="btn edit-button mt-4" [routerLink]="'/participant/edit/'+user?._id">E D I T A R</li>
+    </div>
+    <div class="col flex-r">
+      <li class="btn edit-button mt-4" [routerLink]="'/participant/changePassword/'+user?._id">CAMBIAR CONTRASEÑA</li>
     </div>
   </div>
 </div>

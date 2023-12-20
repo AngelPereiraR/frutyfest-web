@@ -5,10 +5,10 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 import { FrutyfestService } from 'src/app/frutyfest/services/frutyfest.service';
 
 @Component({
-  templateUrl: './record.component.html',
-  styleUrls: ['./record.component.css']
+  templateUrl: './info.component.html',
+  styleUrls: ['./info.component.css']
 })
-export class RecordComponent {
+export class InfoComponent {
   private frutyfestService = inject(FrutyfestService);
   private authService = inject(AuthService);
   public user: User | undefined;
@@ -22,7 +22,7 @@ export class RecordComponent {
   }
 
   ngOnInit(): void {
-    this.frutyfestService.setPage('admin');
+    this.frutyfestService.setPage('participant');
   }
 
   ngOnDestroy(): void {
