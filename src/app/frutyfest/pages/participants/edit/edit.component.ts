@@ -26,6 +26,7 @@ export class EditComponent {
     _id: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.pattern(this.validatorsService.emailPattern)]],
     name: ['', [Validators.required]],
+    minecraftName: ['', [Validators.required]],
     hasCompanion: [false, [Validators.required]],
     companionName: [''],
     event: ['', [Validators.required]],
@@ -63,6 +64,7 @@ export class EditComponent {
           _id: user._id,
           email: user.email,
           name: user.name,
+          minecraftName: user.minecraftName,
           hasCompanion: user.hasCompanion,
           companionName: user.companionName,
           event: user.event,
@@ -75,7 +77,7 @@ export class EditComponent {
   }
 
   changeUser() {
-    let { _id, email, name, hasCompanion, companionName, presentation, event } = this.myForm!.value;
+    let { _id, email, name, minecraftName, hasCompanion, companionName, presentation, event } = this.myForm!.value;
 
     if (!companionName) companionName = 'No tiene';
 
@@ -85,7 +87,7 @@ export class EditComponent {
       hasCompanion = false;
     }
 
-    this.authService.changeUser(_id, email, name, hasCompanion, presentation, companionName, event)
+    this.authService.changeUser(_id, email, name, minecraftName, hasCompanion, presentation, companionName, event)
       .subscribe({
         next: () => {
           Swal.fire('Cambiar perfil', 'Cambio de perfil correcto.', 'success')

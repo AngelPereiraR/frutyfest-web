@@ -29,6 +29,7 @@ export class RegisterPageComponent {
   public myForm: FormGroup = this.fb.group({
     email: ['', [Validators.required, Validators.pattern(this.validatorsService.emailPattern)]],
     name: ['', [Validators.required]],
+    minecraftName: ['', [Validators.required]],
     password: ['', [Validators.required, Validators.minLength(6)]],
     confirmPassword: ['', [Validators.required]],
     hasCompanion: [false, [Validators.required]],
@@ -44,7 +45,7 @@ export class RegisterPageComponent {
   showPassword = false;
 
   register() {
-    let { email, name, password, hasCompanion, companionName, presentation, event } = this.myForm.value;
+    let { email, name, minecraftName, password, hasCompanion, companionName, presentation, event } = this.myForm.value;
 
     if (!companionName) companionName = 'No tiene';
 
@@ -54,7 +55,7 @@ export class RegisterPageComponent {
       hasCompanion = false;
     }
 
-    this.authService.register(email, password, name, hasCompanion, presentation, companionName, event)
+    this.authService.register(email, password, name, minecraftName, hasCompanion, presentation, companionName, event)
       .subscribe({
         next: () => {
           Swal.fire('Registro', 'Registro correcto. Se le ha enviado un correo con las credenciales para el inicio de sesión. Si no aparece en Recibidos, por favor mire en su carpeta de Spam, gracias.', 'success')

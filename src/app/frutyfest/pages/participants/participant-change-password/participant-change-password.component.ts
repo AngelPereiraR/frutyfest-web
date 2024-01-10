@@ -59,7 +59,7 @@ export class ParticipantChangePasswordComponent {
     this.authService.getUserByEmail(email)
       .subscribe({
         next: (user) => {
-          this.authService.changePassword(user._id, email, password, user.name, user.hasCompanion, user.presentation, user.companionName, user.event).subscribe({
+          this.authService.changePassword(user._id, email, password, user.name, user.minecraftName, user.hasCompanion, user.presentation, user.companionName, user.event).subscribe({
             next: () => {
               Swal.fire('Cambio de contraseña', 'Cambio de contraseña correcto. Se le ha enviado un correo con las nuevas credenciales para el inicio de sesión. Si no aparece en Recibidos, por favor mire en su carpeta de Spam, gracias.', 'success')
               this.router.navigateByUrl(`/participant/${user._id}`);

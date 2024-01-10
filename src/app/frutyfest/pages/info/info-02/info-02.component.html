@@ -1,0 +1,426 @@
+<div id="top" class="black">
+  <div class="row d-flex align-items-center">
+    <div class="col-3">
+      <div>
+        <a class="social" href="https://www.youtube.com/@ByFruty">
+          <img class="links" src="../assets/youtube.svg" alt="YouTube" />
+          ByFruty
+        </a>
+      </div>
+      <div>
+        <a class="social" href="https://www.twitch.tv/byfruty">
+          <img class="links" src="../assets/twitch.svg" alt="Twitch" />
+          ByFruty
+        </a>
+      </div>
+      <div>
+        <a class="social" href="https://discord.gg/xeGza8E7fG">
+          <img class="links" src="../assets/discord.svg" alt="Discord" />
+          Frutylandia
+        </a>
+      </div>
+      <div>
+        <a class="social" href="https://www.tiktok.com/@byfruty">
+          <img class="links" src="../assets/tiktok.svg" alt="Tiktok" />
+          ByFruty
+        </a>
+      </div>
+    </div>
+    <div class="col-5 center">
+      <!-- <img class="schedule" src="../assets/horario-frutyfest-01.webp" alt="Horario"> -->
+    </div>
+    <div class="col-4 p-4">
+      <h3 class="contact">Si tienes dudas, contáctame</h3>
+      <div class="">
+        <a class="social" href="https://www.instagram.com/byfruty/">
+          <img class="links" src="../assets/instagram.svg" alt="Instagram" />
+          ByFruty
+        </a>
+      </div>
+      <div>
+        <a class="social" href="mailto:drosterradioactive@gmail.com">
+          <img class="links" src="../assets/gmail.svg" alt="Tiktok" />
+          Droster Radioactive
+        </a>
+      </div>
+      <div>
+        <a
+          class="social"
+          href="https://discord.com/channels/@me/971799467189747792"
+        >
+          <img class="links" src="../assets/discord.svg" alt="Tiktok" />
+          Fruty .fruty
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <div class="container">
+    <div id class="mt-3">
+      <div class="row mt-4 mb-4">
+        <!-- <div class="col">
+          <div class="row">
+            <h1>Ganadores FrutyFest 2</h1>
+            <div class="col">
+              <h3 class="puesto">Primer puesto</h3>
+              <p></p>
+              <img class="ganador mt-3" src="../assets/primer-miembro-primer-ganador-frutyfest-02.webp" alt="">
+              <p></p>
+              <img class="ganador mt-3" src="../assets/segundo-miembro-primer-ganador-frutyfest-02.webp" alt="">
+            </div>
+            <div class="col">
+              <h3 class="puesto">Segundo puesto</h3>
+              <p></p>
+              <img class="ganador mt-3" src="../assets/primer-miembro-segundo-ganador-frutyfest-02.webp" alt="">
+              <p></p>
+              <img class="ganador mt-3" src="../assets/segundo-miembro-segundo-ganador-frutyfest-02.webp" alt="">
+            </div>
+          </div>
+        </div> -->
+        <div class="col">
+          <frutyfest-participants></frutyfest-participants>
+        </div>
+      </div>
+      <h1 id="reglasGenerales">Reglas Generales del FrutyFest 2</h1>
+      <div class="row">
+        <div class="col-12 col-lg-6">
+          <div class="mt-4">
+            <h2>Nº de participantes</h2>
+            <p>24 participantes</p>
+            <p>12 dúos</p>
+          </div>
+          <div class="mt-4">
+            <h2>Premios</h2>
+            <p>
+              Primer puesto - 200€ (100€ para cada miembro) + Doble trofeo
+              físico realizados a mano (Uno para cada ganador)
+            </p>
+            <p>Segundo puesto - 100€ (50€ para cada miembro)</p>
+          </div>
+          <div class="mt-4">
+            <h2>Requisitos</h2>
+            <p>Ambos miembros del dúo tienen que ser afiliados de Twitch.</p>
+            <p>Tener constancia con los directos.</p>
+            <p>Tener cuenta premium de Minecraft.</p>
+            <p>Ser mayor de edad.</p>
+            <p>Tener Paypal o algún medio donde otorgar el premio monetario.</p>
+            <p>
+              En caso de no tener un dúo, los administradores le asignarán un
+              compañero que será otro participante sin dúo.
+            </p>
+          </div>
+          <div class="mt-4">
+            <h2>Versión</h2>
+            <p>1.20.1</p>
+          </div>
+        </div>
+        <!-- <div class="col-12 col-lg-6 mt-4">
+          <h2>Trofeo</h2>
+          <img class="img-content" src="../assets/trofeo-frutyfest-02.webp" alt="Trofeo">
+        </div> -->
+      </div>
+
+      <!-- <div class="row mt-4">
+        <div class="col">
+          <h2>Lobby</h2>
+          <img class="img-content" src="../assets/modosDeJuego/frutyfest-02/lobby.webp" alt="Lobby">
+        </div>
+      </div> -->
+    </div>
+    <div class="mt-5">
+      <h1 id="modosDeJuego">Modos de juego</h1>
+      <div class="mt-5">
+        <h2 id="fase1">Fase 1</h2>
+        <div class="row mt-4">
+          <h3>CLB (Captura La Bandera)</h3>
+          <div class="col-12 col-lg-6 mt-2">
+            <div>
+              <h3>Equipos</h3>
+              <p>Equipo Rojo - 12 jugadores - 6 dúos</p>
+              <p>Equipo Azul - 12 jugadores - 6 dúos</p>
+            </div>
+            <div class="mt-3">
+              <h3>Puntuaciones</h3>
+              <p>Equipo ganador - 20 puntos</p>
+              <p>Equipo perdedor - 10 puntos</p>
+            </div>
+            <!-- <div class="mt-3">
+              <h3>Descripción del modo</h3>
+              <p>Pelea por equipos en la que hay que derrotar a todo el equipo enemigo.</p>
+              <p>Por cada vez que se derrote a un equipo entero, el equipo vencedor recibe un punto.</p>
+              <p>Ganará el primer equipo que consiga 3 puntos.</p>
+            </div> -->
+          </div>
+          <!-- <div class="col-12 col-lg-6 mt-2">
+            <img class="img-content-modos" src="../assets/modosDeJuego/dueloPorEquipos.webp" alt="Duelo por equipos">
+          </div> -->
+        </div>
+        <div class="row mt-5">
+          <h3>Bedwars</h3>
+          <div class="col-12 col-lg-6 mt-2">
+            <div>
+              <h3>Equipos</h3>
+              <p>Equipo 1 - 4 jugadores - 2 dúos</p>
+              <p>Equipo 2 - 4 jugadores - 2 dúos</p>
+              <p>Equipo 3 - 4 jugadores - 2 dúos</p>
+              <p>Equipo 4 - 4 jugadores - 2 dúos</p>
+              <p>Equipo 5 - 4 jugadores - 2 dúos</p>
+              <p>Equipo 6 - 4 jugadores - 2 dúos</p>
+            </div>
+            <div class="mt-3">
+              <h3>Puntuaciones</h3>
+              <p>Equipo ganador - 12 puntos</p>
+              <p>Segundo equipo - 10 puntos</p>
+              <p>Tercer equipo - 8 puntos</p>
+              <p>Cuarto equipo - 6 puntos</p>
+              <p>Quinto equipo - 4 puntos</p>
+              <p>Sexto equipo - 2 puntos</p>
+            </div>
+            <!-- <div class="mt-3">
+              <h3>Descripción del modo</h3>
+              <p>Pelea por equipos en la que hay que empujar fuera a todo el equipo enemigo.</p>
+              <p>Por cada vez que se empuje fuera a un equipo entero, el equipo vencedor recibe un punto.</p>
+              <p>Ganará el primer equipo que consiga 3 puntos.</p>
+            </div> -->
+          </div>
+          <!-- <div class="col-12 col-lg-6 mt-2">
+            <img class="img-content-modos" src="../assets/modosDeJuego/empujones.webp" alt="Duelo empujones">
+          </div> -->
+        </div>
+        <div class="row mt-5">
+          <h3>Skywars</h3>
+          <div class="col-12 col-lg-6 mt-2">
+            <div>
+              <h3>Equipos</h3>
+              <p>Dúos - 24 jugadores - 12 dúos</p>
+            </div>
+            <div class="mt-3">
+              <h3>Puntuaciones</h3>
+              <p>Dúo ganador - 12 puntos</p>
+              <p>Segundo dúo - 11 puntos</p>
+              <p>Tercer dúo - 10 puntos</p>
+              <p>Cuarto dúo - 9 puntos</p>
+              <p>Quinto dúo - 8 puntos</p>
+              <p>Sexto dúo - 7 puntos</p>
+              <p>Séptimo dúo - 6 puntos</p>
+              <p>Octavo dúo - 5 puntos</p>
+              <p>Noveno dúo - 4 puntos</p>
+              <p>Décimo dúo - 3 puntos</p>
+              <p>Undécimo dúo - 2 puntos</p>
+              <p>Duodécimo dúo - 1 punto</p>
+            </div>
+            <!-- <div class="mt-3">
+              <h3>Descripción del modo</h3>
+              <p>Primero participa un equipo, luego el otro.</p>
+              <p>El equipo debe escapar durante 3/5 minutos de 2/3 admins.</p>
+              <p>El equipo que más supervivientes tenga o haya conseguido sobrevivir más tiempo, ganará el punto.</p>
+              <p>Los participantes tendrán el efecto de oscuridad y velocidad, los cazadores tendrán visión nocturna.
+              </p>
+            </div> -->
+          </div>
+          <!-- <div class="col-12 col-lg-6 mt-2">
+            <img class="img-content-modos" src="../assets/modosDeJuego/cazadores.webp" alt="Cacería">
+          </div> -->
+        </div>
+        <!-- <div class="mt-3">
+          <h3>
+            Excepciones de la fase
+          </h3>
+          <p>Si tras la tercera prueba hay un empate de puntos, se decidirá quién pasa la ronda con un 2vs2.</p>
+        </div> -->
+      </div>
+      <div class="mt-5">
+        <h2 id="fase2">Fase 2</h2>
+        <p>Los puntos se reinician en esta fase.</p>
+        <div class="row mt-4">
+          <h3>Escapa del laberinto</h3>
+          <div class="col-12 col-lg-6 mt-2">
+            <div>
+              <h3>Equipos</h3>
+              <p>Dúos - 12 jugadores - 6 dúos</p>
+            </div>
+            <div class="mt-3">
+              <h3>Puntuaciones</h3>
+              <p>Dúo ganador - 6 puntos</p>
+              <p>Segundo dúo - 5 puntos</p>
+              <p>Tercer dúo - 4 puntos</p>
+              <p>Cuarto dúo - 3 puntos</p>
+              <p>Quinto dúo - 2 puntos</p>
+              <p>Sexto dúo - 1 punto</p>
+            </div>
+            <!-- <div class="mt-3">
+              <h3>Descripción del modo</h3>
+              <p>
+                Los dos equipos deberán de escapar de un gran laberinto que sólo
+                tendrá una salida.
+              </p>
+              <p>El primer equipo que escape, ganará la prueba.</p>
+              <p>
+                Deberán de salir los 5 miembros del equipo a la vez para poder
+                superar la prueba.
+              </p>
+            </div> -->
+          </div>
+          <!-- <div class="col-12 col-lg-6 mt-2">
+            <img
+              class="img-content-modos"
+              src="../assets/modosDeJuego/laberinto.webp"
+              alt="Laberinto"
+            />
+          </div> -->
+        </div>
+        <div class="row mt-5">
+          <h3>Carrera de relevos (Prueba temporal)</h3>
+          <div class="col-12 col-lg-6 mt-2">
+            <div>
+              <h3>Equipos</h3>
+              <p>Dúos - 12 jugadores - 6 dúos</p>
+            </div>
+            <div class="mt-3">
+              <h3>Puntuaciones</h3>
+              <p>Dúo ganador - 6 puntos</p>
+              <p>Segundo dúo - 5 puntos</p>
+              <p>Tercer dúo - 4 puntos</p>
+              <p>Cuarto dúo - 3 puntos</p>
+              <p>Quinto dúo - 2 puntos</p>
+              <p>Sexto dúo - 1 punto</p>
+            </div>
+            <!-- <div class="mt-3">
+              <h3>Descripción del modo</h3>
+              <p>
+                Los dos equipos deberán de escapar de un gran laberinto que sólo
+                tendrá una salida.
+              </p>
+              <p>El primer equipo que escape, ganará la prueba.</p>
+              <p>
+                Deberán de salir los 5 miembros del equipo a la vez para poder
+                superar la prueba.
+              </p>
+            </div> -->
+          </div>
+          <!-- <div class="col-12 col-lg-6 mt-2">
+            <img
+              class="img-content-modos"
+              src="../assets/modosDeJuego/laberinto.webp"
+              alt="Laberinto"
+            />
+          </div> -->
+        </div>
+        <!-- <div class="mt-3">
+          <h3>Excepciones de la fase</h3>
+          <p>
+            Si tras la segunda prueba hay un empate de puntos, habrá una cuarta
+            prueba dónde el ganador ganará la primera fase y se clasificará.
+          </p>
+        </div> -->
+      </div>
+      <div class="mt-5">
+        <h2 id="fase3">Fase 3</h2>
+        <div class="row mt-4">
+          <h3>Build Battle</h3>
+          <div class="col-12 col-lg-6 mt-2">
+            <div>
+              <h3>Equipos</h3>
+              <p>Dúos - 8 jugadores - 4 dúos</p>
+            </div>
+            <div class="mt-3">
+              <h3>Eliminación</h3>
+              <p>Cuarto puesto</p>
+            </div>
+            <!-- <div class="mt-3">
+              <h3>Descripción del modo</h3>
+              <p>Cada equipo deberá construir 3 cosas que le digamos.</p>
+              <p>
+                Los jueces puntuarán del 1 al 10 cada construcción (Máximo 30
+                puntos por construcción).
+              </p>
+              <p>
+                Ganará el que más puntos lleve entre todas las construcciones.
+              </p>
+            </div> -->
+          </div>
+          <!-- <div class="col-12 col-lg-6 mt-2">
+            <img
+              class="img-content-modos"
+              src="../assets/modosDeJuego/buildBattle.webp"
+              alt="Build Battle"
+            />
+          </div> -->
+        </div>
+        <div class="row mt-5">
+          <h3>No te caigas</h3>
+          <div class="col-12 col-lg-6 mt-2">
+            <div>
+              <h3>Equipos</h3>
+              <p>Dúos - 6 jugadores - 3 dúos</p>
+            </div>
+            <div class="mt-3">
+              <h3>Eliminación</h3>
+              <p>Tercer puesto</p>
+            </div>
+            <!-- <div class="mt-3">
+              <h3>Descripción del modo</h3>
+              <p>
+                Jugarán el clásico "TNT RUN" dónde el primero que caiga hasta
+                abajo será eliminado.
+              </p>
+              <p>Los 3 que ganan pasarán.</p>
+            </div> -->
+          </div>
+          <!-- <div class="col-12 col-lg-6 mt-2">
+            <img
+              class="img-content-modos"
+              src="../assets/modosDeJuego/tntRun.webp"
+              alt="TNT RUN"
+            />
+          </div> -->
+        </div>
+      </div>
+      <div class="mt-5">
+        <h2 id="faseFinal">Fase Final</h2>
+        <div class="row mt-4">
+          <h3>2vs2 final</h3>
+          <div class="col-12 col-lg-6 mt-2">
+            <!-- <div class="mt-3">
+              <h3>Descripción del modo</h3>
+              <p>Al mejor de 5 rondas.</p>
+              <p>El finalista que logre matar al otro recibe un punto.</p>
+              <p>Gana el primero que logre 3 puntos.</p>
+              <p>
+                Los 2 participantes podrán elegir entre los distintos mapas en
+                los que quieran hacer el 1vs1, incluyendo el coliseo que se
+                construirá como nuevo mapa desconocido.
+              </p>
+            </div> -->
+          </div>
+          <!-- <div class="col-12 col-lg-6 mt-2">
+            <img
+              class="img-content-modos"
+              src="../assets/modosDeJuego/coliseo.webp"
+              alt="Coliseo"
+            />
+          </div> -->
+        </div>
+      </div>
+    </div>
+    <!-- <div class="mt-5">
+      <h2>
+        Ranking
+      </h2>
+      <div>
+        <frutyfest-ranking></frutyfest-ranking>
+      </div>
+    </div> -->
+  </div>
+  <div class="irArriba" *ngIf="mostrarBoton">
+    <button
+      class="btn btn-primary"
+      (click)="scrollToSection('top')"
+      title="Volver arriba"
+    >
+      <i class="fas fa-arrow-up"></i>
+    </button>
+  </div>
+</div>

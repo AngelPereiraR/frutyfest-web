@@ -1,18 +1,18 @@
-import { Component, ElementRef, HostListener, OnInit, Renderer2, inject } from '@angular/core';
-import { FrutyfestService } from '../../services/frutyfest.service';
+import { Component, ElementRef, HostListener, Renderer2, inject } from '@angular/core';
+import { FrutyfestService } from 'src/app/frutyfest/services/frutyfest.service';
 
 @Component({
-  templateUrl: './index.component.html',
-  styleUrls: ['./index.component.scss']
+  templateUrl: './info-02.component.html',
+  styleUrls: ['./info-02.component.scss']
 })
-export class IndexComponent implements OnInit {
+export class Info02Component {
   private frutyfestService = inject(FrutyfestService);
   mostrarBoton = false;
 
   constructor(private el: ElementRef, private renderer: Renderer2) {}
 
   ngOnInit(): void {
-    this.frutyfestService.setPage('index');
+    this.frutyfestService.setPage('frutyfest02');
   }
 
   ngOnDestroy(): void {

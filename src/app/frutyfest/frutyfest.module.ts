@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FrutyfestRoutingModule } from './frutyfest-routing.module';
-import { IndexComponent } from './pages/index/index.component';
 import { RankingComponent } from './components/ranking/ranking.component';
 import { FrutyfestLayoutComponent } from './layouts/frutyfest-layout/frutyfest-layout.component';
 import { MaterialModule } from '../material/material.module';
@@ -18,13 +17,14 @@ import { TrialAddComponent } from './pages/admin/trial/trial-add/trial-add.compo
 import { InfoComponent } from './pages/participants/info/info.component';
 import { EditComponent } from './pages/participants/edit/edit.component';
 import { ParticipantChangePasswordComponent } from './pages/participants/participant-change-password/participant-change-password.component';
+import { Info01Component } from './pages/info/info-01/info-01.component';
+import { Info02Component } from './pages/info/info-02/info-02.component';
 
 
 @NgModule({
   declarations: [
     CommonBackgroundComponent,
     FrutyfestLayoutComponent,
-    IndexComponent,
     RankingComponent,
     ParticipantsComponent,
     RecordComponent,
@@ -35,7 +35,9 @@ import { ParticipantChangePasswordComponent } from './pages/participants/partici
     TrialAddComponent,
     InfoComponent,
     EditComponent,
-    ParticipantChangePasswordComponent
+    ParticipantChangePasswordComponent,
+    Info01Component,
+    Info02Component
   ],
   imports: [
     CommonModule,

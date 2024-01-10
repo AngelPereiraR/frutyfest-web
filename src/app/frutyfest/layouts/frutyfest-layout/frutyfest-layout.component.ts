@@ -11,13 +11,13 @@ export class FrutyfestLayoutComponent implements DoCheck {
   private authService = inject(AuthService);
   private frutyfestService = inject(FrutyfestService);
 
-  isHidden: boolean = false;
+  isSecondHidden: boolean = false;
+  isThirdHidden: boolean = false;
   currentUser = this.authService.currentUser;
   authStatus = this.authService.authStatus;
   page: null | string = null;
 
   public scrollToSection(sectionId: string) {
-    console.log(sectionId)
     const section = document.getElementById(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -30,12 +30,25 @@ export class FrutyfestLayoutComponent implements DoCheck {
     this.currentUser = this.authService.currentUser;
   }
 
-  public showHiddenContent() {
-    this.isHidden = true;
+  public showSecondHiddenContent() {
+    this.isSecondHidden = true;
   }
 
-  public hideHiddenContent() {
-    this.isHidden = false;
+  public hideSecondHiddenContent() {
+    this.isSecondHidden = false;
+  }
+
+  public showThirdHiddenContent() {
+    this.isThirdHidden = true;
+  }
+
+  public hideThirdHiddenContent() {
+    this.isThirdHidden = false;
+  }
+
+  public hideBothHiddenContent() {
+    this.isSecondHidden = false;
+    this.isThirdHidden = false;
   }
 
   logout() {

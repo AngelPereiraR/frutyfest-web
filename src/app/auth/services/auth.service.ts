@@ -104,10 +104,10 @@ export class AuthService {
       );
   }
 
-  register(email: string, password: string, name: string, hasCompanion: boolean, presentation: string, companionName: string, event: string): Observable<boolean> {
+  register(email: string, password: string, name: string, minecraftName: string, hasCompanion: boolean, presentation: string, companionName: string, event: string): Observable<boolean> {
 
     const url = `${this.baseUrl}/auth/register`;
-    const body = { email, password, name, hasCompanion, companionName, presentation, event };
+    const body = { email, password, name, minecraftName, hasCompanion, companionName, presentation, event };
 
     return this.http.post<boolean>(url, body)
       .pipe(
@@ -115,10 +115,10 @@ export class AuthService {
       );
   }
 
-  changePassword(id: string, email: string, password: string, name: string, hasCompanion: boolean, presentation: string, companionName: string, event: string) {
+  changePassword(id: string, email: string, password: string, name: string, minecraftName: string, hasCompanion: boolean, presentation: string, companionName: string, event: string) {
     const url = `${this.baseUrl}/auth/changePassword/${id}`;
 
-    const body = {email, password, name, hasCompanion, presentation, companionName, event}
+    const body = {email, password, name, minecraftName, hasCompanion, presentation, companionName, event}
 
     return this.http.patch<User>(url, body)
       .pipe(
@@ -126,11 +126,11 @@ export class AuthService {
       );
   }
 
-  changeUser(id: string, email: string, name: string, hasCompanion: boolean, presentation: string, companionName: string, event: string) {
+  changeUser(id: string, email: string, name: string, minecraftName: string, hasCompanion: boolean, presentation: string, companionName: string, event: string) {
     const url = `${this.baseUrl}/auth/${id}`;
     const token = localStorage.getItem('token');
 
-    const body = {email, name, hasCompanion, presentation, companionName, event};
+    const body = {email, name, minecraftName, hasCompanion, presentation, companionName, event};
 
     const headers = new HttpHeaders()
       .set('Authorization', `Bearer ${token}`);

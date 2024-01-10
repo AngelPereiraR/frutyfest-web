@@ -20,7 +20,7 @@ export class ParticipantsListComponent {
   }
 
   ngOnInit(): void {
-    this.frutyfestService.setPage('index');
+    this.frutyfestService.setPage('frutyfest02');
   }
 
   ngOnDestroy(): void {

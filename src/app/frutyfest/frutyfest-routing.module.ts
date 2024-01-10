@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FrutyfestLayoutComponent } from './layouts/frutyfest-layout/frutyfest-layout.component';
-import { IndexComponent } from './pages/index/index.component';
 import { isNotAdminGuard } from './guards/is-not-admin.guard';
 import { ParticipantsComponent } from './pages/admin/participants/participants.component';
 import { RecordComponent } from './pages/admin/record/record.component';
@@ -13,6 +12,8 @@ import { InfoComponent } from './pages/participants/info/info.component';
 import { isNotParticipantGuard } from './guards/is-not-participant.guard';
 import { EditComponent } from './pages/participants/edit/edit.component';
 import { ParticipantChangePasswordComponent } from './pages/participants/participant-change-password/participant-change-password.component';
+import { Info01Component } from './pages/info/info-01/info-01.component';
+import { Info02Component } from './pages/info/info-02/info-02.component';
 
 const routes: Routes = [
   {
@@ -21,8 +22,12 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: IndexComponent,
+        component: Info02Component,
         pathMatch: 'full'
+      },
+      {
+        path: 'frutyfest01',
+        component: Info01Component,
       },
       {
         path: 'admin',

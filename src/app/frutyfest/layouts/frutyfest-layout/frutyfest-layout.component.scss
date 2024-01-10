@@ -54,14 +54,18 @@ li.under:hover {
 }
 
 .spacer.top {
-  background-color: #373737;
+  background-color: #282828;
   width: 110%;
   height: 50px;
   color: white;
 }
 
-.spacer.top.new {
-  background-color: #595959;
+.spacer.top.second {
+  background-color: #414141;
+}
+
+.spacer.top.third {
+  background-color: #555555;
 }
 
 li.auth, div.auth, a.auth {

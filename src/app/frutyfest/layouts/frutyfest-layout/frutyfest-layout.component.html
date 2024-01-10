@@ -1,6 +1,6 @@
 <div class="top-navbar">
   <div class="container-fluid">
-    <div class="row" (mouseover)="hideHiddenContent()">
+    <div class="row" (mouseover)="hideBothHiddenContent()">
       <div class="col d-flex justify-content-start align-items-center">
         <div class="mx-3 title" routerLink="/">FrutyFest</div>
       </div>
@@ -30,19 +30,77 @@
         </a>
       </div>
     </div>
-    <div *ngIf="page === 'index'" class="row spacer top d-flex align-items-center">
+    <div *ngIf="page === 'frutyfest02'" class="row spacer top d-flex align-items-center">
       <div class="col-5 col-sm-5 col-md-3 col-lg-2">
-        <li class="list-group-item text-center under" (click)="scrollToSection('reglasGenerales')" (mouseover)="hideHiddenContent()">
+        <li class="list-group-item text-center under" routerLink="/frutyfest01" (mouseover)="hideBothHiddenContent()">
+          FrutyFest 01
+        </li>
+      </div>
+      <div class="col-5 col-sm-5 col-md-3 col-lg-2">
+        <li class="list-group-item text-center under" routerLink="/" (mouseover)="showSecondHiddenContent()">
+          FrutyFest 02 ▼
+        </li>
+      </div>
+    </div>
+    <div class="row spacer top second d-flex align-items-center" *ngIf="isSecondHidden && page === 'frutyfest02'">
+      <div class="col-5 col-sm-5 col-md-3 col-lg-2">
+        <li class="list-group-item text-center under" (click)="scrollToSection('reglasGenerales')" (mouseleave)="hideThirdHiddenContent()">
           Reglas Generales
         </li>
       </div>
       <div class="col-5 col-sm-5 col-md-3 col-lg-2">
-        <li class="list-group-item text-center under" (click)="scrollToSection('modosDeJuego')" (mouseover)="showHiddenContent()">
+        <li class="list-group-item text-center under" (click)="scrollToSection('modosDeJuego')" (mouseover)="showThirdHiddenContent()">
           Modos de Juego ▼
         </li>
       </div>
     </div>
-    <div class="row spacer top new d-flex align-items-center" *ngIf="isHidden" (mouseleave)="hideHiddenContent()">
+    <div class="row spacer top third d-flex align-items-center" *ngIf="isThirdHidden && page === 'frutyfest02'" (mouseleave)="hideThirdHiddenContent()">
+      <div class="col-2 col-sm-2 col-lg-1">
+        <li class="list-group-item text-center under" (click)="scrollToSection('fase1')">
+          Fase 1
+        </li>
+      </div>
+      <div class="col-2 col-sm-2 col-lg-1">
+        <li class="list-group-item text-center under" (click)="scrollToSection('fase2')">
+          Fase 2
+        </li>
+      </div>
+      <div class="col-2 col-sm-2 col-lg-1">
+        <li class="list-group-item text-center under" (click)="scrollToSection('fase3')">
+          Fase 3
+        </li>
+      </div>
+      <div class="col-3 col-sm-3 col-md-2 col-xl-1">
+        <li class="list-group-item text-center under" (click)="scrollToSection('faseFinal')">
+          Fase Final
+        </li>
+      </div>
+    </div>
+    <div *ngIf="page === 'frutyfest01'" class="row spacer top d-flex align-items-center">
+      <div class="col-5 col-sm-5 col-md-3 col-lg-2">
+        <li class="list-group-item text-center under" routerLink="/frutyfest01" (mouseover)="showSecondHiddenContent()">
+          FrutyFest 01 ▼
+        </li>
+      </div>
+      <div class="col-5 col-sm-5 col-md-3 col-lg-2">
+        <li class="list-group-item text-center under" routerLink="/" (mouseover)="hideBothHiddenContent()">
+          FrutyFest 02
+        </li>
+      </div>
+    </div>
+    <div class="row spacer top second d-flex align-items-center" *ngIf="isSecondHidden && page === 'frutyfest01'">
+      <div class="col-5 col-sm-5 col-md-3 col-lg-2">
+        <li class="list-group-item text-center under" (click)="scrollToSection('reglasGenerales')" (mouseleave)="hideThirdHiddenContent()">
+          Reglas Generales
+        </li>
+      </div>
+      <div class="col-5 col-sm-5 col-md-3 col-lg-2">
+        <li class="list-group-item text-center under" (click)="scrollToSection('modosDeJuego')" (mouseover)="showThirdHiddenContent()">
+          Modos de Juego ▼
+        </li>
+      </div>
+    </div>
+    <div class="row spacer top third d-flex align-items-center" *ngIf="isThirdHidden && page === 'frutyfest01'" (mouseleave)="hideThirdHiddenContent()">
       <div class="col-2 col-sm-2 col-lg-1">
         <li class="list-group-item text-center under" (click)="scrollToSection('fase1')">
           Fase 1
@@ -84,12 +142,12 @@
   </div>
 </div>
 
-<div class="content" (mouseover)="hideHiddenContent()">
+<div class="content" (mouseover)="hideBothHiddenContent()">
   <app-common-background></app-common-background>
   <router-outlet></router-outlet>
 </div>
 
-<div class="bottom-navbar" (mouseover)="hideHiddenContent()">
+<div class="bottom-navbar" (mouseover)="hideBothHiddenContent()">
   <div class="spacer bottom"></div>
   <div class="container">
     <div class="row m-3">
