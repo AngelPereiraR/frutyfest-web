@@ -19,6 +19,7 @@ import { EditComponent } from './pages/participants/edit/edit.component';
 import { ParticipantChangePasswordComponent } from './pages/participants/participant-change-password/participant-change-password.component';
 import { Info01Component } from './pages/info/info-01/info-01.component';
 import { Info02Component } from './pages/info/info-02/info-02.component';
+import { RateComponent } from './pages/admin/rate/rate.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { Info02Component } from './pages/info/info-02/info-02.component';
     EditComponent,
     ParticipantChangePasswordComponent,
     Info01Component,
-    Info02Component
+    Info02Component,
+    RateComponent
   ],
   imports: [
     CommonModule,

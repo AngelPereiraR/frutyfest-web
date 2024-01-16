@@ -1,0 +1,14 @@
+.container {
+  background-color: white;
+  border-radius: 40px;
+}
+
+.form-check-input {
+  background-color: #000000;
+}
+
+.select-grande {
+  font-size: 16px;
+  width: 300px;
+  height: 60px;
+}

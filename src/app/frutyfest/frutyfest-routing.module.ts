@@ -14,6 +14,7 @@ import { EditComponent } from './pages/participants/edit/edit.component';
 import { ParticipantChangePasswordComponent } from './pages/participants/participant-change-password/participant-change-password.component';
 import { Info01Component } from './pages/info/info-01/info-01.component';
 import { Info02Component } from './pages/info/info-02/info-02.component';
+import { RateComponent } from './pages/admin/rate/rate.component';
 
 const routes: Routes = [
   {
@@ -73,6 +74,11 @@ const routes: Routes = [
         path: 'admin/trial/add',
         canActivate: [isNotAdminGuard],
         component: TrialAddComponent
+      },
+      {
+        path: 'admin/rate',
+        canActivate: [isNotAdminGuard],
+        component: RateComponent
       }
     ]
   },

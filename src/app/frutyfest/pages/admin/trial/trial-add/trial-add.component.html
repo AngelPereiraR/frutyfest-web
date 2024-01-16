@@ -1,6 +1,10 @@
 <div class="container m-t-30">
-  <form [formGroup]="myForm" (ngSubmit)="addTrial()" class="login100-form" autocomplete="off">
-
+  <form
+    [formGroup]="myForm"
+    (ngSubmit)="addTrial()"
+    class="login100-form"
+    autocomplete="off"
+  >
     <span class="login100-form-title p-t-49 p-b-49">
       Añadir modo de juego
     </span>
@@ -19,7 +23,11 @@
 
     <div class="wrap-input100 m-b-23">
       <span class="label-input100">Disminución de puntos</span>
-      <input type="number" formControlName="pointsDecrease" class="form-control" />
+      <input
+        type="number"
+        formControlName="pointsDecrease"
+        class="form-control"
+      />
       <span class="focus-input100"></span>
     </div>
 
@@ -29,29 +37,25 @@
       <span class="focus-input100"></span>
     </div>
 
+    <!--TODO 2: number Fase, boolean Comienzo de fase y boolean Final de fase -->
+
     <div class="p-t-15"></div>
 
     <div class="container-login100-form-btn">
       <div class="wrap-login100-form-btn">
         <div class="login100-form-bgbtn"></div>
-        <button class="login100-form-btn" type="submit">
-          Añadir
-        </button>
+        <button class="login100-form-btn" type="submit">Añadir</button>
       </div>
     </div>
 
     <div class="flex-col-c p-t-20">
       <div class="row d-flex justify-content-between">
         <div class="col-4">
-          <a routerLink="/admin/team" class="txt2">
-            VOLVER
-          </a>
+          <a routerLink="/admin/team" class="txt2"> VOLVER </a>
         </div>
       </div>
     </div>
 
-    <div class="flex-col-c p-t-20">
-    </div>
+    <div class="flex-col-c p-t-20"></div>
   </form>
-
 </div>

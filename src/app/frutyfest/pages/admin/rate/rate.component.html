@@ -1,0 +1,106 @@
+<div class="container m-t-30">
+  <form
+    *ngIf="!secondFormEnabled"
+    [formGroup]="myForm"
+    (ngSubmit)="activateGamemode()"
+    class="login100-form"
+    autocomplete="off"
+  >
+    <span class="login100-form-title p-t-49 p-b-49"
+      >Selección de modo de juego</span
+    >
+
+    <div class="wrap-input100 m-b-23">
+      <span class="label-input100">Modo de juego</span>
+      <select formControlName="gamemode" class="form-control">
+        <option value="Seleccione un modo de juego" disabled>Seleccione un modo de juego</option>
+        <option *ngFor="let gamemode of trials()" [value]="gamemode._id">
+          {{ gamemode.name }}
+        </option>
+      </select>
+      <div class="input-group">
+        <span class="focus-input100"></span>
+      </div>
+    </div>
+
+    <div class="container-login100-form-btn">
+      <div class="wrap-login100-form-btn">
+        <div class="login100-form-bgbtn"></div>
+        <button class="login100-form-btn" type="submit">Seleccionar</button>
+      </div>
+    </div>
+
+    <div class="p-t-15"></div>
+
+    <div class="flex-col-c p-t-20">
+      <div class="row d-flex justify-content-between">
+        <div class="col-12">
+          <a routerLink="/admin" class="txt2">
+            VOLVER A CREACIÓN DE ELEMENTOS
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex-col-c p-t-20"></div>
+  </form>
+  <form
+    *ngIf="secondFormEnabled"
+    [formGroup]="myForm2"
+    (ngSubmit)="rateGamemode()"
+    class="login100-form"
+    autocomplete="off"
+  >
+    <span class="login100-form-title p-t-49 p-b-49">Selección de equipos</span>
+
+    <div class="wrap-input100 m-b-23" *ngFor="let team of teamsNumber">
+      <span class="label-input100">Equipo {{ team }}</span>
+      <div class="input-group">
+        <div formGroupName="equiposSeleccionados">
+          <select
+            multiple
+            formControlName="equipo{{ team }}"
+            class="select-grande"
+          >
+            <option *ngFor="let newTeam of teams()" [value]="newTeam._id">
+              {{ newTeam.name }}
+            </option>
+          </select>
+
+          <br>
+          <span class="label-input100">Posición final del equipo en la prueba:</span>
+          <label *ngFor="let teamNumber of teamsNumber">
+            <input
+              class="m-l-10"
+              type="radio"
+              formControlName="position{{team}}"
+              [value]="teamNumber"
+            />
+            {{ teamNumber }}
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-login100-form-btn">
+      <div class="wrap-login100-form-btn">
+        <div class="login100-form-bgbtn"></div>
+        <button class="login100-form-btn" type="submit">Seleccionar</button>
+      </div>
+    </div>
+
+    <div class="p-t-15"></div>
+
+    <div class="flex-col-c p-t-20">
+      <div class="row d-flex justify-content-between">
+        <div class="col-12">
+          <a routerLink="/admin" class="txt2">
+            VOLVER A CREACIÓN DE ELEMENTOS
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex-col-c p-t-20"></div>
+  </form>
+</div>
