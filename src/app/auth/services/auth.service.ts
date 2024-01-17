@@ -3,15 +3,19 @@ import { Injectable, inject, signal, computed } from '@angular/core';
 import { Observable, catchError, map, of, throwError } from 'rxjs';
 import { environments } from 'src/environments/environments.prod';
 
-import { User, AuthStatus, LoginResponse, CheckTokenResponse } from '../interfaces';
+import {
+  User,
+  AuthStatus,
+  LoginResponse,
+  CheckTokenResponse,
+} from '../interfaces';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
   private readonly baseUrl: string = environments.baseUrl;
   private http = inject(HttpClient);
   private router = inject(Router);
@@ -39,110 +43,163 @@ export class AuthService {
     const url = `${this.baseUrl}/auth`;
     const token = localStorage.getItem('token');
 
-    const headers = new HttpHeaders()
-      .set('Authorization', `Bearer ${token}`);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    return this.http.get<User[]>(url, { headers })
-      .pipe(
-        map((users) => {
-          return users;
-        }),
-        catchError(err => throwError(() => err.error.message))
-      );
+    return this.http.get<User[]>(url, { headers }).pipe(
+      map((users) => {
+        return users;
+      }),
+      catchError((err) => throwError(() => err.error.message))
+    );
   }
 
   getUser(id: string): Observable<User> {
     const url = `${this.baseUrl}/auth/${id}`;
     const token = localStorage.getItem('token');
 
-    const headers = new HttpHeaders()
-      .set('Authorization', `Bearer ${token}`);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    return this.http.get<User>(url, { headers })
-      .pipe(
-        map((user) => {
-          return user;
-        }),
-        catchError(err => throwError(() => err.error.message))
-      );
+    return this.http.get<User>(url, { headers }).pipe(
+      map((user) => {
+        return user;
+      }),
+      catchError((err) => throwError(() => err.error.message))
+    );
   }
 
   getUserByEmail(email: string): Observable<User> {
     const url = `${this.baseUrl}/auth/email/${email}`;
 
-    return this.http.get<User>(url)
-      .pipe(
-        map((user) => {
-          return user;
-        }),
-        catchError(err => throwError(() => err.error.message))
-      );
+    return this.http.get<User>(url).pipe(
+      map((user) => {
+        return user;
+      }),
+      catchError((err) => throwError(() => err.error.message))
+    );
   }
 
   login(email: string, password: string): Observable<User> {
-
     const url = `${this.baseUrl}/auth/login`;
     const body = { email, password };
 
-    return this.http.post<LoginResponse>(url, body)
-      .pipe(
-        map(({ user, token }) => {
-          this.setAuthentication(user, token);
-          if (user.roles.includes('admin')) {
-            Swal.fire('Inicio de sesión', `Sea bienvenid@ administrador/a ${user.name}.`, 'success')
-            this.router.navigateByUrl('/admin');
-          } else if (user.roles.includes('participant')) {
-            Swal.fire('Inicio de sesión', `Sea bienvenid@ ${user.name}. Has sido seleccionado como uno de los participantes del evento.`, 'success')
-            this.router.navigateByUrl('/');
-          } else {
-            Swal.fire('Inicio de sesión', `Sea bienvenid@ ${user.name}. Todavía está pendiente de ser seleccionado como participante del evento.`, 'success')
-            this.router.navigateByUrl('/');
-          }
-          return user;
-        }),
-        catchError(err => throwError(() => err.error.message))
-      );
+    return this.http.post<LoginResponse>(url, body).pipe(
+      map(({ user, token }) => {
+        this.setAuthentication(user, token);
+        if (user.roles.includes('admin')) {
+          Swal.fire(
+            'Inicio de sesión',
+            `Sea bienvenid@ administrador/a ${user.name}.`,
+            'success'
+          );
+          this.router.navigateByUrl('/admin');
+        } else if (user.roles.includes('participant')) {
+          Swal.fire(
+            'Inicio de sesión',
+            `Sea bienvenid@ ${user.name}. Has sido seleccionado como uno de los participantes del evento.`,
+            'success'
+          );
+          this.router.navigateByUrl('/');
+        } else {
+          Swal.fire(
+            'Inicio de sesión',
+            `Sea bienvenid@ ${user.name}. Todavía está pendiente de ser seleccionado como participante del evento.`,
+            'success'
+          );
+          this.router.navigateByUrl('/');
+        }
+        return user;
+      }),
+      catchError((err) => throwError(() => err.error.message))
+    );
   }
 
-  register(email: string, password: string, name: string, minecraftName: string, hasCompanion: boolean, presentation: string, companionName: string, event: string): Observable<boolean> {
-
+  register(
+    email: string,
+    password: string,
+    name: string,
+    minecraftName: string,
+    hasCompanion: boolean,
+    presentation: string,
+    companionName: string,
+    event: string
+  ): Observable<boolean> {
     const url = `${this.baseUrl}/auth/register`;
-    const body = { email, password, name, minecraftName, hasCompanion, companionName, presentation, event };
+    const body = {
+      email,
+      password,
+      name,
+      minecraftName,
+      hasCompanion,
+      companionName,
+      presentation,
+      event,
+    };
 
-    return this.http.post<boolean>(url, body)
-      .pipe(
-        catchError(err => throwError(() => err.error.message))
-      );
+    return this.http
+      .post<boolean>(url, body)
+      .pipe(catchError((err) => throwError(() => err.error.message)));
   }
 
-  changePassword(id: string, email: string, password: string, name: string, minecraftName: string, hasCompanion: boolean, presentation: string, companionName: string, event: string) {
+  changePassword(
+    id: string,
+    email: string,
+    password: string,
+    name: string,
+    minecraftName: string,
+    hasCompanion: boolean,
+    presentation: string,
+    companionName: string,
+    event: string
+  ) {
     const url = `${this.baseUrl}/auth/changePassword/${id}`;
 
-    const body = {email, password, name, minecraftName, hasCompanion, presentation, companionName, event}
+    const body = {
+      email,
+      password,
+      name,
+      minecraftName,
+      hasCompanion,
+      presentation,
+      companionName,
+      event,
+    };
 
-    return this.http.patch<User>(url, body)
-      .pipe(
-        catchError(err => throwError(() => err.error.message))
-      );
+    return this.http
+      .patch<User>(url, body)
+      .pipe(catchError((err) => throwError(() => err.error.message)));
   }
 
-  changeUser(id: string, email: string, name: string, minecraftName: string, hasCompanion: boolean, presentation: string, companionName: string, event: string) {
+  changeUser(
+    id: string,
+    email: string,
+    name: string,
+    minecraftName: string,
+    hasCompanion: boolean,
+    presentation: string,
+    companionName: string,
+    event: string
+  ) {
     const url = `${this.baseUrl}/auth/${id}`;
     const token = localStorage.getItem('token');
 
-    const body = {email, name, minecraftName, hasCompanion, presentation, companionName, event};
+    const body = {
+      email,
+      name,
+      minecraftName,
+      hasCompanion,
+      presentation,
+      companionName,
+      event,
+    };
 
-    const headers = new HttpHeaders()
-      .set('Authorization', `Bearer ${token}`);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    return this.http.patch<User>(url, body, { headers })
-      .pipe(
-        catchError(err => throwError(() => err.error.message))
-      );
+    return this.http
+      .patch<User>(url, body, { headers })
+      .pipe(catchError((err) => throwError(() => err.error.message)));
   }
 
   checkAuthStatus(): Observable<boolean | void> {
-
     const url = `${this.baseUrl}/auth/check-token`;
     const token = localStorage.getItem('token');
 
@@ -151,22 +208,19 @@ export class AuthService {
       return of(false);
     }
 
-    const headers = new HttpHeaders()
-      .set('Authorization', `Bearer ${token}`);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    return this.http.get<CheckTokenResponse>(url, { headers })
-      .pipe(
-        map(({ token, user }) => {
-          this.setAuthentication(user, token);
-        }),
-        catchError(() => {
-          this.logout();
-          this.router.navigateByUrl("/")
-          this._authStatus.set(AuthStatus.notAuthenticated);
-          return of(false);
-        })
-      )
-
+    return this.http.get<CheckTokenResponse>(url, { headers }).pipe(
+      map(({ token, user }) => {
+        this.setAuthentication(user, token);
+      }),
+      catchError(() => {
+        this.logout();
+        this.router.navigateByUrl('/');
+        this._authStatus.set(AuthStatus.notAuthenticated);
+        return of(false);
+      })
+    );
   }
 
   logout() {
@@ -174,6 +228,17 @@ export class AuthService {
     this._authStatus.set(AuthStatus.notAuthenticated);
     localStorage.removeItem('user');
     this.currentUser = null;
+  }
+
+  private role(route: string, id: string) {
+    const url = `${this.baseUrl}/auth/${route}/${id}`;
+    const token = localStorage.getItem('token');
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http
+      .patch<User>(url, {}, { headers })
+      .pipe(catchError((err) => throwError(() => err.error.message)));
   }
 
   setParticipant(id: string): Observable<User> {
@@ -192,56 +257,22 @@ export class AuthService {
     return this.role('removeAlternate', id);
   }
 
+  setSelectedOnTeam(id: string) {
+    return this.role('setSelectedOnTeam', id);
+  }
+
+  removeSelectedOnTeam(id: string) {
+    return this.role('removeSelectedOnTeam', id);
+  }
+
   removeUser(id: string) {
     const url = `${this.baseUrl}/auth/${id}`;
     const token = localStorage.getItem('token');
 
-    const headers = new HttpHeaders()
-      .set('Authorization', `Bearer ${token}`);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    return this.http.delete<User>(url, { headers })
-      .pipe(
-        catchError(err => throwError(() => err.error.message))
-      );
+    return this.http
+      .delete<User>(url, { headers })
+      .pipe(catchError((err) => throwError(() => err.error.message)));
   }
-
-  private role(route: string, id: string) {
-    const url = `${this.baseUrl}/auth/${route}/${id}`;
-    const token = localStorage.getItem('token');
-
-    const headers = new HttpHeaders()
-      .set('Authorization', `Bearer ${token}`);
-
-    return this.http.patch<User>(url, {}, { headers })
-      .pipe(
-        catchError(err => throwError(() => err.error.message))
-      );
-  }
-
-  setSelectedOnTeam(id: string) {
-    const url = `${this.baseUrl}/auth/setSelectedOnTeam/${id}`;
-    const token = localStorage.getItem('token');
-
-    const headers = new HttpHeaders()
-      .set('Authorization', `Bearer ${token}`);
-
-    return this.http.patch<User>(url, {}, { headers })
-      .pipe(
-        catchError(err => throwError(() => err.error.message))
-      );
-  }
-
-  removeSelectedOnTeam(id: string) {
-    const url = `${this.baseUrl}/auth/removeSelectedOnTeam/${id}`;
-    const token = localStorage.getItem('token');
-
-    const headers = new HttpHeaders()
-      .set('Authorization', `Bearer ${token}`);
-
-    return this.http.patch<User>(url, {}, { headers })
-      .pipe(
-        catchError(err => throwError(() => err.error.message))
-      );
-  }
-
 }

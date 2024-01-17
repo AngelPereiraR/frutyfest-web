@@ -84,7 +84,7 @@ export class TeamAddComponent {
       }
     }
 
-    this.frutyfestService.addTeam(color, participants, event, 0, name)
+    this.frutyfestService.addTeam(color, participants, event, 0, name, [])
       .subscribe({
         next: (team) => {
           Swal.fire('Creación', 'Creación del equipo correcta', 'success')

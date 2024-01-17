@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./ranking.component.css']
 })
 export class RankingComponent {
-
+//TODO 4: Hacer funcionamiento del ranking
 }

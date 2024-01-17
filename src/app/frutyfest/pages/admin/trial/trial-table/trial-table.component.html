@@ -5,19 +5,24 @@
       <tr>
         <th>Nº</th>
         <th>Nombre</th>
+        <th>Fase</th>
         <th>Puntos máximos</th>
-        <th>Disminución de puntos</th>
+        <th>Dis. de puntos</th>
         <th>Máx. Equipos</th>
-        <!--TODO 2: number Fase, boolean Comienzo de fase y boolean Final de fase -->
         <th>Acciones</th>
       </tr>
     </thead>
     <tbody *ngFor="let trial of trials(); let i = index">
-      <tr [ngStyle]="{'white-space': 'nowrap', 'overflow': 'hidden', 'text-overflow': 'ellipsis'}">
+      <tr>
         <td>{{i + 1}}</td>
-        <td>
+        <td [ngStyle]="{'white-space': 'nowrap', 'overflow': 'hidden', 'text-overflow': 'ellipsis', 'max-lines': 2}">
           <div class="px-3" [title]="trial.name">
             {{trial.name}}
+          </div>
+        </td>
+        <td>
+          <div class="px-3" [title]="trial.phase">
+            {{trial.phase}}
           </div>
         </td>
         <td>

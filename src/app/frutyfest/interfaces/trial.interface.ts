@@ -7,4 +7,8 @@ export interface Trial {
   pointsDecrease: number;
   maxTeams:       number;
   teamsAssignated:number;
+  phase:          number;
+  rated:          boolean;
+  beginningPhase: boolean;
+  endingPhase:    boolean;
 }

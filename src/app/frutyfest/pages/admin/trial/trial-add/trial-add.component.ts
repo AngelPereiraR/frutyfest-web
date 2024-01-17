@@ -18,9 +18,6 @@ export class TrialAddComponent {
   private fb = inject(FormBuilder);
   private router = inject(Router);
 
-  //TODO 2: Añadir campo boolean "Comienzo de fase"
-  //TODO 2: Añadir campo boolean "Final de fase"
-  //TODO 2: Añadir campo number "Fase"
   public myForm: FormGroup = this.fb.group({
     name: [
       'Nombre del modo de juego',
@@ -29,6 +26,10 @@ export class TrialAddComponent {
     maxPoints: [0, [Validators.required, Validators.min(1)]],
     pointsDecrease: [0, [Validators.required, Validators.min(1)]],
     maxTeams: [0, [Validators.required, Validators.min(1)]],
+    phase: [0, [Validators.required, Validators.min(1), Validators.max(4)]],
+    rated: [false, [Validators.required]],
+    beginningPhase: [false, [Validators.required]],
+    endingPhase: [false, [Validators.required]]
   });
 
   constructor(private cdr: ChangeDetectorRef) {}
@@ -47,11 +48,10 @@ export class TrialAddComponent {
   }
 
   addTrial(): void {
-    //TODO 2: Añadir campos "Comienzo de fase", "Final de fase" y "Fase"
-    const { name, maxPoints, pointsDecrease, maxTeams } = this.myForm.value;
+    const { name, maxPoints, pointsDecrease, maxTeams, phase, rated, beginningPhase, endingPhase } = this.myForm.value;
 
     this.frutyfestService
-      .addTrial(name, maxPoints, pointsDecrease, maxTeams)
+      .addTrial(name, maxPoints, pointsDecrease, maxTeams, phase, rated, beginningPhase, endingPhase)
       .subscribe({
         next: (team) => {
           Swal.fire(
@@ -62,7 +62,7 @@ export class TrialAddComponent {
           this.router.navigateByUrl('/admin/trial');
         },
         error: (message) => {
-          Swal.fire('Error', message, 'error');
+          Swal.fire('Error', message.toString(), 'error');
         },
       });
   }

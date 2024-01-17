@@ -10,5 +10,6 @@ export interface Team {
   totalPoints: number;
   users:       User[];
   event:       string;
-  name:       string;
+  name:        string;
+  roles:       string[];
 }
