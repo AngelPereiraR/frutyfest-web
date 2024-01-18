@@ -1,6 +1,8 @@
 <div class="p-t-30 p-l-50 p-r-50">
-  <h1>Hay {{users()?.length}} registro/s</h1>
-  <table>
+  <h1 *ngIf="!firstLoading && users()?.length! > 0">Hay {{ users()?.length }} registro/s</h1>
+  <h1 *ngIf="!firstLoading && users()?.length! === 0">No hay registros</h1>
+  <h1 *ngIf="firstLoading">Cargando registro/s</h1>
+  <table *ngIf="!firstLoading">
     <thead>
       <tr>
         <th>Nº</th>
@@ -12,40 +14,117 @@
     </thead>
     <tbody *ngFor="let user of users(); let i = index">
       <tr>
-        <td>{{i + 1}}</td>
+        <td>{{ i + 1 }}</td>
         <td>
-          <div [ngStyle]="{'white-space': 'nowrap', 'overflow': 'hidden', 'text-overflow': 'ellipsis'}"
-            [title]="user.name">
-            {{user.name}}
+          <div
+            [ngStyle]="{
+              'white-space': 'nowrap',
+              overflow: 'hidden',
+              'text-overflow': 'ellipsis'
+            }"
+            [title]="user.name"
+          >
+            {{ user.name }}
           </div>
         </td>
         <td>
-          <div [ngStyle]="{'white-space': 'nowrap', 'overflow': 'hidden', 'text-overflow': 'ellipsis'}"
-            [title]="user.email">
-            {{user.email}}
+          <div
+            [ngStyle]="{
+              'white-space': 'nowrap',
+              overflow: 'hidden',
+              'text-overflow': 'ellipsis'
+            }"
+            [title]="user.email"
+          >
+            {{ user.email }}
           </div>
         </td>
-        <td><a [routerLink]="'/admin/record/'+user._id">Ver más</a></td>
+        <td><a [routerLink]="'/admin/record/' + user._id">Ver más</a></td>
         <td>
-          <button (click)="setParticipant(user._id)"
-            *ngIf="!user.roles.includes('participant') && !user.roles.includes('alternate')"
-            class="fa-solid fa-check fa-lg m-2 p-3" title="Añadir rol participante"
-            style="background-color: green;"></button>
-          <button (click)="removeParticipant(user._id)" *ngIf="user.roles.includes('participant')"
-            class="fa-solid fa-xmark fa-lg m-2 p-3" title="Quitar rol participante"
-            [disabled]="user.roles.includes('onTeam')" style="background-color: orange;"></button>
-          <button (click)="setAlternate(user._id)"
-            *ngIf="!user.roles.includes('alternate') && !user.roles.includes('participant')"
-            class="fa-solid fa-hourglass-start fa-lg m-2 p-3" title="Añadir rol suplente"
-            style="background-color: green;"></button>
-          <button (click)="removeAlternate(user._id)" *ngIf="user.roles.includes('alternate')"
-            class="fa-solid fa-xmark fa-lg m-2 p-3" title="Quitar rol suplente"
-            style="background-color: orangered;"></button>
-          <button *ngIf="!user.roles.includes('participant') && !user.roles.includes('alternate')"
-            (click)="removeUser(user._id)" class="fa-solid fa-trash fa-lg m-2 p-3" title="Eliminar registro"
-            style="background-color: red;"></button>
+          <button
+            (click)="setParticipant(user._id)"
+            *ngIf="
+              !user.roles.includes('participant') &&
+              !user.roles.includes('alternate') &&
+              !loading
+            "
+            class="fa-solid fa-check fa-lg m-2 p-3"
+            title="Añadir rol participante"
+            style="background-color: green"
+          ></button>
+          <button
+            (click)="removeParticipant(user._id)"
+            *ngIf="user.roles.includes('participant') && !loading"
+            class="fa-solid fa-xmark fa-lg m-2 p-3"
+            title="Quitar rol participante"
+            [disabled]="user.roles.includes('onTeam')"
+            style="background-color: orange"
+          ></button>
+          <button
+            (click)="setAlternate(user._id)"
+            *ngIf="
+              !user.roles.includes('alternate') &&
+              !user.roles.includes('participant') &&
+              !loading
+            "
+            class="fa-solid fa-hourglass-start fa-lg m-2 p-3"
+            title="Añadir rol suplente"
+            style="background-color: green"
+          ></button>
+          <button
+            (click)="removeAlternate(user._id)"
+            *ngIf="user.roles.includes('alternate') && !loading"
+            class="fa-solid fa-xmark fa-lg m-2 p-3"
+            title="Quitar rol suplente"
+            style="background-color: orangered"
+          ></button>
+          <button
+            *ngIf="
+              !user.roles.includes('participant') &&
+              !user.roles.includes('alternate') &&
+              !loading
+            "
+            (click)="removeUser(user._id)"
+            class="fa-solid fa-trash fa-lg m-2 p-3"
+            title="Eliminar registro"
+            style="background-color: red"
+          ></button>
+
+          <spinner
+            *ngIf="
+              !user.roles.includes('participant') &&
+              !user.roles.includes('alternate') &&
+              loading
+            "
+            title="Añadir rol participante"
+          ></spinner>
+          <spinner
+            *ngIf="user.roles.includes('participant') && loading"
+            title="Quitar rol participante"
+          ></spinner>
+          <spinner
+            *ngIf="
+              !user.roles.includes('alternate') &&
+              !user.roles.includes('participant') &&
+              loading
+            "
+            title="Añadir rol suplente"
+          ></spinner>
+          <spinner
+            *ngIf="user.roles.includes('alternate') && loading"
+            title="Quitar rol suplente"
+          ></spinner>
+          <spinner
+            *ngIf="
+              !user.roles.includes('participant') &&
+              !user.roles.includes('alternate') &&
+              loading
+            "
+            title="Eliminar registro"
+          ></spinner>
         </td>
       </tr>
     </tbody>
   </table>
+  <spinner *ngIf="firstLoading"></spinner>
 </div>

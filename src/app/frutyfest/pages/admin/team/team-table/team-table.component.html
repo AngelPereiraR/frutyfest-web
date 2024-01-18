@@ -1,6 +1,10 @@
 <div class="p-t-30 p-l-50 p-r-50">
-  <h1>Hay {{teams()?.length}} equipo/s</h1>
-  <table>
+  <h1 *ngIf="!firstLoading && teams()?.length! > 0">
+    Hay {{ teams()?.length }} equipo/s
+  </h1>
+  <h1 *ngIf="!firstLoading && teams()?.length! === 0">No hay equipos</h1>
+  <h1 *ngIf="firstLoading">Cargando equipo/s</h1>
+  <table *ngIf="!firstLoading">
     <thead>
       <tr>
         <th>Nº</th>
@@ -13,55 +17,106 @@
       </tr>
     </thead>
     <tbody *ngFor="let team of teams(); let i = index">
-      <tr [ngStyle]="{'white-space': 'nowrap', 'overflow': 'hidden', 'text-overflow': 'ellipsis'}">
-        <td>{{i + 1}}</td>
+      <tr
+        [ngStyle]="{
+          'white-space': 'nowrap',
+          overflow: 'hidden',
+          'text-overflow': 'ellipsis'
+        }"
+      >
+        <td>{{ i + 1 }}</td>
         <td>
           <div class="d-flex justify-content-center align-items-center m-2">
             <div
-              [ngStyle]="{'white-space': 'nowrap', 'overflow': 'hidden', 'text-overflow': 'ellipsis', 'background-color': team.color, 'height': '30px', 'width': '30px'}">
-            </div>
+              [ngStyle]="{
+                'white-space': 'nowrap',
+                overflow: 'hidden',
+                'text-overflow': 'ellipsis',
+                'background-color': team.color,
+                height: '30px',
+                width: '30px'
+              }"
+            ></div>
             <div class="px-3" [title]="team.color">
-              {{team.color}}
+              {{ team.color }}
             </div>
           </div>
         </td>
         <td>
-          <div [ngStyle]="{'white-space': 'nowrap', 'overflow': 'hidden', 'text-overflow': 'ellipsis'}" [title]="team.totalPoints">
-            {{team.totalPoints}}
+          <div
+            [ngStyle]="{
+              'white-space': 'nowrap',
+              overflow: 'hidden',
+              'text-overflow': 'ellipsis'
+            }"
+            [title]="team.totalPoints"
+          >
+            {{ team.totalPoints }}
           </div>
         </td>
         <td>
-          <div [ngStyle]="{'white-space': 'nowrap', 'overflow': 'hidden', 'text-overflow': 'ellipsis'}" [title]="team.event">
-            {{team.event}}
+          <div
+            [ngStyle]="{
+              'white-space': 'nowrap',
+              overflow: 'hidden',
+              'text-overflow': 'ellipsis'
+            }"
+            [title]="team.event"
+          >
+            {{ team.event }}
           </div>
         </td>
         <td>
-          <div [ngStyle]="{'white-space': 'nowrap', 'overflow': 'hidden', 'text-overflow': 'ellipsis'}" [title]="team.name">
-            {{team.name}}
+          <div
+            [ngStyle]="{
+              'white-space': 'nowrap',
+              overflow: 'hidden',
+              'text-overflow': 'ellipsis'
+            }"
+            [title]="team.name"
+          >
+            {{ team.name }}
           </div>
         </td>
         <td>
-          <div [ngStyle]="{'white-space': 'nowrap', 'overflow': 'hidden', 'text-overflow': 'ellipsis'}"
-            *ngFor="let teammate of team.users">
+          <div
+            [ngStyle]="{
+              'white-space': 'nowrap',
+              overflow: 'hidden',
+              'text-overflow': 'ellipsis'
+            }"
+            *ngFor="let teammate of team.users"
+          >
             <div [title]="teammate.name">
-              {{teammate.name}}
+              {{ teammate.name }}
             </div>
           </div>
         </td>
         <td>
           <div class="row d-flex justify-content-center">
             <div class="col-12 col-md-4 col-lg-3">
-              <button (click)="removeTeam(team._id)" class="fa-solid fa-trash fa-lg m-2 p-2" title="Eliminar equipo"
-                style="background-color: red;"></button>
+              <button *ngIf="!loading"
+                (click)="removeTeam(team._id)"
+                class="fa-solid fa-trash fa-lg m-2 p-2"
+                title="Eliminar equipo"
+                style="background-color: red"
+              ></button>
+              <spinner *ngIf="loading"
+                title="Eliminar equipo"
+              ></spinner>
             </div>
           </div>
         </td>
       </tr>
     </tbody>
-
   </table>
+  <spinner *ngIf="firstLoading"></spinner>
   <div class="m-2">
-    <button routerLink="/admin/team/add" class="fa-solid fa-plus m-2 p-2" title="Añadir equipo"
-      style="background-color: blue; color: white;"></button>
+    <button
+      routerLink="/admin/team/add"
+      class="fa-solid fa-plus m-2 p-2"
+      title="Añadir equipo"
+      style="background-color: blue; color: white"
+    ></button>
   </div>
 </div>

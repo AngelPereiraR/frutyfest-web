@@ -6,35 +6,15 @@ table {
 }
 
 thead th:nth-child(1) {
-  width: 5%;
+  width: 30%;
 }
 
 thead th:nth-child(2) {
-  width: 25%;
+  width: 40%;
 }
 
 thead th:nth-child(3) {
-  width: 15%;
-}
-
-thead th:nth-child(4) {
-  width: 20%;
-}
-
-thead th:nth-child(5) {
-  width: 20%;
-}
-
-thead th:nth-child(6) {
-  width: 20%;
-}
-
-thead th:nth-child(7) {
-  width: 15%;
-}
-
-thead th:nth-child(7) {
-  width: 25%;
+  width: 30%;
 }
 
 thead {
@@ -63,14 +43,11 @@ tbody:nth-child(even) tr:nth-child(even) {
 
 th,
 td {
-  padding-top: 20px;
-  padding-left: 1px;
-  padding-bottom: 20px;
+  padding: 20px;
 }
 
 thead th {
   letter-spacing: 2px;
-  text-align: center;
   @media (min-width: 80em) {
     font-size: 18px;
   }
@@ -84,48 +61,31 @@ thead th {
   }
 }
 
-tbody td,
-a {
+tbody td, a {
   letter-spacing: 1px;
   @media (min-width: 80em) {
-    font-size: 14px;
+    font-size: 15px;
   }
 
   @media (min-width: 46em) and (max-width: 80em) {
-    font-size: 11px;
+    font-size: 12px;
   }
 
   @media (max-width: 46em) {
-    font-size: 8px;
+    font-size: 10px;
   }
 }
 
-tbody td,
-thead th {
+tbody td, thead th {
   text-align: center;
 }
 
-h1 {
+h1, h2 {
   font-family: Minecraft;
-  color: whitesmoke;
+  font-weight: bold;
 }
 
 button {
+  height: 40px;
   border-radius: 50%;
-  align-items: center;
-
-  @media (min-width: 80em) {
-    height: 30px;
-    width: 45px;
-  }
-
-  @media (min-width: 46em) and (max-width: 80em) {
-    height: 30px;
-    width: 45px;
-  }
-
-  @media (max-width: 46em) {
-    height: 30px;
-    width: 35px;
-  }
 }

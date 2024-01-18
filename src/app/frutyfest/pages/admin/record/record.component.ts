@@ -6,17 +6,16 @@ import { FrutyfestService } from 'src/app/frutyfest/services/frutyfest.service';
 
 @Component({
   templateUrl: './record.component.html',
-  styleUrls: ['./record.component.css']
+  styleUrls: ['./record.component.css'],
 })
 export class RecordComponent {
   private frutyfestService = inject(FrutyfestService);
   private authService = inject(AuthService);
   public user: User | undefined;
+  public loading: boolean = false;
 
-  constructor(
-    private route: ActivatedRoute
-  ) {
-    this.route.paramMap.subscribe(params => {
+  constructor(private route: ActivatedRoute) {
+    this.route.paramMap.subscribe((params) => {
       this.getUser(params.get('id'));
     });
   }
@@ -30,12 +29,17 @@ export class RecordComponent {
   }
 
   getUser(id: string | null): void {
+    this.loading = true;
     this.authService.getUser(id!).subscribe({
       next: (user) => {
         this.user = user;
       },
       error: (message) => {
-      }
+        this.loading = false;
+      },
+      complete: () => {
+        this.loading = false;
+      },
     });
   }
 }

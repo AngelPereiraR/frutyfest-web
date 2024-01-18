@@ -1,4 +1,5 @@
-span, a {
+span,
+a {
   font-weight: bold;
 }
 
@@ -15,7 +16,7 @@ span, a {
 .fa {
   cursor: pointer;
   position: absolute;
-  right: 10px; /* Ajusta según sea necesario */
+  right: 10px;
 }
 
 .custom {

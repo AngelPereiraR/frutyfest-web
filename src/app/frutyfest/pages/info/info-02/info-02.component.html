@@ -60,30 +60,37 @@
   <div class="container">
     <div id class="mt-3">
       <div class="row mt-4 mb-4">
-        <!-- <div class="col">
-          <div class="row">
-            <h1>Ganadores FrutyFest 2</h1>
-            <div class="col">
-              <h3 class="puesto">Primer puesto</h3>
-              <p></p>
-              <img class="ganador mt-3" src="../assets/primer-miembro-primer-ganador-frutyfest-02.webp" alt="">
-              <p></p>
-              <img class="ganador mt-3" src="../assets/segundo-miembro-primer-ganador-frutyfest-02.webp" alt="">
-            </div>
-            <div class="col">
-              <h3 class="puesto">Segundo puesto</h3>
-              <p></p>
-              <img class="ganador mt-3" src="../assets/primer-miembro-segundo-ganador-frutyfest-02.webp" alt="">
-              <p></p>
-              <img class="ganador mt-3" src="../assets/segundo-miembro-segundo-ganador-frutyfest-02.webp" alt="">
-            </div>
-          </div>
-        </div> -->
-        <div class="col">
+        <div class="col-6">
           <frutyfest-participants></frutyfest-participants>
         </div>
+        <div class="col-6">
+          <div>
+            <frutyfest-ranking></frutyfest-ranking>
+          </div>
+        </div>
       </div>
-      <h1 id="reglasGenerales">Reglas Generales del FrutyFest 2</h1>
+      <!-- <div class="col">
+        <div class="row">
+          <h1>Ganadores FrutyFest 2</h1>
+          <div class="col">
+            <h3 class="puesto">Primer puesto</h3>
+            <p></p>
+            <img class="ganador mt-3" src="../assets/primer-miembro-primer-ganador-frutyfest-02.webp" alt="">
+            <p></p>
+            <img class="ganador mt-3" src="../assets/segundo-miembro-primer-ganador-frutyfest-02.webp" alt="">
+          </div>
+          <div class="col">
+            <h3 class="puesto">Segundo puesto</h3>
+            <p></p>
+            <img class="ganador mt-3" src="../assets/primer-miembro-segundo-ganador-frutyfest-02.webp" alt="">
+            <p></p>
+            <img class="ganador mt-3" src="../assets/segundo-miembro-segundo-ganador-frutyfest-02.webp" alt="">
+          </div>
+        </div>
+      </div> -->
+      <h1 id="reglasGenerales" class="mt-5">
+        Reglas Generales del FrutyFest 2
+      </h1>
       <div class="row">
         <div class="col-12 col-lg-6">
           <div class="mt-4">
@@ -326,8 +333,11 @@
               <p>Dúos - 8 jugadores - 4 dúos</p>
             </div>
             <div class="mt-3">
-              <h3>Eliminación</h3>
-              <p>Cuarto puesto</p>
+              <h3>Puntuaciones</h3>
+              <p>Dúo ganador - 4 puntos</p>
+              <p>Segundo dúo - 3 puntos</p>
+              <p>Tercer dúo - 2 puntos</p>
+              <p>Cuarto dúo - 1 puntos</p>
             </div>
             <!-- <div class="mt-3">
               <h3>Descripción del modo</h3>
@@ -354,11 +364,14 @@
           <div class="col-12 col-lg-6 mt-2">
             <div>
               <h3>Equipos</h3>
-              <p>Dúos - 6 jugadores - 3 dúos</p>
+              <p>Dúos - 8 jugadores - 4 dúos</p>
             </div>
             <div class="mt-3">
-              <h3>Eliminación</h3>
-              <p>Tercer puesto</p>
+              <h3>Puntuaciones</h3>
+              <p>Dúo ganador - 4 puntos</p>
+              <p>Segundo dúo - 3 puntos</p>
+              <p>Tercer dúo - 2 puntos</p>
+              <p>Cuarto dúo - 1 puntos</p>
             </div>
             <!-- <div class="mt-3">
               <h3>Descripción del modo</h3>
@@ -405,14 +418,6 @@
         </div>
       </div>
     </div>
-    <!-- <div class="mt-5">
-      <h2>
-        Ranking
-      </h2>
-      <div>
-        <frutyfest-ranking></frutyfest-ranking>
-      </div>
-    </div> -->
   </div>
   <div class="irArriba" *ngIf="mostrarBoton">
     <button

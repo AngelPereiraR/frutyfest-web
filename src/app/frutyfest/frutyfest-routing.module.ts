@@ -24,7 +24,7 @@ const routes: Routes = [
       {
         path: '',
         component: Info02Component,
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'frutyfest01',
@@ -33,59 +33,59 @@ const routes: Routes = [
       {
         path: 'admin',
         canActivate: [isNotAdminGuard],
-        component: ParticipantsComponent
+        component: ParticipantsComponent,
       },
       {
         path: 'participant/:id',
         canActivate: [isNotParticipantGuard],
-        component: InfoComponent
+        component: InfoComponent,
       },
       {
         path: 'participant/edit/:id',
         canActivate: [isNotParticipantGuard],
-        component: EditComponent
+        component: EditComponent,
       },
       {
         path: 'participant/changePassword/:id',
         canActivate: [isNotParticipantGuard],
-        component: ParticipantChangePasswordComponent
+        component: ParticipantChangePasswordComponent,
       },
       {
         path: 'admin/record/:id',
         canActivate: [isNotAdminGuard],
-        component: RecordComponent
+        component: RecordComponent,
       },
       {
         path: 'admin/team',
         canActivate: [isNotAdminGuard],
-        component: TeamTableComponent
+        component: TeamTableComponent,
       },
       {
         path: 'admin/team/add',
         canActivate: [isNotAdminGuard],
-        component: TeamAddComponent
+        component: TeamAddComponent,
       },
       {
         path: 'admin/trial',
         canActivate: [isNotAdminGuard],
-        component: TrialTableComponent
+        component: TrialTableComponent,
       },
       {
         path: 'admin/trial/add',
         canActivate: [isNotAdminGuard],
-        component: TrialAddComponent
+        component: TrialAddComponent,
       },
       {
         path: 'admin/rate',
         canActivate: [isNotAdminGuard],
-        component: RateComponent
-      }
-    ]
+        component: RateComponent,
+      },
+    ],
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class FrutyfestRoutingModule { }
+export class FrutyfestRoutingModule {}

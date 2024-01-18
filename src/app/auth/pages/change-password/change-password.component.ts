@@ -14,6 +14,7 @@ export class ChangePasswordComponent {
   private authService = inject(AuthService);
   private router = inject(Router);
   private validatorsService = inject(ValidatorsService);
+  public loading: boolean = false;
 
   public myForm: FormGroup = this.fb.group({
     email: ['', [Validators.required, Validators.pattern(this.validatorsService.emailPattern)]],
@@ -28,6 +29,7 @@ export class ChangePasswordComponent {
   showPassword = false;
 
   changePassword() {
+    this.loading = true;
     let { email, password } = this.myForm.value;
 
     this.authService.getUserByEmail(email)
@@ -45,6 +47,10 @@ export class ChangePasswordComponent {
         },
         error: (message) => {
           Swal.fire('Error', message, 'error');
+          this.loading = false;
+        },
+        complete: () => {
+          this.loading = false;
         }
       });
 

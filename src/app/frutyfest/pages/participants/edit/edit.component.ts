@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 
 @Component({
   templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.css']
+  styleUrls: ['./edit.component.css'],
 })
 export class EditComponent {
   private fb = inject(FormBuilder);
@@ -19,31 +19,36 @@ export class EditComponent {
   private router = inject(Router);
   private validatorsService = inject(ValidatorsService);
   public user: User | undefined;
+  public loading: boolean = false;
+  public firstLoading: boolean = false;
 
   public events: Event[] = [];
 
   public myForm: FormGroup = this.fb.group({
     _id: ['', [Validators.required]],
-    email: ['', [Validators.required, Validators.pattern(this.validatorsService.emailPattern)]],
+    email: [
+      '',
+      [
+        Validators.required,
+        Validators.pattern(this.validatorsService.emailPattern),
+      ],
+    ],
     name: ['', [Validators.required]],
     minecraftName: ['', [Validators.required]],
     hasCompanion: [false, [Validators.required]],
     companionName: [''],
     event: ['', [Validators.required]],
-    presentation: ['', [Validators.required]]
+    presentation: ['', [Validators.required]],
   });
 
-  constructor(
-    private route: ActivatedRoute,
-    private cdr: ChangeDetectorRef
-  ) {
-    this.route.paramMap.subscribe(params => {
+  constructor(private route: ActivatedRoute) {
+    this.route.paramMap.subscribe((params) => {
       this.getUser(params.get('id'));
     });
     this.events = [
       {
-        event: 'FrutyFest 2'
-      }
+        event: 'FrutyFest 2',
+      },
     ];
   }
 
@@ -56,6 +61,7 @@ export class EditComponent {
   }
 
   getUser(id: string | null): void {
+    this.firstLoading = true;
     this.authService.getUser(id!).subscribe({
       next: (user) => {
         this.user = user;
@@ -68,16 +74,30 @@ export class EditComponent {
           hasCompanion: user.hasCompanion,
           companionName: user.companionName,
           event: user.event,
-          presentation: user.presentation
+          presentation: user.presentation,
         });
       },
       error: (message) => {
-      }
+        this.firstLoading = false;
+      },
+      complete: () => {
+        this.firstLoading = false;
+      },
     });
   }
 
   changeUser() {
-    let { _id, email, name, minecraftName, hasCompanion, companionName, presentation, event } = this.myForm!.value;
+    this.loading = true;
+    let {
+      _id,
+      email,
+      name,
+      minecraftName,
+      hasCompanion,
+      companionName,
+      presentation,
+      event,
+    } = this.myForm!.value;
 
     if (!companionName) companionName = 'No tiene';
 
@@ -87,15 +107,29 @@ export class EditComponent {
       hasCompanion = false;
     }
 
-    this.authService.changeUser(_id, email, name, minecraftName, hasCompanion, presentation, companionName, event)
+    this.authService
+      .changeUser(
+        _id,
+        email,
+        name,
+        minecraftName,
+        hasCompanion,
+        presentation,
+        companionName,
+        event
+      )
       .subscribe({
         next: () => {
-          Swal.fire('Cambiar perfil', 'Cambio de perfil correcto.', 'success')
+          Swal.fire('Cambiar perfil', 'Cambio de perfil correcto.', 'success');
           this.router.navigateByUrl(`/participant/${_id}`);
         },
         error: (message) => {
           Swal.fire('Error', message, 'error');
-        }
-      })
+          this.loading = false;
+        },
+        complete: () => {
+          this.loading = false;
+        },
+      });
   }
 }

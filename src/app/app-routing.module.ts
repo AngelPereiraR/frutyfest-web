@@ -5,22 +5,23 @@ import { isNotAuthenticatedGuard } from './auth/guards/is-not-authenticated.guar
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./frutyfest/frutyfest.module').then(m => m.FrutyfestModule),
-    pathMatch: 'prefix'
+    loadChildren: () =>
+      import('./frutyfest/frutyfest.module').then((m) => m.FrutyfestModule),
+    pathMatch: 'prefix',
   },
   {
     path: 'auth',
     canActivate: [isNotAuthenticatedGuard],
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: '**',
-    redirectTo: '/'
-  }
+    redirectTo: '/',
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {useHash: true})],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

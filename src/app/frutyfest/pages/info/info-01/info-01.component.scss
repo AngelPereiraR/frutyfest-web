@@ -1,5 +1,4 @@
 img.schedule {
-
   @media (min-width: 80em) {
     width: 50%;
   }
@@ -12,7 +11,7 @@ img.schedule {
     width: 100%;
   }
 
-  transition: transform .5s;
+  transition: transform 0.5s;
 }
 
 img.schedule:hover {
@@ -55,8 +54,8 @@ img.links {
 }
 
 .social {
-  transition: text-decoration .3s;
-  transition: font-weight .3s;
+  transition: text-decoration 0.3s;
+  transition: font-weight 0.3s;
 
   @media (min-width: 80em) {
     font-size: 20px;
@@ -84,12 +83,14 @@ a {
   text-align: center;
 }
 
-h1, h2 {
+h1,
+h2 {
   font-weight: bold;
   font-family: Minecraft;
 }
 
-h3, h4 {
+h3,
+h4 {
   font-family: Minecraft;
 }
 

@@ -1,1 +1,29 @@
-<p>ranking works!</p>
+<div *ngIf="teams()?.length === 12" class="p-l-100 p-r-100">
+  <h1>Ranking</h1>
+  <table *ngIf="!loading">
+    <thead>
+      <tr>
+        <th>Posición</th>
+        <th>Equipos</th>
+        <th>Puntos</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let team of teams(); let i = index">
+      <tr>
+        <td>{{i + 1}}</td>
+        <td>
+          <div [ngStyle]="{'white-space': 'nowrap', 'overflow': 'hidden', 'text-overflow': 'ellipsis'}" [title]="team.name">
+            {{team.name}}
+          </div>
+        </td>
+        <td>{{team.totalPoints}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <spinner *ngIf="loading"></spinner>
+</div>
+<div *ngIf="teams()?.length != 12" class="p-l-100 p-r-100">
+  <h1>Ranking</h1>
+  <h2 *ngIf="!loading">Pendiente de seleccionar todos los equipos</h2>
+  <spinner *ngIf="loading"></spinner>
+</div>

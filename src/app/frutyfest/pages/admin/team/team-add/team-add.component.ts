@@ -1,4 +1,11 @@
-import { ChangeDetectorRef, Component, SimpleChanges, computed, inject, signal } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  SimpleChanges,
+  computed,
+  inject,
+  signal,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/auth/interfaces';
@@ -9,7 +16,7 @@ import Swal from 'sweetalert2';
 
 @Component({
   templateUrl: './team-add.component.html',
-  styleUrls: ['./team-add.component.css']
+  styleUrls: ['./team-add.component.css'],
 })
 export class TeamAddComponent {
   private frutyfestService = inject(FrutyfestService);
@@ -18,22 +25,28 @@ export class TeamAddComponent {
   public users = computed(() => this._users());
   private fb = inject(FormBuilder);
   private router = inject(Router);
+  public loading: boolean = false;
+  public firstLoading: boolean = false;
 
   public events: Event[] = [];
 
   public myForm: FormGroup = this.fb.group({
-    color: ['#000000', [Validators.required, Validators.minLength(7), Validators.maxLength(7)]],
+    color: [
+      '#000000',
+      [Validators.required, Validators.minLength(7), Validators.maxLength(7)],
+    ],
     participants: [[], [Validators.required]],
-    event: ['', [Validators.required]]
+    event: ['', [Validators.required]],
   });
 
   constructor(private cdr: ChangeDetectorRef) {
+    this.firstLoading = true;
     this.getUsers();
     this.events = [
       {
-        event: 'FrutyFest 2'
-      }
-    ]
+        event: 'FrutyFest 2',
+      },
+    ];
   }
 
   ngOnInit(): void {
@@ -50,11 +63,15 @@ export class TeamAddComponent {
   }
 
   getUsers(): void {
+    this.loading = true;
     this.authService.getUsers().subscribe({
       next: (users) => {
         let participants: User[] = [];
         for (let i = 0; i < users.length; i++) {
-          if (users[i].roles.includes('participant') && !users[i].roles.includes('onTeam')) {
+          if (
+            users[i].roles.includes('participant') &&
+            !users[i].roles.includes('onTeam')
+          ) {
             participants.push(users[i]);
           }
         }
@@ -63,36 +80,48 @@ export class TeamAddComponent {
         this.ngOnChanges({});
       },
       error: (message) => {
-      }
+        this.loading = false;
+        this.firstLoading = false;
+      },
+      complete: () => {
+        this.loading = false;
+        this.firstLoading = false;
+      },
     });
   }
 
   addTeam(): void {
+    this.loading = true;
     const { color, participants, event } = this.myForm.value;
 
-    let name = "";
+    let name = '';
 
     for (let i = 0; i < participants.length; i++) {
       this.authService.setSelectedOnTeam(participants[i]._id).subscribe();
-      if(i < participants.length - 1) {
+      if (i < participants.length - 1) {
         let participantNameReduced: string = participants[i].name;
-        name += participantNameReduced.slice(0,3);
-        name += "-";
+        name += participantNameReduced.slice(0, 3);
+        name += '-';
       } else {
         let participantNameReduced: string = participants[i].name;
-        name += participantNameReduced.slice(0,3);
+        name += participantNameReduced.slice(0, 3);
       }
     }
 
-    this.frutyfestService.addTeam(color, participants, event, 0, name, [])
+    this.frutyfestService
+      .addTeam(color, participants, event, 0, name, [])
       .subscribe({
         next: (team) => {
-          Swal.fire('Creación', 'Creación del equipo correcta', 'success')
+          Swal.fire('Creación', 'Creación del equipo correcta', 'success');
           this.router.navigateByUrl('/admin/team');
         },
         error: (message) => {
-          Swal.fire('Error', message, 'error');
-        }
+          Swal.fire('Error', message.toString(), 'error');
+          this.loading = false;
+        },
+        complete: () => {
+          this.loading = false;
+        },
       });
   }
 }

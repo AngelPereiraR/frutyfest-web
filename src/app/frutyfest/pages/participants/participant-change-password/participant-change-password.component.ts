@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 
 @Component({
   templateUrl: './participant-change-password.component.html',
-  styleUrls: ['./participant-change-password.component.css']
+  styleUrls: ['./participant-change-password.component.css'],
 })
 export class ParticipantChangePasswordComponent {
   private fb = inject(FormBuilder);
@@ -16,27 +16,40 @@ export class ParticipantChangePasswordComponent {
   private router = inject(Router);
   private validatorsService = inject(ValidatorsService);
   public user: User | undefined;
+  public loading: boolean = false;
+  public firstLoading: boolean = false;
 
-  public myForm: FormGroup = this.fb.group({
-    _id: ['', [Validators.required]],
-    email: ['', [Validators.required, Validators.pattern(this.validatorsService.emailPattern)]],
-    password: ['', [Validators.required, Validators.minLength(6)]],
-    confirmPassword: ['', [Validators.required]],
-  }, {
-    validators: [
-      this.validatorsService.isFieldOneEqualFieldTwo('password', 'confirmPassword')
-    ]
-  });
+  public myForm: FormGroup = this.fb.group(
+    {
+      _id: ['', [Validators.required]],
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(this.validatorsService.emailPattern),
+        ],
+      ],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', [Validators.required]],
+    },
+    {
+      validators: [
+        this.validatorsService.isFieldOneEqualFieldTwo(
+          'password',
+          'confirmPassword'
+        ),
+      ],
+    }
+  );
 
-  constructor(
-    private route: ActivatedRoute
-  ) {
-    this.route.paramMap.subscribe(params => {
+  constructor(private route: ActivatedRoute) {
+    this.route.paramMap.subscribe((params) => {
       this.getUser(params.get('id'));
     });
   }
 
   getUser(id: string | null): void {
+    this.firstLoading = true;
     this.authService.getUser(id!).subscribe({
       next: (user) => {
         this.user = user;
@@ -47,34 +60,56 @@ export class ParticipantChangePasswordComponent {
         });
       },
       error: (message) => {
-      }
+        this.firstLoading = false;
+      },
+      complete: () => {
+        this.firstLoading = false;
+      },
     });
   }
 
   showPassword = false;
 
   changePassword() {
+    this.loading = true;
     let { email, password } = this.myForm.value;
 
-    this.authService.getUserByEmail(email)
-      .subscribe({
-        next: (user) => {
-          this.authService.changePassword(user._id, email, password, user.name, user.minecraftName, user.hasCompanion, user.presentation, user.companionName, user.event).subscribe({
+    this.authService.getUserByEmail(email).subscribe({
+      next: (user) => {
+        this.authService
+          .changePassword(
+            user._id,
+            email,
+            password,
+            user.name,
+            user.minecraftName,
+            user.hasCompanion,
+            user.presentation,
+            user.companionName,
+            user.event
+          )
+          .subscribe({
             next: () => {
-              Swal.fire('Cambio de contraseña', 'Cambio de contraseña correcto. Se le ha enviado un correo con las nuevas credenciales para el inicio de sesión. Si no aparece en Recibidos, por favor mire en su carpeta de Spam, gracias.', 'success')
+              Swal.fire(
+                'Cambio de contraseña',
+                'Cambio de contraseña correcto. Se le ha enviado un correo con las nuevas credenciales para el inicio de sesión. Si no aparece en Recibidos, por favor mire en su carpeta de Spam, gracias.',
+                'success'
+              );
               this.router.navigateByUrl(`/participant/${user._id}`);
             },
             error: (message) => {
               Swal.fire('Error', message, 'error');
-            }
-          })
-        },
-        error: (message) => {
-          Swal.fire('Error', message, 'error');
-        }
-      });
-
-
+            },
+          });
+      },
+      error: (message) => {
+        Swal.fire('Error', message, 'error');
+        this.loading = false;
+      },
+      complete: () => {
+        this.loading = false;
+      },
+    });
   }
 
   togglePasswordVisibility() {

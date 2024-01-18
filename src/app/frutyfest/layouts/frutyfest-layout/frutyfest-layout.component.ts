@@ -5,7 +5,7 @@ import { FrutyfestService } from '../../services/frutyfest.service';
 @Component({
   selector: 'frutyfest-layout',
   templateUrl: './frutyfest-layout.component.html',
-  styleUrls: ['./frutyfest-layout.component.scss']
+  styleUrls: ['./frutyfest-layout.component.scss'],
 })
 export class FrutyfestLayoutComponent implements DoCheck {
   private authService = inject(AuthService);

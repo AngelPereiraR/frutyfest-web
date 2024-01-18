@@ -14,6 +14,7 @@ export class ParticipantsListComponent {
   private authService = inject(AuthService);
   private _users = signal<User[] | undefined>(undefined);
   public users = computed(() => this._users());
+  public loading: boolean = false;
 
   constructor(private cdr: ChangeDetectorRef) {
     this.getUsers();
@@ -33,6 +34,7 @@ export class ParticipantsListComponent {
   }
 
   getUsers(): void {
+    this.loading = true;
     this.authService.getUsers().subscribe({
       next: (users) => {
         let participants: User[] = [];
@@ -46,6 +48,10 @@ export class ParticipantsListComponent {
         this.ngOnChanges({});
       },
       error: (message) => {
+        this.loading = false;
+      },
+      complete: () => {
+        this.loading = false;
       }
     });
   }

@@ -40,26 +40,90 @@
     <div class="wrap-input100 m-b-10">
       <span class="label-input100">Fase</span>
       <div>
-        <label><input class="m-l-30" type="radio" formControlName="phase" [value]=1> 1</label>
-        <label><input class="m-l-30" type="radio" formControlName="phase" [value]=2> 2</label>
-        <label><input class="m-l-30" type="radio" formControlName="phase" [value]=3> 3</label>
-        <label><input class="m-l-30" type="radio" formControlName="phase" [value]=4> 4</label>
+        <label
+          ><input
+            class="m-l-30"
+            type="radio"
+            formControlName="phase"
+            [value]="1"
+          />
+          1</label
+        >
+        <label
+          ><input
+            class="m-l-30"
+            type="radio"
+            formControlName="phase"
+            [value]="2"
+          />
+          2</label
+        >
+        <label
+          ><input
+            class="m-l-30"
+            type="radio"
+            formControlName="phase"
+            [value]="3"
+          />
+          3</label
+        >
+        <label
+          ><input
+            class="m-l-30"
+            type="radio"
+            formControlName="phase"
+            [value]="4"
+          />
+          4</label
+        >
       </div>
     </div>
 
     <div class="wrap-input100 m-b-10">
       <span class="label-input100">Comienzo de fase</span>
       <div>
-        <label><input class="m-l-30" type="radio" formControlName="beginningPhase" [value]='true'> SÍ</label>
-        <label><input class="m-l-30" type="radio" formControlName="beginningPhase" [value]='false'> NO</label>
+        <label
+          ><input
+            class="m-l-30"
+            type="radio"
+            formControlName="beginningPhase"
+            [value]="true"
+          />
+          SÍ</label
+        >
+        <label
+          ><input
+            class="m-l-30"
+            type="radio"
+            formControlName="beginningPhase"
+            [value]="false"
+          />
+          NO</label
+        >
       </div>
     </div>
 
     <div class="wrap-input100 m-b-10">
       <span class="label-input100">Final de fase</span>
       <div>
-        <label><input class="m-l-30" type="radio" formControlName="endingPhase" [value]='true'> SÍ</label>
-        <label><input class="m-l-30" type="radio" formControlName="endingPhase" [value]='false'> NO</label>
+        <label
+          ><input
+            class="m-l-30"
+            type="radio"
+            formControlName="endingPhase"
+            [value]="true"
+          />
+          SÍ</label
+        >
+        <label
+          ><input
+            class="m-l-30"
+            type="radio"
+            formControlName="endingPhase"
+            [value]="false"
+          />
+          NO</label
+        >
       </div>
     </div>
 
@@ -68,7 +132,22 @@
     <div class="container-login100-form-btn">
       <div class="wrap-login100-form-btn">
         <div class="login100-form-bgbtn"></div>
-        <button class="login100-form-btn" type="submit">Añadir</button>
+        <button
+          *ngIf="!loading"
+          class="login100-form-btn"
+          [disabled]="myForm.invalid"
+          type="submit"
+        >
+          Añadir
+        </button>
+        <button
+          *ngIf="loading"
+          class="login100-form-btn"
+          [disabled]="true"
+          type="submit"
+        >
+          <spinner></spinner>
+        </button>
       </div>
     </div>
 

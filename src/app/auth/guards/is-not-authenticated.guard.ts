@@ -4,10 +4,9 @@ import { AuthService } from '../services/auth.service';
 import { AuthStatus } from '../interfaces';
 
 export const isNotAuthenticatedGuard: CanActivateFn = (route, state) => {
-
   const authService = inject(AuthService);
 
-  if(authService.authStatus() === AuthStatus.authenticated) {
+  if (authService.authStatus() === AuthStatus.authenticated) {
     return false;
   }
 

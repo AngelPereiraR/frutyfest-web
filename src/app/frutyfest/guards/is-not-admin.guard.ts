@@ -7,11 +7,11 @@ export const isNotAdminGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
   const router = inject(Router);
 
-  if(authService.currentUser?.roles.includes('admin')) {
+  if (authService.currentUser?.roles.includes('admin')) {
     return true;
   }
 
-  if(authService.authStatus() === AuthStatus.notAuthenticated) {
+  if (authService.authStatus() === AuthStatus.notAuthenticated) {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     authService.currentUser = null;
@@ -20,7 +20,7 @@ export const isNotAdminGuard: CanActivateFn = (route, state) => {
   // const url = state.url;
   // localStorage.setItem('url', url);
 
-  router.navigateByUrl('/')
+  router.navigateByUrl('/');
 
   return false;
 };

@@ -7,19 +7,21 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import { MaterialModule } from '../material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
+import { SpinnerComponent } from '../shared/components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
     LoginPageComponent,
     RegisterPageComponent,
     AuthLayoutComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
   ],
   imports: [
     CommonModule,
     AuthRoutingModule,
     MaterialModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    SpinnerComponent,
+  ],
 })
-export class AuthModule { }
+export class AuthModule {}

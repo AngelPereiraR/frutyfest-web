@@ -223,15 +223,13 @@ export class FrutyfestService {
     const url = `${this.baseUrl}/team/${route}/${id}`;
     const token = localStorage.getItem('token');
 
-    console.log(url)
+    console.log(url);
 
-    const headers = new HttpHeaders()
-      .set('Authorization', `Bearer ${token}`);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    return this.http.patch<Team>(url, {}, { headers })
-      .pipe(
-        catchError(err => throwError(() => err.error.message))
-      );
+    return this.http
+      .patch<Team>(url, {}, { headers })
+      .pipe(catchError((err) => throwError(() => err.error.message)));
   }
 
   setEliminatedPhase1(id: string): Observable<Team> {

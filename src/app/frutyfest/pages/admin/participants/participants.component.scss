@@ -69,7 +69,8 @@ thead th {
   }
 }
 
-tbody td, a {
+tbody td,
+a {
   letter-spacing: 1px;
   @media (min-width: 80em) {
     font-size: 14px;
@@ -84,7 +85,8 @@ tbody td, a {
   }
 }
 
-tbody td, thead th {
+tbody td,
+thead th {
   text-align: center;
 }
 
@@ -92,8 +94,6 @@ h1 {
   font-family: Minecraft;
   color: whitesmoke;
 }
-
-
 
 button {
   border-radius: 50%;

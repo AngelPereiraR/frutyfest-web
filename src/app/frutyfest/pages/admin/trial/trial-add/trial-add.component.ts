@@ -17,6 +17,7 @@ export class TrialAddComponent {
   private frutyfestService = inject(FrutyfestService);
   private fb = inject(FormBuilder);
   private router = inject(Router);
+  public loading: boolean = false;
 
   public myForm: FormGroup = this.fb.group({
     name: [
@@ -29,7 +30,7 @@ export class TrialAddComponent {
     phase: [0, [Validators.required, Validators.min(1), Validators.max(4)]],
     rated: [false, [Validators.required]],
     beginningPhase: [false, [Validators.required]],
-    endingPhase: [false, [Validators.required]]
+    endingPhase: [false, [Validators.required]],
   });
 
   constructor(private cdr: ChangeDetectorRef) {}
@@ -48,10 +49,29 @@ export class TrialAddComponent {
   }
 
   addTrial(): void {
-    const { name, maxPoints, pointsDecrease, maxTeams, phase, rated, beginningPhase, endingPhase } = this.myForm.value;
+    this.loading = true;
+    const {
+      name,
+      maxPoints,
+      pointsDecrease,
+      maxTeams,
+      phase,
+      rated,
+      beginningPhase,
+      endingPhase,
+    } = this.myForm.value;
 
     this.frutyfestService
-      .addTrial(name, maxPoints, pointsDecrease, maxTeams, phase, rated, beginningPhase, endingPhase)
+      .addTrial(
+        name,
+        maxPoints,
+        pointsDecrease,
+        maxTeams,
+        phase,
+        rated,
+        beginningPhase,
+        endingPhase
+      )
       .subscribe({
         next: (team) => {
           Swal.fire(
@@ -63,6 +83,10 @@ export class TrialAddComponent {
         },
         error: (message) => {
           Swal.fire('Error', message.toString(), 'error');
+          this.loading = false;
+        },
+        complete: () => {
+          this.loading = false;
         },
       });
   }

@@ -1,15 +1,15 @@
-import { Component, ElementRef, HostListener, Renderer2, inject } from '@angular/core';
+import { Component, ElementRef, HostListener, inject } from '@angular/core';
 import { FrutyfestService } from 'src/app/frutyfest/services/frutyfest.service';
 
 @Component({
   templateUrl: './info-01.component.html',
-  styleUrls: ['./info-01.component.scss']
+  styleUrls: ['./info-01.component.scss'],
 })
 export class Info01Component {
   private frutyfestService = inject(FrutyfestService);
   mostrarBoton = false;
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {}
+  constructor(private el: ElementRef) {}
 
   ngOnInit(): void {
     this.frutyfestService.setPage('frutyfest01');
@@ -26,7 +26,7 @@ export class Info01Component {
   }
 
   private verificarVisibilidad() {
-    const modosDeJuego = document.getElementById('reglasGenerales')
+    const modosDeJuego = document.getElementById('reglasGenerales');
     const scrollPosition = window.scrollY + window.innerHeight;
     const elementPosition = modosDeJuego!.offsetTop;
 

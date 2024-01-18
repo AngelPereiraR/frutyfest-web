@@ -1,19 +1,31 @@
 <div class="p-l-100 p-r-100">
-  <h1>Hay {{users()?.length}} participante/s seleccionado/s</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>Streamers</th>
-      </tr>
-    </thead>
-    <tbody *ngFor="let user of users(); let i = index">
-      <tr *ngIf="i < 24">
-        <td>
-          <div [ngStyle]="{'white-space': 'nowrap', 'overflow': 'hidden', 'text-overflow': 'ellipsis'}">
-            {{user.name}}
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div *ngIf="!loading">
+    <h1>Hay {{ users()?.length }} participante/s seleccionado/s</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Streamers</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let user of users(); let i = index">
+        <tr *ngIf="i < 24">
+          <td>
+            <div
+              [ngStyle]="{
+                'white-space': 'nowrap',
+                overflow: 'hidden',
+                'text-overflow': 'ellipsis'
+              }"
+            >
+              {{ user.name }}
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="loading">
+    <h1>Viendo participantes seleccionados...</h1>
+    <spinner></spinner>
+  </div>
 </div>

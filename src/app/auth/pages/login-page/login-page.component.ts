@@ -15,6 +15,7 @@ export class LoginPageComponent {
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
   private router = inject(Router);
+  public loading: boolean = false;
 
   public myForm: FormGroup = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -24,6 +25,7 @@ export class LoginPageComponent {
   showPassword = false;
 
   login() {
+    this.loading = true;
     const { email, password } = this.myForm.value;
 
     this.authService.login(email, password)
@@ -37,6 +39,10 @@ export class LoginPageComponent {
         },
         error: (message) => {
           Swal.fire('Error', message, 'error');
+          this.loading = false;
+        },
+        complete: () => {
+          this.loading = false;
         }
       })
   }

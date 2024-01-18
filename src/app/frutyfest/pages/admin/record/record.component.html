@@ -1,17 +1,20 @@
 <div class="container p-t-30 p-l-50 p-r-50">
   <div class="custom row p-4">
-    <h1 class="p-t-10">Nombre de Twitch</h1>
-    <p class="p-l-40">{{user?.name}}</p>
-    <h1 class="p-t-10">Nombre de Minecraft</h1>
-    <p class="p-l-40">{{user?.minecraftName}}</p>
-    <h1 class="p-t-10">Correo</h1>
-    <p class="p-l-40">{{user?.email}}</p>
-    <h1 class="p-t-10">Nombre de Twitch del compañero (Si tiene)</h1>
-    <p class="p-l-40">{{user?.companionName}}</p>
-    <h1 class="p-t-10">Presentación</h1>
-    <p class="p-l-40">{{user?.presentation}}</p>
-    <h1 class="p-t-10">Evento</h1>
-    <p class="p-l-40">{{user?.event}}</p>
+    <spinner *ngIf="loading"></spinner>
+    <div *ngIf="!loading">
+      <h1 class="p-t-10">Nombre de Twitch</h1>
+      <p class="p-l-40">{{ user?.name }}</p>
+      <h1 class="p-t-10">Nombre de Minecraft</h1>
+      <p class="p-l-40">{{ user?.minecraftName }}</p>
+      <h1 class="p-t-10">Correo</h1>
+      <p class="p-l-40">{{ user?.email }}</p>
+      <h1 class="p-t-10">Nombre de Twitch del compañero (Si tiene)</h1>
+      <p class="p-l-40">{{ user?.companionName }}</p>
+      <h1 class="p-t-10">Presentación</h1>
+      <p class="p-l-40">{{ user?.presentation }}</p>
+      <h1 class="p-t-10">Evento</h1>
+      <p class="p-l-40">{{ user?.event }}</p>
+    </div>
   </div>
   <div class="row">
     <div>

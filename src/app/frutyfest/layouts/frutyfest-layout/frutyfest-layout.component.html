@@ -5,136 +5,247 @@
         <div class="mx-3 title" routerLink="/">FrutyFest</div>
       </div>
       <div class="col d-flex justify-content-center align-items-center">
-        <img class="top" src="../assets/logo.webp" alt="Logo">
+        <img class="top" src="../assets/logo.webp" alt="Logo" />
       </div>
-      <div *ngIf="!currentUser" class="col d-flex justify-content-end align-items-center">
-        <li class="list-group-item under text-center auth" [routerLink]="'/auth/login'">
+      <div
+        *ngIf="!currentUser"
+        class="col d-flex justify-content-end align-items-center"
+      >
+        <li
+          class="list-group-item under text-center auth"
+          [routerLink]="'/auth/login'"
+        >
           Iniciar Sesión
         </li>
-        <li class="list-group-item ps-2 ps-md-3">
-          /
-        </li>
-        <li class="list-group-item under text-center auth" [routerLink]="'/auth/register'">
+        <li class="list-group-item ps-2 ps-md-3">/</li>
+        <li
+          class="list-group-item under text-center auth"
+          [routerLink]="'/auth/register'"
+        >
           Registro
         </li>
       </div>
-      <div *ngIf="currentUser" class="col d-flex justify-content-end align-items-center">
-        <a *ngIf="currentUser?.roles?.includes('admin')" class="list-group-item text-center auth" routerLink="/admin">
+      <div
+        *ngIf="currentUser"
+        class="col d-flex justify-content-end align-items-center"
+      >
+        <a
+          *ngIf="currentUser?.roles?.includes('admin')"
+          class="list-group-item text-center auth"
+          routerLink="/admin"
+        >
           Admin
         </a>
-        <a *ngIf="!currentUser?.roles?.includes('admin')" class="list-group-item text-center auth" [routerLink]="'/participant/'+currentUser._id">
+        <a
+          *ngIf="!currentUser?.roles?.includes('admin')"
+          class="list-group-item text-center auth"
+          [routerLink]="'/participant/' + currentUser._id"
+        >
           Ver perfil
         </a>
-        <a class="list-group-item text-center auth" (click)="logout()" routerLink="/">
+        <a
+          class="list-group-item text-center auth"
+          (click)="logout()"
+          routerLink="/"
+        >
           Cerrar Sesión
         </a>
       </div>
     </div>
-    <div *ngIf="page === 'frutyfest02'" class="row spacer top d-flex align-items-center">
+    <div
+      *ngIf="page === 'frutyfest02'"
+      class="row spacer top d-flex align-items-center"
+    >
       <div class="col-5 col-sm-5 col-md-3 col-lg-2">
-        <li class="list-group-item text-center under" routerLink="/frutyfest01" (mouseover)="hideBothHiddenContent()">
+        <li
+          class="list-group-item text-center under"
+          routerLink="/frutyfest01"
+          (mouseover)="hideBothHiddenContent()"
+        >
           FrutyFest 01
         </li>
       </div>
       <div class="col-5 col-sm-5 col-md-3 col-lg-2">
-        <li class="list-group-item text-center under" routerLink="/" (mouseover)="showSecondHiddenContent()">
+        <li
+          class="list-group-item text-center under"
+          routerLink="/"
+          (mouseover)="showSecondHiddenContent()"
+        >
           FrutyFest 02 ▼
         </li>
       </div>
     </div>
-    <div class="row spacer top second d-flex align-items-center" *ngIf="isSecondHidden && page === 'frutyfest02'">
+    <div
+      class="row spacer top second d-flex align-items-center"
+      *ngIf="isSecondHidden && page === 'frutyfest02'"
+    >
       <div class="col-5 col-sm-5 col-md-3 col-lg-2">
-        <li class="list-group-item text-center under" (click)="scrollToSection('reglasGenerales')" (mouseleave)="hideThirdHiddenContent()">
+        <li
+          class="list-group-item text-center under"
+          (click)="scrollToSection('reglasGenerales')"
+          (mouseleave)="hideThirdHiddenContent()"
+        >
           Reglas Generales
         </li>
       </div>
       <div class="col-5 col-sm-5 col-md-3 col-lg-2">
-        <li class="list-group-item text-center under" (click)="scrollToSection('modosDeJuego')" (mouseover)="showThirdHiddenContent()">
+        <li
+          class="list-group-item text-center under"
+          (click)="scrollToSection('modosDeJuego')"
+          (mouseover)="showThirdHiddenContent()"
+        >
           Modos de Juego ▼
         </li>
       </div>
     </div>
-    <div class="row spacer top third d-flex align-items-center" *ngIf="isThirdHidden && page === 'frutyfest02'" (mouseleave)="hideThirdHiddenContent()">
+    <div
+      class="row spacer top third d-flex align-items-center"
+      *ngIf="isThirdHidden && page === 'frutyfest02'"
+      (mouseleave)="hideThirdHiddenContent()"
+    >
       <div class="col-2 col-sm-2 col-lg-1">
-        <li class="list-group-item text-center under" (click)="scrollToSection('fase1')">
+        <li
+          class="list-group-item text-center under"
+          (click)="scrollToSection('fase1')"
+        >
           Fase 1
         </li>
       </div>
       <div class="col-2 col-sm-2 col-lg-1">
-        <li class="list-group-item text-center under" (click)="scrollToSection('fase2')">
+        <li
+          class="list-group-item text-center under"
+          (click)="scrollToSection('fase2')"
+        >
           Fase 2
         </li>
       </div>
       <div class="col-2 col-sm-2 col-lg-1">
-        <li class="list-group-item text-center under" (click)="scrollToSection('fase3')">
+        <li
+          class="list-group-item text-center under"
+          (click)="scrollToSection('fase3')"
+        >
           Fase 3
         </li>
       </div>
       <div class="col-3 col-sm-3 col-md-2 col-xl-1">
-        <li class="list-group-item text-center under" (click)="scrollToSection('faseFinal')">
+        <li
+          class="list-group-item text-center under"
+          (click)="scrollToSection('faseFinal')"
+        >
           Fase Final
         </li>
       </div>
     </div>
-    <div *ngIf="page === 'frutyfest01'" class="row spacer top d-flex align-items-center">
+    <div
+      *ngIf="page === 'frutyfest01'"
+      class="row spacer top d-flex align-items-center"
+    >
       <div class="col-5 col-sm-5 col-md-3 col-lg-2">
-        <li class="list-group-item text-center under" routerLink="/frutyfest01" (mouseover)="showSecondHiddenContent()">
+        <li
+          class="list-group-item text-center under"
+          routerLink="/frutyfest01"
+          (mouseover)="showSecondHiddenContent()"
+        >
           FrutyFest 01 ▼
         </li>
       </div>
       <div class="col-5 col-sm-5 col-md-3 col-lg-2">
-        <li class="list-group-item text-center under" routerLink="/" (mouseover)="hideBothHiddenContent()">
+        <li
+          class="list-group-item text-center under"
+          routerLink="/"
+          (mouseover)="hideBothHiddenContent()"
+        >
           FrutyFest 02
         </li>
       </div>
     </div>
-    <div class="row spacer top second d-flex align-items-center" *ngIf="isSecondHidden && page === 'frutyfest01'">
+    <div
+      class="row spacer top second d-flex align-items-center"
+      *ngIf="isSecondHidden && page === 'frutyfest01'"
+    >
       <div class="col-5 col-sm-5 col-md-3 col-lg-2">
-        <li class="list-group-item text-center under" (click)="scrollToSection('reglasGenerales')" (mouseleave)="hideThirdHiddenContent()">
+        <li
+          class="list-group-item text-center under"
+          (click)="scrollToSection('reglasGenerales')"
+          (mouseleave)="hideThirdHiddenContent()"
+        >
           Reglas Generales
         </li>
       </div>
       <div class="col-5 col-sm-5 col-md-3 col-lg-2">
-        <li class="list-group-item text-center under" (click)="scrollToSection('modosDeJuego')" (mouseover)="showThirdHiddenContent()">
+        <li
+          class="list-group-item text-center under"
+          (click)="scrollToSection('modosDeJuego')"
+          (mouseover)="showThirdHiddenContent()"
+        >
           Modos de Juego ▼
         </li>
       </div>
     </div>
-    <div class="row spacer top third d-flex align-items-center" *ngIf="isThirdHidden && page === 'frutyfest01'" (mouseleave)="hideThirdHiddenContent()">
+    <div
+      class="row spacer top third d-flex align-items-center"
+      *ngIf="isThirdHidden && page === 'frutyfest01'"
+      (mouseleave)="hideThirdHiddenContent()"
+    >
       <div class="col-2 col-sm-2 col-lg-1">
-        <li class="list-group-item text-center under" (click)="scrollToSection('fase1')">
+        <li
+          class="list-group-item text-center under"
+          (click)="scrollToSection('fase1')"
+        >
           Fase 1
         </li>
       </div>
       <div class="col-2 col-sm-2 col-lg-1">
-        <li class="list-group-item text-center under" (click)="scrollToSection('fase2')">
+        <li
+          class="list-group-item text-center under"
+          (click)="scrollToSection('fase2')"
+        >
           Fase 2
         </li>
       </div>
       <div class="col-2 col-sm-2 col-lg-1">
-        <li class="list-group-item text-center under" (click)="scrollToSection('fase3')">
+        <li
+          class="list-group-item text-center under"
+          (click)="scrollToSection('fase3')"
+        >
           Fase 3
         </li>
       </div>
       <div class="col-3 col-sm-3 col-md-2 col-xl-1">
-        <li class="list-group-item text-center under" (click)="scrollToSection('faseFinal')">
+        <li
+          class="list-group-item text-center under"
+          (click)="scrollToSection('faseFinal')"
+        >
           Fase Final
         </li>
       </div>
     </div>
-    <div class="row spacer top d-flex align-items-center" *ngIf="page === 'admin'">
+    <div
+      class="row spacer top d-flex align-items-center"
+      *ngIf="page === 'admin'"
+    >
       <div class="col-5 col-sm-5 col-md-3 col-lg-2">
-        <li class="list-group-item text-center under" routerLink="/admin/rate" (mouseleave)="hideSecondHiddenContent()">
+        <li
+          class="list-group-item text-center under"
+          routerLink="/admin/rate"
+          (mouseleave)="hideSecondHiddenContent()"
+        >
           Puntuaciones
         </li>
       </div>
       <div class="col-5 col-sm-5 col-md-3 col-lg-2">
-        <li class="list-group-item text-center under" (mouseover)="showSecondHiddenContent()">
+        <li
+          class="list-group-item text-center under"
+          (mouseover)="showSecondHiddenContent()"
+        >
           Creación de elementos ▼
         </li>
       </div>
     </div>
-    <div *ngIf="isSecondHidden && page === 'admin'" class="row spacer top second d-flex align-items-center">
+    <div
+      *ngIf="isSecondHidden && page === 'admin'"
+      class="row spacer top second d-flex align-items-center"
+    >
       <div class="col-3 col-sm-2 col-md-2">
         <li class="list-group-item text-center under" routerLink="/admin">
           Registros
@@ -164,8 +275,14 @@
   <div class="container">
     <div class="row m-3">
       <div class="col text-start">
-        <a href="https://www.linkedin.com/in/%C3%A1ngel-manuel-pereira-rodr%C3%ADguez-009730253/">
-          <img class="bottom" src="../assets/linkedin-icon-2.svg" alt="Linkedin">
+        <a
+          href="https://www.linkedin.com/in/%C3%A1ngel-manuel-pereira-rodr%C3%ADguez-009730253/"
+        >
+          <img
+            class="bottom"
+            src="../assets/linkedin-icon-2.svg"
+            alt="Linkedin"
+          />
         </a>
       </div>
       <div class="col text-center">
@@ -174,7 +291,7 @@
       </div>
       <div class="col text-end">
         <a href="https://github.com/AngelPereiraR">
-          <img class="bottom" src="../assets/github-icon-1.svg" alt="GitHub">
+          <img class="bottom" src="../assets/github-icon-1.svg" alt="GitHub" />
         </a>
       </div>
     </div>

@@ -15,6 +15,7 @@ export class RegisterPageComponent {
   private authService = inject(AuthService);
   private router = inject(Router);
   private validatorsService = inject(ValidatorsService);
+  public loading: boolean = false;
 
   public events: Event[] = [];
 
@@ -45,6 +46,7 @@ export class RegisterPageComponent {
   showPassword = false;
 
   register() {
+    this.loading = true;
     let { email, name, minecraftName, password, hasCompanion, companionName, presentation, event } = this.myForm.value;
 
     if (!companionName) companionName = 'No tiene';
@@ -63,6 +65,10 @@ export class RegisterPageComponent {
         },
         error: (message) => {
           Swal.fire('Error', message, 'error');
+          this.loading = false;
+        },
+        complete: () => {
+          this.loading = false;
         }
       })
   }
