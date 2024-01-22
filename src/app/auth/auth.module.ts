@@ -8,6 +8,7 @@ import { MaterialModule } from '../material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 import { SpinnerComponent } from '../shared/components/spinner/spinner.component';
+import { RecoverPasswordComponent } from './pages/recover-password/recover-password.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { SpinnerComponent } from '../shared/components/spinner/spinner.component
     RegisterPageComponent,
     AuthLayoutComponent,
     ChangePasswordComponent,
+    RecoverPasswordComponent,
   ],
   imports: [
     CommonModule,

@@ -248,6 +248,10 @@ export class FrutyfestService {
     return this.role('setEliminatedPhase4', id);
   }
 
+  setEliminatedPhase5(id: string): Observable<Team> {
+    return this.role('setEliminatedPhase5', id);
+  }
+
   setWinner(id: string): Observable<Team> {
     return this.role('setWinner', id);
   }

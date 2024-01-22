@@ -7,7 +7,7 @@ export const isNotParticipantGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
   const router = inject(Router);
 
-  if (authService.currentUser?.roles.includes('participant')) {
+  if (authService.currentUser?.roles.includes('user')) {
     return true;
   }
 

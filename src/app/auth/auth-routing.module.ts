@@ -4,6 +4,7 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
+import { RecoverPasswordComponent } from './pages/recover-password/recover-password.component';
 
 const routes: Routes = [
   {
@@ -19,8 +20,12 @@ const routes: Routes = [
         component: RegisterPageComponent,
       },
       {
-        path: 'changePassword',
+        path: 'changePassword/:id',
         component: ChangePasswordComponent,
+      },
+      {
+        path: 'recoverPassword',
+        component: RecoverPasswordComponent,
       },
       {
         path: '**',

@@ -51,12 +51,6 @@ export class RegisterPageComponent {
 
     if (!companionName) companionName = 'No tiene';
 
-    if (hasCompanion === 'true') {
-      hasCompanion = true;
-    } else if (hasCompanion === 'false') {
-      hasCompanion = false;
-    }
-
     this.authService.register(email, password, name, minecraftName, hasCompanion, presentation, companionName, event)
       .subscribe({
         next: () => {

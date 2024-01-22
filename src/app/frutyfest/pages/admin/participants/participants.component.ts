@@ -48,12 +48,8 @@ export class ParticipantsComponent implements OnInit, OnDestroy, OnChanges {
     this.loading = true;
     this.authService.getUsers().subscribe({
       next: (users) => {
-        for (let i = 0; i < users.length; i++) {
-          if (users[i].roles.includes('admin')) {
-            users.splice(i, 1);
-          }
-        }
-        this._users.set(users);
+        const notAdminUsers = users.filter(user => !user.roles.includes('admin'));
+        this._users.set(notAdminUsers);
       },
       error: (message) => {
         this.loading = false;

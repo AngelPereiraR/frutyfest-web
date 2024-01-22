@@ -101,10 +101,8 @@ export class EditComponent {
 
     if (!companionName) companionName = 'No tiene';
 
-    if (hasCompanion === 'true') {
-      hasCompanion = true;
-    } else if (hasCompanion === 'false') {
-      hasCompanion = false;
+    if (hasCompanion === false) {
+      companionName = 'No tiene';
     }
 
     this.authService

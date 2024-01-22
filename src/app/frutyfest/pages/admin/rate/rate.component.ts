@@ -36,6 +36,8 @@ export class RateComponent {
   public teams = computed(() => this._teams());
   private fb = inject(FormBuilder);
   private router = inject(Router);
+  public loading: boolean = false;
+  public firstLoading: boolean = false;
 
   private _phase = signal<number>(1);
   public phase = computed(() => this._phase());
@@ -55,6 +57,7 @@ export class RateComponent {
   });
 
   constructor(private cdr: ChangeDetectorRef) {
+    this.firstLoading = true;
     this.getGamemodes();
   }
 
@@ -107,11 +110,17 @@ export class RateComponent {
           // Trigger ngOnChanges to repaint the HTML
           this.ngOnChanges({});
         },
-        error: (message) => {},
+        error: (message) => {
+          this.firstLoading = false;
+        },
+        complete: () => {
+          this.firstLoading = false;
+        },
       });
   }
 
   activateGamemode(): void {
+    this.loading = true;
     const { gamemode } = this.myForm.value;
 
     this.frutyfestService.getTrial(gamemode).subscribe({
@@ -145,11 +154,16 @@ export class RateComponent {
       },
       error: (message) => {
         Swal.fire('Error', message, 'error');
+        this.loading = false;
+      },
+      complete: () => {
+        this.loading = false;
       },
     });
   }
 
   async rateGamemode() {
+    this.loading = true;
     const { equiposSeleccionados } = this.myForm2.value;
     let teams: Team[] = [];
     let allTeams: Team[] = [];
@@ -190,25 +204,75 @@ export class RateComponent {
       allTeams.sort((a: Team, b: Team) => a.totalPoints - b.totalPoints);
       if (this.phase() === 1) {
         for (let i = 0; i < 6; i++) {
-          this.frutyfestService
-            .setEliminatedPhase1(allTeams[i]._id)
-            .subscribe();
+          this.frutyfestService.setEliminatedPhase1(allTeams[i]._id).subscribe({
+            next: () => {},
+            error: (message) => {
+              Swal.fire('Error', message, 'error');
+              this.loading = false;
+            },
+            complete: () => {
+              this.loading = false;
+            },
+          });
         }
       } else if (this.phase() === 2) {
         for (let i = 0; i < 2; i++) {
-          this.frutyfestService
-            .setEliminatedPhase2(allTeams[i]._id)
-            .subscribe();
+          this.frutyfestService.setEliminatedPhase2(allTeams[i]._id).subscribe({
+            next: () => {},
+            error: (message) => {
+              Swal.fire('Error', message, 'error');
+              this.loading = false;
+            },
+            complete: () => {
+              this.loading = false;
+            },
+          });
         }
       } else if (this.phase() === 3) {
         for (let i = 0; i < 2; i++) {
-          this.frutyfestService
-            .setEliminatedPhase3(allTeams[i]._id)
-            .subscribe();
+          this.frutyfestService.setEliminatedPhase3(allTeams[i]._id).subscribe({
+            next: () => {},
+            error: (message) => {
+              Swal.fire('Error', message, 'error');
+              this.loading = false;
+            },
+            complete: () => {
+              this.loading = false;
+            },
+          });
         }
       } else if (this.phase() === 4) {
-        this.frutyfestService.setEliminatedPhase4(allTeams[0]._id).subscribe();
-        this.frutyfestService.setWinner(allTeams[1]._id).subscribe();
+        this.frutyfestService.setEliminatedPhase4(allTeams[0]._id).subscribe({
+          next: () => {},
+          error: (message) => {
+            Swal.fire('Error', message, 'error');
+            this.loading = false;
+          },
+          complete: () => {
+            this.loading = false;
+          },
+        });
+      } else if (this.phase() === 5) {
+        this.frutyfestService.setEliminatedPhase5(allTeams[0]._id).subscribe({
+          next: () => {},
+          error: (message) => {
+            Swal.fire('Error', message, 'error');
+            this.loading = false;
+          },
+          complete: () => {
+            this.loading = false;
+          },
+        });
+        this.frutyfestService.setWinner(allTeams[1]._id).subscribe({
+          next: () => {},
+          error: (message) => {
+            Swal.fire('Error', message, 'error');
+            this.loading = false;
+          },
+          complete: () => {
+            this.loading = false;
+          },
+        });
       }
     }
 
@@ -221,6 +285,7 @@ export class RateComponent {
   }
 
   private async getTeams() {
+    this.firstLoading = true;
     this.frutyfestService.getTeams().subscribe({
       next: (teams) => {
         let teamsArray: Team[] = [];
@@ -228,7 +293,8 @@ export class RateComponent {
           if (
             !teams[i].roles.includes('eliminated in phase 1') &&
             !teams[i].roles.includes('eliminated in phase 2') &&
-            !teams[i].roles.includes('eliminated in phase 3')
+            !teams[i].roles.includes('eliminated in phase 3') &&
+            !teams[i].roles.includes('eliminated in phase 4')
           ) {
             teamsArray.push(teams[i]);
           }
@@ -240,11 +306,16 @@ export class RateComponent {
       },
       error: (message) => {
         Swal.fire('Error', message, 'error');
+        this.firstLoading = false;
+      },
+      complete: () => {
+        this.firstLoading = false;
       },
     });
   }
 
   private async updateTrial() {
+    this.loading = true;
     this.frutyfestService
       .updateTrial(
         this.trial()!._id,
@@ -261,11 +332,16 @@ export class RateComponent {
         next: () => {},
         error: (message) => {
           Swal.fire('Error', message, 'error');
+          this.loading = false;
+        },
+        complete: () => {
+          this.loading = false;
         },
       });
   }
 
   private async updateTeam(team: Team) {
+    this.loading = true;
     this.frutyfestService
       .updateTeam(
         team._id,
@@ -280,6 +356,10 @@ export class RateComponent {
         next: () => {},
         error: (message) => {
           Swal.fire('Error', message, 'error');
+          this.loading = false;
+        },
+        complete: () => {
+          this.loading = false;
         },
       });
   }

@@ -12,12 +12,21 @@
 
     <div class="wrap-input100 m-b-23">
       <span class="label-input100">Modo de juego</span>
-      <select formControlName="gamemode" class="form-control">
-        <option value="Seleccione un modo de juego" disabled>Seleccione un modo de juego</option>
+      <select
+        *ngIf="!firstLoading"
+        formControlName="gamemode"
+        class="form-control"
+      >
+        <option value="Seleccione un modo de juego" disabled>
+          Seleccione un modo de juego
+        </option>
         <option *ngFor="let gamemode of trials()" [value]="gamemode._id">
           {{ gamemode.name }}
         </option>
       </select>
+      <button *ngIf="firstLoading" class="row m-t-10">
+        <spinner></spinner>
+      </button>
       <div class="input-group">
         <span class="focus-input100"></span>
       </div>
@@ -26,7 +35,22 @@
     <div class="container-login100-form-btn">
       <div class="wrap-login100-form-btn">
         <div class="login100-form-bgbtn"></div>
-        <button class="login100-form-btn" type="submit">Seleccionar</button>
+        <button
+          *ngIf="!loading"
+          class="login100-form-btn"
+          [disabled]="myForm.invalid"
+          type="submit"
+        >
+          Seleccionar
+        </button>
+        <button
+          *ngIf="loading"
+          class="login100-form-btn"
+          [disabled]="true"
+          type="submit"
+        >
+          <spinner></spinner>
+        </button>
       </div>
     </div>
 
@@ -35,7 +59,7 @@
     <div class="flex-col-c p-t-20">
       <div class="row d-flex justify-content-between">
         <div class="col-12">
-          <a routerLink="/admin" class="txt2">
+          <a routerLink="/admin/team" class="txt2">
             VOLVER A CREACIÓN DE ELEMENTOS
           </a>
         </div>
@@ -58,6 +82,7 @@
       <div class="input-group">
         <div formGroupName="equiposSeleccionados">
           <select
+            *ngIf="!firstLoading"
             multiple
             formControlName="equipo{{ team }}"
             class="select-grande"
@@ -66,14 +91,19 @@
               {{ newTeam.name }}
             </option>
           </select>
+          <button *ngIf="firstLoading" class="row m-t-10">
+            <spinner></spinner>
+          </button>
 
-          <br>
-          <span class="label-input100">Posición final del equipo en la prueba:</span>
+          <br />
+          <span class="label-input100"
+            >Posición final del equipo en la prueba:</span
+          >
           <label *ngFor="let teamNumber of teamsNumber">
             <input
               class="m-l-10"
               type="radio"
-              formControlName="position{{team}}"
+              formControlName="position{{ team }}"
               [value]="teamNumber"
             />
             {{ teamNumber }}
@@ -85,7 +115,22 @@
     <div class="container-login100-form-btn">
       <div class="wrap-login100-form-btn">
         <div class="login100-form-bgbtn"></div>
-        <button class="login100-form-btn" type="submit">Seleccionar</button>
+        <button
+          *ngIf="!loading"
+          class="login100-form-btn"
+          [disabled]="myForm.invalid"
+          type="submit"
+        >
+          Seleccionar
+        </button>
+        <button
+          *ngIf="loading"
+          class="login100-form-btn"
+          [disabled]="true"
+          type="submit"
+        >
+          <spinner></spinner>
+        </button>
       </div>
     </div>
 
@@ -94,7 +139,7 @@
     <div class="flex-col-c p-t-20">
       <div class="row d-flex justify-content-between">
         <div class="col-12">
-          <a routerLink="/admin" class="txt2">
+          <a routerLink="/admin/team" class="txt2">
             VOLVER A CREACIÓN DE ELEMENTOS
           </a>
         </div>

@@ -27,7 +27,7 @@ export class TrialAddComponent {
     maxPoints: [0, [Validators.required, Validators.min(1)]],
     pointsDecrease: [0, [Validators.required, Validators.min(1)]],
     maxTeams: [0, [Validators.required, Validators.min(1)]],
-    phase: [0, [Validators.required, Validators.min(1), Validators.max(4)]],
+    phase: [0, [Validators.required, Validators.min(1), Validators.max(5)]],
     rated: [false, [Validators.required]],
     beginningPhase: [false, [Validators.required]],
     endingPhase: [false, [Validators.required]],

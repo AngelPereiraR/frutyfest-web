@@ -169,6 +169,14 @@ export class AuthService {
       .pipe(catchError((err) => throwError(() => err.error.message)));
   }
 
+  recoverPassword(id: string) {
+    const url = `${this.baseUrl}/auth/recoverPassword/${id}`;
+
+    return this.http
+      .get<User>(url)
+      .pipe(catchError((err) => throwError(() => err.error.message)));
+  }
+
   changeUser(
     id: string,
     email: string,
