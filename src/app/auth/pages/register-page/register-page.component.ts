@@ -54,7 +54,7 @@ export class RegisterPageComponent {
     this.authService.register(email, password, name, minecraftName, hasCompanion, presentation, companionName, event)
       .subscribe({
         next: () => {
-          Swal.fire('Registro', 'Registro correcto. Se le ha enviado un correo con las credenciales para el inicio de sesión. Si no aparece en Recibidos, por favor mire en su carpeta de Spam, gracias.', 'success')
+          Swal.fire('Registro', 'Se le ha enviado un correo confirmando que el registro ha sido correcto. Si no aparece en Recibidos, por favor mire en su carpeta de Spam, gracias.', 'success')
           this.router.navigateByUrl('/');
         },
         error: (message) => {

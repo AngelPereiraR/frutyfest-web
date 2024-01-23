@@ -92,7 +92,7 @@ export class ParticipantChangePasswordComponent {
             next: () => {
               Swal.fire(
                 'Cambio de contraseña',
-                'Cambio de contraseña correcto. Se le ha enviado un correo con las nuevas credenciales para el inicio de sesión. Si no aparece en Recibidos, por favor mire en su carpeta de Spam, gracias.',
+                'Se le ha enviado un correo confirmando la realización del cambio de contraseña. Si no aparece en Recibidos, por favor mire en su carpeta de Spam, gracias.',
                 'success'
               );
               this.router.navigateByUrl(`/participant/${user._id}`);
