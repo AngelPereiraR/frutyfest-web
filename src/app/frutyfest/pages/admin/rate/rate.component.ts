@@ -8,14 +8,11 @@ import {
 } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from 'src/app/auth/interfaces';
-import { Event, Team } from 'src/app/frutyfest/interfaces/team.interface';
-import { AuthService } from 'src/app/auth/services/auth.service';
+import { Team } from 'src/app/frutyfest/interfaces/team.interface';
 import { FrutyfestService } from 'src/app/frutyfest/services/frutyfest.service';
 import Swal from 'sweetalert2';
 import { Trial } from 'src/app/frutyfest/interfaces/trial.interface';
@@ -27,7 +24,6 @@ import { concatMap } from 'rxjs';
 })
 export class RateComponent {
   private frutyfestService = inject(FrutyfestService);
-  private authService = inject(AuthService);
   private _trials = signal<Trial[] | undefined>(undefined);
   public trials = computed(() => this._trials());
   private _trial = signal<Trial | undefined>(undefined);
@@ -86,6 +82,8 @@ export class RateComponent {
               this._phase.set(Math.max(this.phase(), 3));
             } else if (teams[i].roles.includes('eliminated in phase 3')) {
               this._phase.set(Math.max(this.phase(), 4));
+            } else if (teams[i].roles.includes('eliminated in phase 4')) {
+              this._phase.set(Math.max(this.phase(), 5));
             }
           }
 
@@ -294,7 +292,8 @@ export class RateComponent {
             !teams[i].roles.includes('eliminated in phase 1') &&
             !teams[i].roles.includes('eliminated in phase 2') &&
             !teams[i].roles.includes('eliminated in phase 3') &&
-            !teams[i].roles.includes('eliminated in phase 4')
+            !teams[i].roles.includes('eliminated in phase 4') &&
+            !teams[i].roles.includes('eliminated in phase 5')
           ) {
             teamsArray.push(teams[i]);
           }

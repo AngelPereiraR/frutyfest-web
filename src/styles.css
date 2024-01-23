@@ -170,7 +170,7 @@ button:hover {
   font-family: Minecraft;
   font-size: 30px;
   color: #333333;
-  line-height: 0.01;
+  line-height: 1;
   text-align: center;
 }
 

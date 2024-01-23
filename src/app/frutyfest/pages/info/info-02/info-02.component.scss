@@ -133,9 +133,15 @@ p {
   bottom: 0;
   width: 100%;
   z-index: 1000;
-  padding: 150px;
+  margin-bottom: 160px;
+  margin-left: 40%;
 }
 
 .puesto {
   font-size: 16px;
+}
+
+.up {
+  height: 60px;
+  width: 60px;
 }

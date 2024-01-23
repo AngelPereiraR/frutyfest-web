@@ -81,3 +81,30 @@ button {
   height: 40px;
   border-radius: 50%;
 }
+
+.pagination {
+  display: flex;
+  align-items: center;
+
+  button {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-right: 5px;
+    padding: 6px 11px;
+    cursor: pointer;
+    background-color: #ffffff;
+  }
+
+  button.up {
+    margin-top: 0px;
+  }
+
+  button.botton {
+    margin-top: 30px;
+  }
+
+  button.selected {
+    background-color: #000000;
+    color: #fff;
+  }
+}

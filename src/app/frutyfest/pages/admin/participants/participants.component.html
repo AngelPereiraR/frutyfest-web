@@ -1,7 +1,22 @@
 <div class="p-t-30 p-l-50 p-r-50">
-  <h1 *ngIf="!firstLoading && users()?.length! > 0">Hay {{ users()?.length }} registro/s</h1>
-  <h1 *ngIf="!firstLoading && users()?.length! === 0">No hay registros</h1>
+  <h1 *ngIf="!firstLoading && totalUsers()! > 0">
+    Hay {{ totalUsers() }} registro/s
+  </h1>
+  <h1 *ngIf="!firstLoading && totalUsers()! === 0">No hay registros</h1>
   <h1 *ngIf="firstLoading">Cargando registro/s</h1>
+
+  <div class="pagination" *ngIf="!firstLoading">
+    <button class="up" (click)="getUsers(position() - 1)">◄</button>
+    <button
+      class="up"
+      *ngFor="let pageNumber of getPageNumbers()"
+      (click)="getUsers(pageNumber - 1)"
+      [ngClass]="{ selected: pageNumber === position() + 1 }"
+    >
+      {{ pageNumber }}
+    </button>
+    <button class="up" (click)="getUsers(position() + 1)">►</button>
+  </div>
   <table *ngIf="!firstLoading">
     <thead>
       <tr>
@@ -126,5 +141,18 @@
       </tr>
     </tbody>
   </table>
+
+  <div class="pagination" *ngIf="!firstLoading">
+    <button class="bottom" (click)="getUsers(position() - 1)">◄</button>
+    <button
+      class="bottom"
+      *ngFor="let pageNumber of getPageNumbers()"
+      (click)="getUsers(pageNumber - 1)"
+      [ngClass]="{ selected: pageNumber === position() + 1 }"
+    >
+      {{ pageNumber }}
+    </button>
+    <button class="bottom" (click)="getUsers(position() + 1)">►</button>
+  </div>
   <spinner *ngIf="firstLoading"></spinner>
 </div>

@@ -17,3 +17,8 @@ span, a {
   position: absolute;
   right: 10px; /* Ajusta según sea necesario */
 }
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+}

@@ -46,6 +46,7 @@ export class RankingComponent {
         for (let i = 0; i < teams.length; i++) {
           if (
             !teams[i].roles.includes('winner') &&
+            !teams[i].roles.includes('eliminated in phase 5') &&
             !teams[i].roles.includes('eliminated in phase 4') &&
             !teams[i].roles.includes('eliminated in phase 3') &&
             !teams[i].roles.includes('eliminated in phase 2') &&
@@ -55,6 +56,7 @@ export class RankingComponent {
           }
         }
         this.getTeamsByRole('winner', teams);
+        this.getTeamsByRole('eliminated in phase 5', teams);
         this.getTeamsByRole('eliminated in phase 4', teams);
         this.getTeamsByRole('eliminated in phase 3', teams);
         this.getTeamsByRole('eliminated in phase 2', teams);

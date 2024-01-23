@@ -21,10 +21,15 @@ export class TrialTableComponent {
   public trials = computed(() => this._trials());
   public loading: boolean = false;
   public firstLoading: boolean = false;
+  private _position = signal<number>(0);
+  public position = computed(() => this._position());
+  private _totalTrials = signal<number>(0);
+  public totalTrials = computed(() => this._totalTrials());
+  public totalPages: number = 0;
 
   constructor(private cdr: ChangeDetectorRef) {
     this.firstLoading = true;
-    this.getTrials();
+    this.getTrials(this.position());
   }
 
   ngOnInit(): void {
@@ -40,12 +45,28 @@ export class TrialTableComponent {
     this.cdr.detectChanges();
   }
 
-  getTrials(): void {
+  getPageNumbers(): number[] {
+    this.totalPages = Math.ceil(this.totalTrials() / 8);
+    return Array.from({ length: this.totalPages }, (_, index) => index + 1);
+  }
+
+  getTrials(position: number): void {
     this.loading = true;
+    if(position <= this.totalPages - 1 && position >= 0) {
+      this._position.set(position);
+    }
     this.frutyfestService.getTrials().subscribe({
       next: (trials) => {
-        this._trials.set(trials);
-        // Trigger ngOnChanges to repaint the HTML
+        this._totalTrials.set(trials.length);
+        for (let i = 0; i <= this.position(); i++) {
+          let trialsList: Trial[] = [];
+          for (let j = 0; j < 8; j++) {
+            if(trials[8 * i + j] !== undefined && i <= this.position()) {
+              trialsList.push(trials[8 * i + j]);
+            }
+          }
+          this._trials.set(trialsList);
+        }// Trigger ngOnChanges to repaint the HTML
         this.ngOnChanges({});
       },
       error: (message) => {
@@ -76,7 +97,7 @@ export class TrialTableComponent {
           .getTrial(id!)
           .pipe(
             switchMap(() => this.frutyfestService.removeTrial(id!)),
-            tap(() => this.getTrials())
+            tap(() => this.getTrials(this.position()))
           )
           .subscribe({
             error: (message) => {

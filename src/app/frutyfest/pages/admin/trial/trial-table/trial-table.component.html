@@ -1,9 +1,22 @@
 <div class="p-t-30 p-l-50 p-r-50">
-  <h1 *ngIf="!firstLoading && trials()?.length! > 0">
-    Hay {{ trials()?.length }} modo/s de juego
+  <h1 *ngIf="!firstLoading && totalTrials()! > 0">
+    Hay {{ totalTrials() }} modo/s de juego
   </h1>
-  <h1 *ngIf="!firstLoading && trials()?.length! === 0">No hay modos de juego</h1>
+  <h1 *ngIf="!firstLoading && totalTrials()! === 0">No hay modos de juego</h1>
   <h1 *ngIf="firstLoading">Cargando modo/s de juego</h1>
+
+  <div class="pagination" *ngIf="!firstLoading">
+    <button class="up" (click)="getTrials(position() - 1)">◄</button>
+    <button
+      class="up"
+      *ngFor="let pageNumber of getPageNumbers()"
+      (click)="getTrials(pageNumber - 1)"
+      [ngClass]="{ selected: pageNumber === position() + 1 }"
+    >
+      {{ pageNumber }}
+    </button>
+    <button class="up" (click)="getTrials(position() + 1)">►</button>
+  </div>
   <table>
     <thead>
       <tr>
@@ -18,50 +31,76 @@
     </thead>
     <tbody *ngFor="let trial of trials(); let i = index">
       <tr>
-        <td>{{i + 1}}</td>
-        <td [ngStyle]="{'white-space': 'nowrap', 'overflow': 'hidden', 'text-overflow': 'ellipsis', 'max-lines': 2}">
+        <td>{{ i + 1 }}</td>
+        <td
+          [ngStyle]="{
+            'white-space': 'nowrap',
+            overflow: 'hidden',
+            'text-overflow': 'ellipsis',
+            'max-lines': 2
+          }"
+        >
           <div class="px-3" [title]="trial.name">
-            {{trial.name}}
+            {{ trial.name }}
           </div>
         </td>
         <td>
           <div class="px-3" [title]="trial.phase">
-            {{trial.phase}}
+            {{ trial.phase }}
           </div>
         </td>
         <td>
           <div class="px-3" [title]="trial.maxPoints">
-            {{trial.maxPoints}}
+            {{ trial.maxPoints }}
           </div>
         </td>
         <td>
           <div class="px-3" [title]="trial.pointsDecrease">
-            {{trial.pointsDecrease}}
+            {{ trial.pointsDecrease }}
           </div>
         </td>
         <td>
           <div class="px-3" [title]="trial.maxTeams">
-            {{trial.maxTeams}}
+            {{ trial.maxTeams }}
           </div>
         </td>
         <td>
           <div class="row d-flex justify-content-center">
             <div class="col-12 col-md-4 col-lg-3">
-              <button *ngIf="!loading" (click)="removeTrial(trial._id)" class="fa-solid fa-trash fa-lg m-2 p-2"
-                title="Eliminar modo de juego" style="background-color: red;"></button>
-                <spinner *ngIf="loading"
-                  title="Eliminar modo de juego"
-                ></spinner>
+              <button
+                *ngIf="!loading"
+                (click)="removeTrial(trial._id)"
+                class="fa-solid fa-trash fa-lg m-2 p-2"
+                title="Eliminar modo de juego"
+                style="background-color: red"
+              ></button>
+              <spinner *ngIf="loading" title="Eliminar modo de juego"></spinner>
             </div>
           </div>
         </td>
       </tr>
     </tbody>
-
   </table>
+
+  <div class="pagination" *ngIf="!firstLoading">
+    <button class="bottom" (click)="getTrials(position() - 1)">◄</button>
+    <button
+      class="bottom"
+      *ngFor="let pageNumber of getPageNumbers()"
+      (click)="getTrials(pageNumber - 1)"
+      [ngClass]="{ selected: pageNumber === position() + 1 }"
+    >
+      {{ pageNumber }}
+    </button>
+    <button class="bottom" (click)="getTrials(position() + 1)">►</button>
+  </div>
   <spinner *ngIf="firstLoading"></spinner>
-  <div class="m-2">
-    <button routerLink="/admin/trial/add" class="fa-solid fa-plus m-2 p-2" title="Añadir modo de juego"
-      style="background-color: blue; color: white;"></button>
+  <div class="m-2" *ngIf="!firstLoading">
+    <button
+      routerLink="/admin/trial/add"
+      class="fa-solid fa-plus m-2 p-2"
+      title="Añadir modo de juego"
+      style="background-color: blue; color: white"
+    ></button>
   </div>
 </div>

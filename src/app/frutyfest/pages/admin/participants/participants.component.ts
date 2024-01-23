@@ -23,12 +23,17 @@ export class ParticipantsComponent implements OnInit, OnDestroy, OnChanges {
   private authService = inject(AuthService);
   private _users = signal<User[] | undefined>(undefined);
   public users = computed(() => this._users());
+  private _position = signal<number>(0);
+  public position = computed(() => this._position());
+  private _totalUsers = signal<number>(0);
+  public totalUsers = computed(() => this._totalUsers());
+  public totalPages: number = 0;
   public loading: boolean = false;
   public firstLoading: boolean = false;
 
   constructor(private cdr: ChangeDetectorRef) {
     this.firstLoading = true;
-    this.getUsers();
+    this.getUsers(this.position());
   }
 
   ngOnInit(): void {
@@ -44,12 +49,31 @@ export class ParticipantsComponent implements OnInit, OnDestroy, OnChanges {
     this.cdr.detectChanges();
   }
 
-  async getUsers(): Promise<void> {
+  getPageNumbers(): number[] {
+    this.totalPages = Math.ceil(this.totalUsers() / 8);
+    return Array.from({ length: this.totalPages }, (_, index) => index + 1);
+  }
+
+  async getUsers(position: number): Promise<void> {
     this.loading = true;
+    if(position <= this.totalPages - 1 && position >= 0) {
+      this._position.set(position);
+    }
     this.authService.getUsers().subscribe({
       next: (users) => {
-        const notAdminUsers = users.filter(user => !user.roles.includes('admin'));
-        this._users.set(notAdminUsers);
+        const notAdminUsers = users.filter(
+          (user) => !user.roles.includes('admin')
+        );
+        this._totalUsers.set(notAdminUsers.length);
+        for (let i = 0; i <= this.position(); i++) {
+          let usersList: User[] = [];
+          for (let j = 0; j < 8; j++) {
+            if(notAdminUsers[8 * i + j] !== undefined && i <= this.position()) {
+              usersList.push(notAdminUsers[8 * i + j]);
+            }
+          }
+          this._users.set(usersList);
+        }
       },
       error: (message) => {
         this.loading = false;
@@ -72,7 +96,7 @@ export class ParticipantsComponent implements OnInit, OnDestroy, OnChanges {
       },
       complete: () => {
         this.loading = false;
-        this.getUsers();
+        this.getUsers(this.position());
         this.ngOnChanges({});
       },
     });
@@ -86,7 +110,7 @@ export class ParticipantsComponent implements OnInit, OnDestroy, OnChanges {
       },
       complete: () => {
         this.loading = false;
-        this.getUsers();
+        this.getUsers(this.position());
         this.ngOnChanges({});
       },
     });
@@ -100,7 +124,7 @@ export class ParticipantsComponent implements OnInit, OnDestroy, OnChanges {
       },
       complete: () => {
         this.loading = false;
-        this.getUsers();
+        this.getUsers(this.position());
         this.ngOnChanges({});
       },
     });
@@ -114,7 +138,7 @@ export class ParticipantsComponent implements OnInit, OnDestroy, OnChanges {
       },
       complete: () => {
         this.loading = false;
-        this.getUsers();
+        this.getUsers(this.position());
         this.ngOnChanges({});
       },
     });
@@ -139,7 +163,7 @@ export class ParticipantsComponent implements OnInit, OnDestroy, OnChanges {
           },
           complete: () => {
             this.loading = false;
-            this.getUsers();
+            this.getUsers(this.position());
             this.ngOnChanges({});
           },
         });

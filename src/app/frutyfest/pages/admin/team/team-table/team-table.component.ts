@@ -21,12 +21,17 @@ export class TeamTableComponent {
   private authService = inject(AuthService);
   private _teams = signal<Team[] | undefined>(undefined);
   public teams = computed(() => this._teams());
+  private _position = signal<number>(0);
+  public position = computed(() => this._position());
+  private _totalTeams = signal<number>(0);
+  public totalTeams = computed(() => this._totalTeams());
+  public totalPages: number = 0;
   public loading: boolean = false;
   public firstLoading: boolean = false;
 
   constructor(private cdr: ChangeDetectorRef) {
     this.firstLoading = true;
-    this.getTeams();
+    this.getTeams(this.position());
   }
 
   ngOnInit(): void {
@@ -42,11 +47,28 @@ export class TeamTableComponent {
     this.cdr.detectChanges();
   }
 
-  getTeams(): void {
+  getPageNumbers(): number[] {
+    this.totalPages = Math.ceil(this.totalTeams() / 8);
+    return Array.from({ length: this.totalPages }, (_, index) => index + 1);
+  }
+
+  getTeams(position: number): void {
     this.loading = true;
+    if(position <= this.totalPages - 1 && position >= 0) {
+      this._position.set(position);
+    }
     this.frutyfestService.getTeams().subscribe({
       next: (teams) => {
-        this._teams.set(teams);
+        this._totalTeams.set(teams.length);
+        for (let i = 0; i <= this.position(); i++) {
+          let teamsList: Team[] = [];
+          for (let j = 0; j < 8; j++) {
+            if(teams[8 * i + j] !== undefined && i <= this.position()) {
+              teamsList.push(teams[8 * i + j]);
+            }
+          }
+          this._teams.set(teamsList);
+        }
         // Trigger ngOnChanges to repaint the HTML
         this.ngOnChanges({});
       },
@@ -87,7 +109,7 @@ export class TeamTableComponent {
               );
             }),
             switchMap(() => this.frutyfestService.removeTeam(id!)),
-            tap(() => this.getTeams())
+            tap(() => this.getTeams(this.position()))
           )
           .subscribe({
             error: (message) => {

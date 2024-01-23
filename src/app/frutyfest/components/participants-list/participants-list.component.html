@@ -1,6 +1,6 @@
 <div class="p-l-100 p-r-100">
   <div *ngIf="!loading">
-    <h1>Hay {{ users()?.length }} participante/s seleccionado/s</h1>
+    <h1>Hay {{ totalUsers() }} participante/s seleccionado/s</h1>
     <table>
       <thead>
         <tr>
@@ -23,6 +23,19 @@
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <div class="pagination" *ngIf="!loading">
+    <button class="bottom" (click)="getUsers(position() - 1)">◄</button>
+    <button
+      class="bottom"
+      *ngFor="let pageNumber of getPageNumbers()"
+      (click)="getUsers(pageNumber - 1)"
+      [ngClass]="{ selected: pageNumber === position() + 1 }"
+    >
+      {{ pageNumber }}
+    </button>
+    <button class="bottom" (click)="getUsers(position() + 1)">►</button>
   </div>
   <div *ngIf="loading">
     <h1>Viendo participantes seleccionados...</h1>
