@@ -13,20 +13,17 @@ export class ScheduleComponent {
   minutes: string = '01';
   seconds: string = '01';
 
-  date: string = '';
-  time: string = '';
-  validDatetime: string = '';
   userTz: string = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
   constructor(private renderer: Renderer2, private elementRef: ElementRef) {}
 
   ngOnInit(): void {
     this.updateCountdown();
+    this.eventDate();
     setInterval(() => {
       this.updateCountdown();
+      this.eventDate();
     }, 1000);
-
-    this.eventDate();
 
   }
 
@@ -39,12 +36,18 @@ export class ScheduleComponent {
     const now = Date.now();
     const diff = this.timestamp - now;
 
-    if (diff > 0) {
-      this.days = this.formatTime(diff / DAY);
-      this.hours = this.formatTime((diff % DAY) / HOUR);
-      this.minutes = this.formatTime((diff % HOUR) / MINUTE);
-      this.seconds = this.formatTime((diff % MINUTE) / SECOND);
-    } else {
+
+    const $days = this.elementRef.nativeElement.querySelector('.data-days');
+    const $hours = this.elementRef.nativeElement.querySelector('.data-hours');
+    const $minutes = this.elementRef.nativeElement.querySelector('.data-minutes');
+    const $seconds = this.elementRef.nativeElement.querySelector('.data-seconds');
+
+    if (diff > 0 && $days != null && $hours != null && $minutes != null && $seconds != null) {
+      this.renderer.setProperty($days, 'innerHTML', `${this.formatTime(diff / DAY)} días`);
+      this.renderer.setProperty($hours, 'innerHTML', `${this.formatTime((diff % DAY) / HOUR)} horas`);
+      this.renderer.setProperty($minutes, 'innerHTML', `${this.formatTime((diff % HOUR) / MINUTE)} minutos`);
+      this.renderer.setProperty($seconds, 'innerHTML', `${this.formatTime((diff % MINUTE) / SECOND)} segundos`);
+    } else if(diff < 0 && $days != null && $hours != null && $minutes != null && $seconds != null) {
       this.days = '00';
       this.hours = '00';
       this.minutes = '00';
@@ -73,7 +76,7 @@ export class ScheduleComponent {
     const dayExact = new Intl.DateTimeFormat('es-ES', dayOptions).format(date);
 
     if ($dateSpan != null) {
-      this.date = `${dayExact}`;
+      this.renderer.setProperty($dateSpan, 'innerHTML', dayExact);
     }
 
     const timeFormatOptions: Intl.DateTimeFormatOptions = {
@@ -82,23 +85,6 @@ export class ScheduleComponent {
       hour12: false,
       timeZone: USER_TZ,
       timeZoneName: 'short',
-    };
-
-    const dateFormatOptions: Intl.DateTimeFormatOptions = {
-      day: 'numeric',
-      month: 'long',
-      timeZone: USER_TZ,
-    };
-
-    const validDatetimeAttrOptions: Intl.DateTimeFormatOptions = {
-      timeZone: USER_TZ,
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      hour12: false,
     };
 
     const time = new Intl.DateTimeFormat('en-GB', timeFormatOptions)
@@ -111,11 +97,8 @@ export class ScheduleComponent {
       })
       .join('');
 
-    const validDatetime = new Intl.DateTimeFormat('en-CA', validDatetimeAttrOptions).format(date);
-
     if ($dateSpan != null && $timeSpan != null) {
       this.renderer.setProperty($timeSpan, 'innerHTML', time);
-      this.renderer.setAttribute($timeSpan, 'datetime', validDatetime);
     }
   }
 

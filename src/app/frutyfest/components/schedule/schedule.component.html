@@ -1,8 +1,8 @@
-<div class="text-uppercase display-6 fw-bold">
-  <time class="date">{{date}}</time>
-  <span aria-hidden="true" class="d-none d-md-inline mx-1"> · </span>
+<h1 class="text-uppercase">
+  <time class="date"></time>
+  <span aria-hidden="true" class="mx-1"> · </span>
   <time class="time"></time>
-</div>
+</h1>
 
 <div class="mt-2 text-uppercase d-flex flex-column justify-content-center align-items-center">
   <ng-container *ngIf="days !== '00' || hours !== '00' || minutes !== '00' || seconds !== '00'; else eventStarted">
@@ -11,13 +11,13 @@
     </div>
     <div class="row">
       <div class="gap-1 d-flex align-items-center">
-        <div data-days>{{ days }} días</div>
-        <span aria-hidden="true" class="mt-1 fs-5">:</span>
-        <div data-hours>{{ hours }} horas</div>
-        <span aria-hidden="true" class="mt-1 fs-5">:</span>
-        <div data-minutes>{{ minutes }} minutos</div>
-        <span aria-hidden="true" class="mt-1 fs-5">:</span>
-        <div data-seconds>{{ seconds }} segundos</div>
+        <div class="data-days"></div>
+        <span aria-hidden="true" class="mt-1 fs-5"> : </span>
+        <div class="data-hours"></div>
+        <span aria-hidden="true" class="mt-1 fs-5"> : </span>
+        <div class="data-minutes"></div>
+        <span aria-hidden="true" class="mt-1 fs-5"> : </span>
+        <div class="data-seconds"></div>
       </div>
     </div>
   </ng-container>
