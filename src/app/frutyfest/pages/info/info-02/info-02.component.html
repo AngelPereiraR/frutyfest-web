@@ -27,21 +27,10 @@
       </div>
     </div>
     <div class="col-5 center">
-      <h3 class="contact">Horario (En proceso)</h3>
-      <img
-        class="schedule"
-        src="../assets/imagen-placeholder.svg"
-        alt="Horario"
-      />
-      <p>
-        <a
-          class="txt1"
-          href="https://www.freepik.es/vector-gratis/mundo-juego-arcade-escena-pixeles_4814937.htm#fromView=search&term=pixel+art+construcci%C3%B3n&track=ais&regularType=vector&page=2&position=3&uuid=470186f6-a346-4296-ae9b-5d3f91c97508"
-          target="_blank"
-          >Imagen de stockgiu</a
-        >
-        en Freepik
-      </p>
+      <h3 class="contact">(Fecha provisional)</h3>
+      <section class="my-0 my-lg-5 d-flex flex-column gap-3 justify-content-center align-items-center">
+        <schedule [timestamp]="eventTimestamp"></schedule>
+      </section>
     </div>
     <div class="col-4 p-4">
       <h3 class="contact">Si tienes dudas, contáctame</h3>
@@ -123,10 +112,13 @@
           <div class="mt-4">
             <h2>Requisitos</h2>
             <p>Ambos miembros del dúo tienen que ser afiliados de Twitch.</p>
-            <p>Tener constancia con los directos.</p>
+            <p>Tener constancia a la hora de hacer directos.</p>
             <p>Tener cuenta premium de Minecraft.</p>
             <p>Ser mayor de edad.</p>
             <p>Tener Paypal o algún medio donde otorgar el premio monetario.</p>
+          </div>
+          <div class="mt-4">
+            <h2>Normas adicionales</h2>
             <p>
               En caso de no tener un dúo, los administradores le asignarán un
               compañero que será otro participante sin dúo.

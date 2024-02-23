@@ -93,7 +93,7 @@ export class RegisterPageComponent {
         <h3>2. Uso de Datos</h3>
         <p>Garantizamos que no utilizaremos cookies ni recopilaremos datos adicionales más allá de los proporcionados voluntariamente por los usuarios durante el proceso de registro. El correo electrónico se utilizará exclusivamente para:</p>
         <ul>
-          <li>Reenvío de credenciales de registro.</li>
+          <li>Confirmación de registro realizado.</li>
           <li>Recuperación de contraseña.</li>
         </ul>
         <br>
@@ -104,7 +104,7 @@ export class RegisterPageComponent {
         <ul>
           <li>Ser mayor de edad.</li>
           <li>Estar afiliado a Twitch.</li>
-          <li>Tener constancia en los directos de ByFruty.</li>
+          <li>Tener constancia a la hora de hacer directos.</li>
           <li>Contar con una cuenta de PayPal u otro medio de pago disponible.</li>
           <li>Poseer una cuenta de Minecraft Premium.</li>
         </ul>

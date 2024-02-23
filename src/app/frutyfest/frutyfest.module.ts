@@ -21,6 +21,7 @@ import { Info01Component } from './pages/info/info-01/info-01.component';
 import { Info02Component } from './pages/info/info-02/info-02.component';
 import { RateComponent } from './pages/admin/rate/rate.component';
 import { SpinnerComponent } from '../shared/components/spinner/spinner.component';
+import { ScheduleComponent } from './components/schedule/schedule.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { SpinnerComponent } from '../shared/components/spinner/spinner.component
     Info01Component,
     Info02Component,
     RateComponent,
+    ScheduleComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,27 @@
+<div class="text-uppercase display-6 fw-bold">
+  <time class="date">{{date}}</time>
+  <span aria-hidden="true" class="d-none d-md-inline mx-1"> · </span>
+  <time class="time"></time>
+</div>
+
+<div class="mt-2 text-uppercase d-flex flex-column justify-content-center align-items-center">
+  <ng-container *ngIf="days !== '00' || hours !== '00' || minutes !== '00' || seconds !== '00'; else eventStarted">
+    <div class="row">
+      <h2>Para que comience el evento faltan</h2>
+    </div>
+    <div class="row">
+      <div class="gap-1 d-flex align-items-center">
+        <div data-days>{{ days }} días</div>
+        <span aria-hidden="true" class="mt-1 fs-5">:</span>
+        <div data-hours>{{ hours }} horas</div>
+        <span aria-hidden="true" class="mt-1 fs-5">:</span>
+        <div data-minutes>{{ minutes }} minutos</div>
+        <span aria-hidden="true" class="mt-1 fs-5">:</span>
+        <div data-seconds>{{ seconds }} segundos</div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #eventStarted>
+    <p>El evento ha comenzado...</p>
+  </ng-template>
+</div>
