@@ -20,7 +20,7 @@ export class FrutyfestLayoutComponent implements DoCheck {
   public scrollToSection(sectionId: string) {
     const section = document.getElementById(sectionId);
     if (section) {
-      section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      window.scrollTo(0, section.offsetTop - 150);
     }
   }
 
