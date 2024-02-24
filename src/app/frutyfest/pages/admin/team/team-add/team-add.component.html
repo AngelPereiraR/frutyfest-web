@@ -1,17 +1,17 @@
-<div class="container m-t-30">
+<div class="container mt-4">
   <form [formGroup]="myForm" (ngSubmit)="addTeam()" class="login100-form" autocomplete="off">
 
-    <span class="login100-form-title p-t-49 p-b-49">
+    <span class="login100-form-title py-5">
       Añadir equipo
     </span>
 
-    <div class="wrap-input100 m-b-23">
+    <div class="wrap-input100 mb-3">
       <span class="label-input100">Color</span>
       <input type="color" formControlName="color" class="form-control" />
       <span class="focus-input100"></span>
     </div>
 
-    <div class="wrap-input100 m-b-23">
+    <div class="wrap-input100 mb-3">
       <span class="label-input100">Participantes</span>
       <select *ngIf="!firstLoading" formControlName="participants" multiple class="form-control">
         <option *ngFor="let user of users(); let i = index" [value]="user">
@@ -28,9 +28,9 @@
 
     <div class="wrap-input100">
       <span class="label-input100">Evento</span>
-      <div class="m-t-15">
+      <div class="mt-3">
         <label *ngFor="let event of events">
-          <input class="m-l-30" type="radio" formControlName="event" [value]='event.event'> {{event.event}}
+          <input class="ms-3" type="radio" formControlName="event" [value]='event.event'> {{event.event}}
         </label>
       </div>
       <div class="input-group">
@@ -38,7 +38,7 @@
       </div>
     </div>
 
-    <div class="p-t-15"></div>
+    <div class="pt-3"></div>
 
     <div class="container-login100-form-btn">
       <div class="wrap-login100-form-btn">
@@ -52,7 +52,7 @@
       </div>
     </div>
 
-    <div class="flex-col-c p-t-20">
+    <div class="flex-col-c p-4">
       <div class="row d-flex justify-content-between">
         <div class="col-4">
           <a routerLink="/admin/team" class="txt2">
@@ -60,9 +60,6 @@
           </a>
         </div>
       </div>
-    </div>
-
-    <div class="flex-col-c p-t-20">
     </div>
   </form>
 

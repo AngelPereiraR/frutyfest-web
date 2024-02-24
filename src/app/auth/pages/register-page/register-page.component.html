@@ -4,9 +4,9 @@
   class="login100-form"
   autocomplete="off"
 >
-  <span class="login100-form-title p-b-30"> Registro </span>
+  <span class="login100-form-title pb-4"> Registro </span>
 
-  <div class="wrap-input100 m-b-10">
+  <div class="wrap-input100 ">
     <span class="label-input100">Correo</span>
     <input
       class="input100"
@@ -17,7 +17,7 @@
     <span class="focus-input100"></span>
   </div>
 
-  <div class="wrap-input100 m-b-10">
+  <div class="wrap-input100 mb-3">
     <span class="label-input100">Nombre</span>
     <input
       class="input100"
@@ -28,7 +28,7 @@
     <span class="focus-input100"></span>
   </div>
 
-  <div class="wrap-input100 m-b-10">
+  <div class="wrap-input100 mb-3">
     <span class="label-input100">Nombre de Minecraft</span>
     <input
       class="input100"
@@ -39,7 +39,7 @@
     <span class="focus-input100"></span>
   </div>
 
-  <div class="wrap-input100 m-b-10">
+  <div class="wrap-input100 mb-3">
     <span class="label-input100">Contraseña</span>
     <div class="input-group">
       <input
@@ -57,7 +57,7 @@
     </div>
   </div>
 
-  <div class="wrap-input100 m-b-10">
+  <div class="wrap-input100 mb-3">
     <span class="label-input100">Confirme la contraseña</span>
     <div class="input-group">
       <input
@@ -75,12 +75,12 @@
     </div>
   </div>
 
-  <div class="wrap-input100 m-b-10">
+  <div class="wrap-input100 mb-3">
     <span class="label-input100">¿Tiene compañero?</span>
     <div>
       <label
         ><input
-          class="m-l-30"
+          class="ms-3"
           type="radio"
           formControlName="hasCompanion"
           [value]="true"
@@ -89,7 +89,7 @@
       >
       <label
         ><input
-          class="m-l-30"
+          class="ms-3"
           type="radio"
           formControlName="hasCompanion"
           [value]="false"
@@ -100,7 +100,7 @@
   </div>
 
   <div
-    class="wrap-input100 m-b-10"
+    class="wrap-input100 mb-3"
     *ngIf="myForm.get('hasCompanion')?.value === true"
   >
     <span class="label-input100">Nombre del compañero</span>
@@ -113,22 +113,22 @@
     <span class="focus-input100"></span>
   </div>
 
-  <div class="wrap-input100 m-b-10">
+  <div class="wrap-input100 mb-3">
     <span class="label-input100">Presentación</span>
     <textarea
-      class="input100 m-t-15"
+      class="input100 mt-3"
       formControlName="presentation"
       placeholder="Escriba su presentación aquí"
     ></textarea>
     <span class="focus-input100"></span>
   </div>
 
-  <div class="wrap-input100 m-b-10">
+  <div class="wrap-input100 mb-3">
     <span class="label-input100">Evento</span>
     <div class="m-t-15">
       <label *ngFor="let event of events">
         <input
-          class="m-l-30"
+          class="ms-3"
           type="radio"
           formControlName="event"
           [value]="event.event"
@@ -141,12 +141,12 @@
     </div>
   </div>
 
-  <div class="wrap-input100 m-b-10">
+  <div class="wrap-input100 mb-3">
     <span class="label-input100">Políticas y Normas de Uso</span>
 
     <div class="checkbox-label">
       <input
-        class="m-l-10 m-r-10"
+        class="mx-3"
         type="checkbox"
         formControlName="policies"
         [value]="false"
@@ -186,8 +186,8 @@
     </div>
   </div>
 
-  <div class="flex-col-c p-t-20">
-    <span class="txt1 p-b-10"> ¿Ya tienes cuenta? </span>
+  <div class="flex-col-c pt-3">
+    <span class="txt1 pb-3"> ¿Ya tienes cuenta? </span>
 
     <div class="row d-flex justify-content-between align-items-center">
       <div class="col-8">

@@ -1,4 +1,4 @@
-<div *ngIf="teams()?.length === 12" class="p-l-100 p-r-100">
+<div *ngIf="teams()?.length === 12" class="px-5">
   <h1>Ranking</h1>
   <table *ngIf="!loading">
     <thead>
@@ -22,7 +22,7 @@
   </table>
   <spinner *ngIf="loading"></spinner>
 </div>
-<div *ngIf="teams()?.length != 12" class="p-l-100 p-r-100">
+<div *ngIf="teams()?.length != 12" class="px-5">
   <h1>Ranking</h1>
   <h2 *ngIf="!loading">Pendiente de seleccionar todos los equipos</h2>
   <spinner *ngIf="loading"></spinner>

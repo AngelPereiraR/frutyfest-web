@@ -1,14 +1,14 @@
-<div class="container p-t-50 p-b-50 p-l-100 p-r-100 custom">
+<div class="container py-4 px-5 custom">
   <form
     [formGroup]="myForm"
     (ngSubmit)="changeUser()"
     class="login100-form"
     autocomplete="off"
   >
-    <span class="login100-form-title p-b-30"> Cambiar perfil </span>
+    <span class="login100-form-title pb-3"> Cambiar perfil </span>
 
     <div *ngIf="!firstLoading">
-      <div class="wrap-input100 m-b-10">
+      <div class="wrap-input100 mb-3">
         <span class="label-input100">Correo</span>
         <input
           class="input100"
@@ -20,7 +20,7 @@
         <span class="focus-input100"></span>
       </div>
 
-      <div class="wrap-input100 m-b-10">
+      <div class="wrap-input100 mb-3">
         <span class="label-input100">Nombre</span>
         <input
           class="input100"
@@ -32,7 +32,7 @@
         <span class="focus-input100"></span>
       </div>
 
-      <div class="wrap-input100 m-b-10">
+      <div class="wrap-input100 mb-3">
         <span class="label-input100">Nombre de Minecraft</span>
         <input
           class="input100"
@@ -44,12 +44,12 @@
         <span class="focus-input100"></span>
       </div>
 
-      <div class="wrap-input100 m-b-10">
+      <div class="wrap-input100 mb-3">
         <span class="label-input100">¿Tiene compañero?</span>
         <div>
           <label
             ><input
-              class="m-l-30"
+              class="ms-3"
               type="radio"
               formControlName="hasCompanion"
               [value]="true"
@@ -58,7 +58,7 @@
           >
           <label
             ><input
-              class="m-l-30"
+              class="ms-3"
               type="radio"
               formControlName="hasCompanion"
               [value]="false"
@@ -69,7 +69,7 @@
       </div>
 
       <div
-        class="wrap-input100 m-b-10"
+        class="wrap-input100 mb-3"
         *ngIf="myForm!.get('hasCompanion')?.value === true"
       >
         <span class="label-input100">Nombre del compañero</span>
@@ -83,7 +83,7 @@
         <span class="focus-input100"></span>
       </div>
 
-      <div class="wrap-input100 m-b-10">
+      <div class="wrap-input100 mb-3">
         <span class="label-input100">Presentación</span>
         <textarea
           class="input100 m-t-15"
@@ -94,12 +94,12 @@
         <span class="focus-input100"></span>
       </div>
 
-      <div class="wrap-input100 m-b-10">
+      <div class="wrap-input100 mb-3">
         <span class="label-input100">Evento</span>
         <div class="m-t-15">
           <label *ngFor="let event of events">
             <input
-              class="m-l-30"
+              class="ms-3"
               type="radio"
               formControlName="event"
               [value]="event.event"
@@ -115,7 +115,7 @@
 
     <spinner *ngIf="firstLoading"></spinner>
 
-    <div class="container-login100-form-btn m-t-30">
+    <div class="container-login100-form-btn mt-3">
       <div class="wrap-login100-form-btn">
         <div class="login100-form-bgbtn"></div>
         <button
@@ -137,7 +137,7 @@
       </div>
     </div>
 
-    <div class="flex-col-c p-t-20">
+    <div class="flex-col-c p-3">
       <div>
         <a
           [routerLink]="'/participant/' + myForm!.get('_id')?.value"
