@@ -41,30 +41,30 @@ td {
 thead th {
   letter-spacing: 2px;
   @media (min-width: 80em) {
-    font-size: 18px;
+    font-size: 20px;
   }
 
   @media (min-width: 46em) and (max-width: 80em) {
-    font-size: 13px;
+    font-size: 16px;
   }
 
   @media (max-width: 46em) {
-    font-size: 8px;
+    font-size: 10px;
   }
 }
 
 tbody td, a {
   letter-spacing: 1px;
   @media (min-width: 80em) {
-    font-size: 15px;
+    font-size: 18px;
   }
 
   @media (min-width: 46em) and (max-width: 80em) {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   @media (max-width: 46em) {
-    font-size: 10px;
+    font-size: 12px;
   }
 }
 
