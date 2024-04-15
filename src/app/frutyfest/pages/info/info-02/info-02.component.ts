@@ -12,7 +12,7 @@ import { FrutyfestService } from 'src/app/frutyfest/services/frutyfest.service';
 })
 export class Info02Component {
   private frutyfestService = inject(FrutyfestService);
-  eventTimestamp: number = 1719691200000;
+  eventTimestamp: number = 1719698400000;
   mostrarBoton = false;
 
   constructor(private el: ElementRef) {}
