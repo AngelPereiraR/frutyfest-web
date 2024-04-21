@@ -227,8 +227,7 @@ export class RateComponent {
           });
         }
       } else if (this.phase() === 3) {
-        for (let i = 0; i < 2; i++) {
-          this.frutyfestService.setEliminatedPhase3(allTeams[i]._id).subscribe({
+        this.frutyfestService.setEliminatedPhase3(allTeams[0]._id).subscribe({
             next: () => {},
             error: (message) => {
               Swal.fire('Error', message, 'error');
@@ -238,7 +237,6 @@ export class RateComponent {
               this.loading = false;
             },
           });
-        }
       } else if (this.phase() === 4) {
         this.frutyfestService.setEliminatedPhase4(allTeams[0]._id).subscribe({
           next: () => {},

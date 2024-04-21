@@ -1,31 +1,33 @@
 <div class="px-5">
   <div *ngIf="!loading">
     <h1>Hay {{ totalUsers() }} participante/s seleccionado/s</h1>
-    <table>
-      <thead>
-        <tr>
-          <th>Streamers</th>
-        </tr>
-      </thead>
-      <tbody *ngFor="let user of users(); let i = index">
-        <tr *ngIf="i < 24">
-          <td>
-            <div
-              [ngStyle]="{
-                'white-space': 'nowrap',
-                overflow: 'hidden',
-                'text-overflow': 'ellipsis'
-              }"
-            >
-              {{ user.name }}
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div *ngIf="totalUsers() > 0">
+      <table>
+        <thead>
+          <tr>
+            <th>Streamers</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let user of users(); let i = index">
+          <tr *ngIf="i < 24">
+            <td>
+              <div
+                [ngStyle]="{
+                  'white-space': 'nowrap',
+                  overflow: 'hidden',
+                  'text-overflow': 'ellipsis'
+                }"
+              >
+                {{ user.name }}
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
-  <div class="pagination" *ngIf="!loading">
+  <div class="pagination" *ngIf="!loading && totalUsers() > 0">
     <button class="bottom" (click)="getUsers(position() - 1)">◄</button>
     <button
       class="bottom"
