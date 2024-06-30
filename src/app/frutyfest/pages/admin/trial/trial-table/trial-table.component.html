@@ -31,7 +31,7 @@
     </thead>
     <tbody *ngFor="let trial of trials(); let i = index">
       <tr>
-        <td>{{ i + 1 }}</td>
+        <td>{{ i + 1 + 8 * position() }}</td>
         <td
           [ngStyle]="{
             'white-space': 'nowrap',

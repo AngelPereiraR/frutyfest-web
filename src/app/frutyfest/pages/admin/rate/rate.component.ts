@@ -6,11 +6,7 @@ import {
   inject,
   signal,
 } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Team } from 'src/app/frutyfest/interfaces/team.interface';
 import { FrutyfestService } from 'src/app/frutyfest/services/frutyfest.service';
@@ -201,7 +197,7 @@ export class RateComponent {
     if (this.trial()?.endingPhase === true) {
       allTeams.sort((a: Team, b: Team) => a.totalPoints - b.totalPoints);
       if (this.phase() === 1) {
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < 3; i++) {
           this.frutyfestService.setEliminatedPhase1(allTeams[i]._id).subscribe({
             next: () => {},
             error: (message) => {
@@ -228,15 +224,15 @@ export class RateComponent {
         }
       } else if (this.phase() === 3) {
         this.frutyfestService.setEliminatedPhase3(allTeams[0]._id).subscribe({
-            next: () => {},
-            error: (message) => {
-              Swal.fire('Error', message, 'error');
-              this.loading = false;
-            },
-            complete: () => {
-              this.loading = false;
-            },
-          });
+          next: () => {},
+          error: (message) => {
+            Swal.fire('Error', message, 'error');
+            this.loading = false;
+          },
+          complete: () => {
+            this.loading = false;
+          },
+        });
       } else if (this.phase() === 4) {
         this.frutyfestService.setEliminatedPhase4(allTeams[0]._id).subscribe({
           next: () => {},

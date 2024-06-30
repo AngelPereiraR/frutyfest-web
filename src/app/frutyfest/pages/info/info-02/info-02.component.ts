@@ -1,9 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  HostListener,
-  inject,
-} from '@angular/core';
+import { Component, ElementRef, HostListener, inject } from '@angular/core';
 import { FrutyfestService } from 'src/app/frutyfest/services/frutyfest.service';
 
 @Component({
@@ -12,7 +7,7 @@ import { FrutyfestService } from 'src/app/frutyfest/services/frutyfest.service';
 })
 export class Info02Component {
   private frutyfestService = inject(FrutyfestService);
-  eventTimestamp: number = 1719698400000;
+  eventTimestamp: number = 1720297800000;
   mostrarBoton = false;
 
   constructor(private el: ElementRef) {}
