@@ -197,7 +197,7 @@ export class RateComponent {
     if (this.trial()?.endingPhase === true) {
       allTeams.sort((a: Team, b: Team) => a.totalPoints - b.totalPoints);
       if (this.phase() === 1) {
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < 2; i++) {
           this.frutyfestService.setEliminatedPhase1(allTeams[i]._id).subscribe({
             next: () => {},
             error: (message) => {
