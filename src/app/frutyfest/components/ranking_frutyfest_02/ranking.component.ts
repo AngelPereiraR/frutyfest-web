@@ -42,25 +42,26 @@ export class RankingComponent {
     this.loading = true;
     this.frutyfestService.getTeams().subscribe({
       next: (teams) => {
-        teams.sort((a, b) => b.totalPoints - a.totalPoints);
-        for (let i = 0; i < teams.length; i++) {
+        const teamsFF3 = teams.filter((team) => team.event === 'FrutyFest 2');
+        teamsFF3.sort((a, b) => b.totalPoints - a.totalPoints);
+        for (let i = 0; i < teamsFF3.length; i++) {
           if (
-            !teams[i].roles.includes('winner') &&
-            !teams[i].roles.includes('eliminated in phase 5') &&
-            !teams[i].roles.includes('eliminated in phase 4') &&
-            !teams[i].roles.includes('eliminated in phase 3') &&
-            !teams[i].roles.includes('eliminated in phase 2') &&
-            !teams[i].roles.includes('eliminated in phase 1')
+            !teamsFF3[i].roles.includes('winner') &&
+            !teamsFF3[i].roles.includes('eliminated in phase 5') &&
+            !teamsFF3[i].roles.includes('eliminated in phase 4') &&
+            !teamsFF3[i].roles.includes('eliminated in phase 3') &&
+            !teamsFF3[i].roles.includes('eliminated in phase 2') &&
+            !teamsFF3[i].roles.includes('eliminated in phase 1')
           ) {
-            this.participants.push(teams[i]);
+            this.participants.push(teamsFF3[i]);
           }
         }
-        this.getTeamsByRole('winner', teams);
-        this.getTeamsByRole('eliminated in phase 5', teams);
-        this.getTeamsByRole('eliminated in phase 4', teams);
-        this.getTeamsByRole('eliminated in phase 3', teams);
-        this.getTeamsByRole('eliminated in phase 2', teams);
-        this.getTeamsByRole('eliminated in phase 1', teams);
+        this.getTeamsByRole('winner', teamsFF3);
+        this.getTeamsByRole('eliminated in phase 5', teamsFF3);
+        this.getTeamsByRole('eliminated in phase 4', teamsFF3);
+        this.getTeamsByRole('eliminated in phase 3', teamsFF3);
+        this.getTeamsByRole('eliminated in phase 2', teamsFF3);
+        this.getTeamsByRole('eliminated in phase 1', teamsFF3);
         this._teams.set(this.participants);
         // Trigger ngOnChanges to repaint the HTML
         this.ngOnChanges({});

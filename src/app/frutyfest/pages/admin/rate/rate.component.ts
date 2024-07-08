@@ -71,14 +71,15 @@ export class RateComponent {
       .getTeams()
       .pipe(
         concatMap((teams) => {
-          for (let i = 0; i < teams.length; i++) {
-            if (teams[i].roles.includes('eliminated in phase 1')) {
+          const teamsFF3 = teams.filter((team) => team.event === 'FrutyFest 3');
+          for (let i = 0; i < teamsFF3.length; i++) {
+            if (teamsFF3[i].roles.includes('eliminated in phase 1')) {
               this._phase.set(Math.max(this.phase(), 2));
-            } else if (teams[i].roles.includes('eliminated in phase 2')) {
+            } else if (teamsFF3[i].roles.includes('eliminated in phase 2')) {
               this._phase.set(Math.max(this.phase(), 3));
-            } else if (teams[i].roles.includes('eliminated in phase 3')) {
+            } else if (teamsFF3[i].roles.includes('eliminated in phase 3')) {
               this._phase.set(Math.max(this.phase(), 4));
-            } else if (teams[i].roles.includes('eliminated in phase 4')) {
+            } else if (teamsFF3[i].roles.includes('eliminated in phase 4')) {
               this._phase.set(Math.max(this.phase(), 5));
             }
           }
@@ -99,7 +100,6 @@ export class RateComponent {
               gamemodesArray.push(gamemodes[i]);
             }
           }
-
           this._trials.set(gamemodesArray);
           // Trigger ngOnChanges to repaint the HTML
           this.ngOnChanges({});
