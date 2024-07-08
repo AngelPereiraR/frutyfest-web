@@ -1,7 +1,7 @@
 import { Component, ElementRef, Input, Renderer2 } from '@angular/core';
 
 @Component({
-  selector: 'schedule',
+  selector: 'schedule-02',
   templateUrl: './schedule.component.html',
   styleUrls: ['./schedule.component.css'],
 })
@@ -24,7 +24,6 @@ export class ScheduleComponent {
       this.updateCountdown();
       this.eventDate();
     }, 1000);
-
   }
 
   updateCountdown() {
@@ -36,18 +35,47 @@ export class ScheduleComponent {
     const now = Date.now();
     const diff = this.timestamp - now;
 
-
     const $days = this.elementRef.nativeElement.querySelector('.data-days');
     const $hours = this.elementRef.nativeElement.querySelector('.data-hours');
-    const $minutes = this.elementRef.nativeElement.querySelector('.data-minutes');
-    const $seconds = this.elementRef.nativeElement.querySelector('.data-seconds');
+    const $minutes =
+      this.elementRef.nativeElement.querySelector('.data-minutes');
+    const $seconds =
+      this.elementRef.nativeElement.querySelector('.data-seconds');
 
-    if (diff > 0 && $days != null && $hours != null && $minutes != null && $seconds != null) {
-      this.renderer.setProperty($days, 'innerHTML', `${this.formatTime(diff / DAY)} días`);
-      this.renderer.setProperty($hours, 'innerHTML', `${this.formatTime((diff % DAY) / HOUR)} horas`);
-      this.renderer.setProperty($minutes, 'innerHTML', `${this.formatTime((diff % HOUR) / MINUTE)} minutos`);
-      this.renderer.setProperty($seconds, 'innerHTML', `${this.formatTime((diff % MINUTE) / SECOND)} segundos`);
-    } else if(diff < 0 && $days != null && $hours != null && $minutes != null && $seconds != null) {
+    if (
+      diff > 0 &&
+      $days != null &&
+      $hours != null &&
+      $minutes != null &&
+      $seconds != null
+    ) {
+      this.renderer.setProperty(
+        $days,
+        'innerHTML',
+        `${this.formatTime(diff / DAY)} días`
+      );
+      this.renderer.setProperty(
+        $hours,
+        'innerHTML',
+        `${this.formatTime((diff % DAY) / HOUR)} horas`
+      );
+      this.renderer.setProperty(
+        $minutes,
+        'innerHTML',
+        `${this.formatTime((diff % HOUR) / MINUTE)} minutos`
+      );
+      this.renderer.setProperty(
+        $seconds,
+        'innerHTML',
+        `${this.formatTime((diff % MINUTE) / SECOND)} segundos`
+      );
+    } else if (
+      diff < 0 &&
+      $days != null &&
+      $hours != null &&
+      $minutes != null &&
+      $seconds != null
+    ) {
       this.days = '00';
       this.hours = '00';
       this.minutes = '00';
@@ -101,5 +129,4 @@ export class ScheduleComponent {
       this.renderer.setProperty($timeSpan, 'innerHTML', time);
     }
   }
-
 }

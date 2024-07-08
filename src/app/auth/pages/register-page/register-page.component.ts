@@ -8,7 +8,7 @@ import { Event } from 'src/app/frutyfest/interfaces/team.interface';
 
 @Component({
   templateUrl: './register-page.component.html',
-  styleUrls: ['./register-page.component.css']
+  styleUrls: ['./register-page.component.css'],
 })
 export class RegisterPageComponent {
   private fb = inject(FormBuilder);
@@ -22,40 +22,75 @@ export class RegisterPageComponent {
   constructor(private cdr: ChangeDetectorRef) {
     this.events = [
       {
-        event: 'FrutyFest 2'
-      }
-    ]
+        event: 'FrutyFest 3',
+      },
+    ];
   }
 
-  public myForm: FormGroup = this.fb.group({
-    email: ['', [Validators.required, Validators.pattern(this.validatorsService.emailPattern)]],
-    name: ['', [Validators.required]],
-    minecraftName: ['', [Validators.required]],
-    password: ['', [Validators.required, Validators.minLength(6)]],
-    confirmPassword: ['', [Validators.required]],
-    hasCompanion: [false, [Validators.required]],
-    companionName: [''],
-    event: ['', [Validators.required]],
-    presentation: ['', [Validators.required]],
-    policies: [false, [Validators.requiredTrue]],
-  }, {
-    validators: [
-      this.validatorsService.isFieldOneEqualFieldTwo('password', 'confirmPassword')
-    ]
-  });
+  public myForm: FormGroup = this.fb.group(
+    {
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(this.validatorsService.emailPattern),
+        ],
+      ],
+      name: ['', [Validators.required]],
+      minecraftName: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', [Validators.required]],
+      hasCompanion: [false, [Validators.required]],
+      companionName: [''],
+      event: ['', [Validators.required]],
+      presentation: ['', [Validators.required]],
+      policies: [false, [Validators.requiredTrue]],
+    },
+    {
+      validators: [
+        this.validatorsService.isFieldOneEqualFieldTwo(
+          'password',
+          'confirmPassword'
+        ),
+      ],
+    }
+  );
 
   showPassword = false;
 
   register() {
     this.loading = true;
-    let { email, name, minecraftName, password, hasCompanion, companionName, presentation, event } = this.myForm.value;
+    let {
+      email,
+      name,
+      minecraftName,
+      password,
+      hasCompanion,
+      companionName,
+      presentation,
+      event,
+    } = this.myForm.value;
 
     if (!companionName) companionName = 'No tiene';
 
-    this.authService.register(email, password, name, minecraftName, hasCompanion, presentation, companionName, event)
+    this.authService
+      .register(
+        email,
+        password,
+        name,
+        minecraftName,
+        hasCompanion,
+        presentation,
+        companionName,
+        event
+      )
       .subscribe({
         next: () => {
-          Swal.fire('Registro', 'Se le ha enviado un correo confirmando que el registro ha sido correcto. Si no aparece en Recibidos, por favor mire en su carpeta de Spam, gracias.', 'success')
+          Swal.fire(
+            'Registro',
+            'Se le ha enviado un correo confirmando que el registro ha sido correcto. Si no aparece en Recibidos, por favor mire en su carpeta de Spam, gracias.',
+            'success'
+          );
           this.router.navigateByUrl('/');
         },
         error: (message) => {
@@ -64,8 +99,8 @@ export class RegisterPageComponent {
         },
         complete: () => {
           this.loading = false;
-        }
-      })
+        },
+      });
   }
 
   togglePasswordVisibility() {

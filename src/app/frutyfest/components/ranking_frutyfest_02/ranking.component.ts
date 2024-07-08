@@ -10,7 +10,7 @@ import { FrutyfestService } from '../../services/frutyfest.service';
 import { Team } from '../../interfaces/team.interface';
 
 @Component({
-  selector: 'frutyfest-ranking',
+  selector: 'frutyfest-02-ranking',
   templateUrl: './ranking.component.html',
   styleUrls: ['./ranking.component.scss'],
 })
@@ -76,7 +76,7 @@ export class RankingComponent {
 
   private getTeamsByRole(role: string, teams: Team[]) {
     for (let i = 0; i < teams.length; i++) {
-      if (teams[i].roles.includes(role)) {
+      if (teams[i].roles.includes(role) && teams[i].event === 'FrutyFest 2') {
         this.participants.push(teams[i]);
       }
     }

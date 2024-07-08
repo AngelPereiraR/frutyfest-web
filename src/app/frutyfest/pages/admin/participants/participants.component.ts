@@ -56,19 +56,23 @@ export class ParticipantsComponent implements OnInit, OnDestroy, OnChanges {
 
   async getUsers(position: number): Promise<void> {
     this.loading = true;
-    if(position <= this.totalPages - 1 && position >= 0) {
+    if (position <= this.totalPages - 1 && position >= 0) {
       this._position.set(position);
     }
     this.authService.getUsers().subscribe({
       next: (users) => {
         const notAdminUsers = users.filter(
-          (user) => !user.roles.includes('admin')
+          (user) =>
+            !user.roles.includes('admin') && user.event === 'FrutyFest 3'
         );
         this._totalUsers.set(notAdminUsers.length);
         for (let i = 0; i <= this.position(); i++) {
           let usersList: User[] = [];
           for (let j = 0; j < 8; j++) {
-            if(notAdminUsers[8 * i + j] !== undefined && i <= this.position()) {
+            if (
+              notAdminUsers[8 * i + j] !== undefined &&
+              i <= this.position()
+            ) {
               usersList.push(notAdminUsers[8 * i + j]);
             }
           }

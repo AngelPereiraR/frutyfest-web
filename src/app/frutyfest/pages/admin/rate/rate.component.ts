@@ -280,16 +280,17 @@ export class RateComponent {
     this.firstLoading = true;
     this.frutyfestService.getTeams().subscribe({
       next: (teams) => {
+        const teamsFF3 = teams.filter((teams) => teams.event === 'FrutyFest 3');
         let teamsArray: Team[] = [];
-        for (let i = 0; i < teams.length; i++) {
+        for (let i = 0; i < teamsFF3.length; i++) {
           if (
-            !teams[i].roles.includes('eliminated in phase 1') &&
-            !teams[i].roles.includes('eliminated in phase 2') &&
-            !teams[i].roles.includes('eliminated in phase 3') &&
-            !teams[i].roles.includes('eliminated in phase 4') &&
-            !teams[i].roles.includes('eliminated in phase 5')
+            !teamsFF3[i].roles.includes('eliminated in phase 1') &&
+            !teamsFF3[i].roles.includes('eliminated in phase 2') &&
+            !teamsFF3[i].roles.includes('eliminated in phase 3') &&
+            !teamsFF3[i].roles.includes('eliminated in phase 4') &&
+            !teamsFF3[i].roles.includes('eliminated in phase 5')
           ) {
-            teamsArray.push(teams[i]);
+            teamsArray.push(teamsFF3[i]);
           }
         }
 

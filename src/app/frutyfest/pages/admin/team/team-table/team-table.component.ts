@@ -54,17 +54,18 @@ export class TeamTableComponent {
 
   getTeams(position: number): void {
     this.loading = true;
-    if(position <= this.totalPages - 1 && position >= 0) {
+    if (position <= this.totalPages - 1 && position >= 0) {
       this._position.set(position);
     }
     this.frutyfestService.getTeams().subscribe({
       next: (teams) => {
-        this._totalTeams.set(teams.length);
+        const teamsFF3 = teams.filter((teams) => teams.event === 'FrutyFest 3');
+        this._totalTeams.set(teamsFF3.length);
         for (let i = 0; i <= this.position(); i++) {
           let teamsList: Team[] = [];
           for (let j = 0; j < 8; j++) {
-            if(teams[8 * i + j] !== undefined && i <= this.position()) {
-              teamsList.push(teams[8 * i + j]);
+            if (teamsFF3[8 * i + j] !== undefined && i <= this.position()) {
+              teamsList.push(teamsFF3[8 * i + j]);
             }
           }
           this._teams.set(teamsList);

@@ -1,13 +1,20 @@
-import { ChangeDetectorRef, Component, SimpleChanges, computed, inject, signal } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  SimpleChanges,
+  computed,
+  inject,
+  signal,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/auth/interfaces';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { FrutyfestService } from '../../services/frutyfest.service';
 
 @Component({
-  selector: 'frutyfest-participants',
+  selector: 'frutyfest-02-participants',
   templateUrl: './participants-list.component.html',
-  styleUrls: ['./participants-list.component.scss']
+  styleUrls: ['./participants-list.component.scss'],
 })
 export class ParticipantsListComponent {
   private frutyfestService = inject(FrutyfestService);
@@ -45,22 +52,20 @@ export class ParticipantsListComponent {
 
   getUsers(position: number): void {
     this.loading = true;
-    if(position <= this.totalPages - 1 && position >= 0) {
+    if (position <= this.totalPages - 1 && position >= 0) {
       this._position.set(position);
     }
     this.authService.getUsers().subscribe({
       next: (users) => {
-        let participants: User[] = [];
-        for (let i = 0; i < users.length; i++) {
-          if (users[i].roles.includes('participant')) {
-            participants.push(users[i]);
-          }
-        }
+        let participants: User[] = users.filter(
+          (user) =>
+            user.roles.includes('participant') && user.event === 'FrutyFest 2'
+        );
         this._totalUsers.set(participants.length);
         for (let i = 0; i <= this.position(); i++) {
           let usersList: User[] = [];
           for (let j = 0; j < 8; j++) {
-            if(participants[8 * i + j] !== undefined && i <= this.position()) {
+            if (participants[8 * i + j] !== undefined && i <= this.position()) {
               usersList.push(participants[8 * i + j]);
             }
           }
@@ -74,7 +79,7 @@ export class ParticipantsListComponent {
       },
       complete: () => {
         this.loading = false;
-      }
+      },
     });
   }
 }

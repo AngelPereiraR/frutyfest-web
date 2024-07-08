@@ -44,7 +44,7 @@ export class TeamAddComponent {
     this.getUsers();
     this.events = [
       {
-        event: 'FrutyFest 2',
+        event: 'FrutyFest 3',
       },
     ];
   }
@@ -66,13 +66,14 @@ export class TeamAddComponent {
     this.loading = true;
     this.authService.getUsers().subscribe({
       next: (users) => {
+        const usersFF3 = users.filter((user) => user.event === 'FrutyFest 3');
         let participants: User[] = [];
-        for (let i = 0; i < users.length; i++) {
+        for (let i = 0; i < usersFF3.length; i++) {
           if (
-            users[i].roles.includes('participant') &&
-            !users[i].roles.includes('onTeam')
+            usersFF3[i].roles.includes('participant') &&
+            !usersFF3[i].roles.includes('onTeamFF3')
           ) {
-            participants.push(users[i]);
+            participants.push(usersFF3[i]);
           }
         }
         this._users.set(participants);

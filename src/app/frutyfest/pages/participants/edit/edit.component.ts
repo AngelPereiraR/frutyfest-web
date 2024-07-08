@@ -49,6 +49,9 @@ export class EditComponent {
       {
         event: 'FrutyFest 2',
       },
+      {
+        event: 'FrutyFest 3',
+      },
     ];
   }
 
